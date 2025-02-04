@@ -1,4 +1,4 @@
-## BEAUTYTERAPY APPLICATIE
+## Festival Haarlem
 
 ### Inloggegevens
 - **Wachtwoord voor alle gebruikers:** `password123!`
