@@ -21,9 +21,10 @@ services:
             MYSQL_ROOT_PASSWORD: 'secret123'
             MYSQL_USER: 'developer'
             MYSQL_PASSWORD: 'secret123'
-            MYSQL_DATABASE: 'developmentdb'
+            MYSQL_DATABASE: 'haarlem_festivaldb'
         volumes:
             - mysqldata:/var/lib/mysql
+            - ./sql:/docker-entrypoint-initdb.d
         ports:
             - 3306:3306
     phpmyadmin:
@@ -32,5 +33,6 @@ services:
             - 8080:80
         environment:
             - PMA_HOST=mysql
+        restart: unless-stopped
 volumes:
     mysqldata: {}
