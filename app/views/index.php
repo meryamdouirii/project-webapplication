@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<?php include __DIR__ . '/../header.php'; ?>
+<?php include __DIR__ . '/header.php'; ?>
 <main>
     <section class="hero">
         <div class="hero-overlay">
@@ -47,7 +47,7 @@
 
 
 </main>
-<?php include __DIR__ . '/../footer.php'; ?>
+<?php include __DIR__ . '/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
