@@ -22,7 +22,9 @@ switch ($url) {
     case "/login";
         $homeController->login();
         break;
-    
+    case "/register";
+        $homeController->register();
+        break;
     default:
         http_response_code(404);
 }
