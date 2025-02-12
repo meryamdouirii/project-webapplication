@@ -8,7 +8,8 @@
             <div>
                 <h1>The Festival</h1>
                 <p>Join us for three days of music, food, and unforgettable memories</p>
-                <a href="#" class="button">Discover our events</a>
+                <a href="#" class="button">DISCOVER OUR EVENTS</a>
+                <a href="#" class="button">GET TICKETS</a>
             </div>
         </div>
     </section>
@@ -70,8 +71,6 @@
                     </div>
                 </div>
             </div>
-
-
     </div>
     </section>
 

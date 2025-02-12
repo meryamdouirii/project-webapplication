@@ -75,7 +75,7 @@ button.button{
 }
 li > .button {
     padding: 10% 40%; 
-    
+   
     white-space: nowrap;
 }
 html{
@@ -95,4 +95,9 @@ main {
 }
 .bg-blue {
     background-color:  #17295B !important;
+}
+
+.hero .button {
+    width: 270px; 
+    text-align: center;
 }
