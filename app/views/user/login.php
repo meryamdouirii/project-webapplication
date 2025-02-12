@@ -2,7 +2,7 @@
     <title>Log In</title>
 </head>
 <?php
-include __DIR__ . '/header.php';?>
+include __DIR__ . '/../header.php';?>
 <main class="container d-flex justify-content-center align-items-center vh-100">     
     <div class="card p-4" style="width: 35%;">
         <h3 class="text-center">Login</h3>
@@ -25,7 +25,7 @@ include __DIR__ . '/header.php';?>
     </div>
 </main>
 
-<?php include __DIR__ . '/footer.php';
+<?php include __DIR__ . '/../footer.php';
 ?>    
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
