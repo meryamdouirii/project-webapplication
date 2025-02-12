@@ -10,6 +10,9 @@
                 <li class="nav-item"><a class="nav-link" href="#">Dance</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
             </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="button" href="#">Log In</a></li>
+            </ul>
         </div>
     </div>
 </nav>
