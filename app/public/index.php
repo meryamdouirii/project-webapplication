@@ -19,6 +19,10 @@ switch ($url) {
     case "/";
         $homeController->index();
         break;
+    case "/login";
+        $homeController->login();
+        break;
+    
     default:
         http_response_code(404);
 }
