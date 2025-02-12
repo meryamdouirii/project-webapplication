@@ -13,7 +13,8 @@
         </div>
     </section>
 
-    <section class="container py-5">
+    <section class="bg-blue py-5">
+        <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <a href="#" class="card">
@@ -34,6 +35,44 @@
                 </a>
             </div>
         </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-5" >
+    <div class="container">
+        <div class="row text-center justify-content-center ">
+            <div class="col-md-4">
+                <div class="icon-circle mb-3">
+                    <img src=/images-logos/calendar-icon.png alt="Calendar Icon" class="icon-img">
+                    <div class="card-body">
+                        <h5 class="card-title">July 24-27, 2025</h5>
+                        <p>Four days of unforgettable experiences.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="icon-circle mb-3">
+                    <img src="/images-logos/location-icon.png" alt="Location Icon" class="icon-img">
+                    <div class="card-body">
+                        <h5 class="card-title">Historic Haarlem</h5>
+                        <p>Multiple venues across the city center.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="icon-circle mb-3">
+                    <img src="/images-logos/music-icon.png" alt="Music Icon" class="icon-img">
+                    <div class="card-body">
+                        <h5 class="card-title">Diverse performances</h5>
+                        <p>Dance the night away with DJs</p>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
     </section>
 
 

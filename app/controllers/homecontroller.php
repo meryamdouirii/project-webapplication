@@ -11,6 +11,7 @@ class HomeController
     public function login(){
         require("../views/login.php");
     }
+   
 
 }
 

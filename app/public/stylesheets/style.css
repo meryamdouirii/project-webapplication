@@ -91,4 +91,8 @@ main {
 }
 .navbar .container {
     margin:0  2.5%;
+
+}
+.bg-blue {
+    background-color:  #17295B !important;
 }
