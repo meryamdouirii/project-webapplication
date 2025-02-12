@@ -25,6 +25,13 @@ body {
     color: white;
     text-align: center;
 }
+.card {
+    text-decoration: none; 
+    color: inherit; 
+}
+.card:hover {
+    color:#8d786c
+}
 .card img {
     height: 250px;
     object-fit: cover;
