@@ -6,7 +6,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Haarlem Jazz</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Yummy</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Dance</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
