@@ -53,7 +53,7 @@
         <div class="row text-center justify-content-center ">
             <div class="col-md-4">
                 <div class="icon-circle mb-3">
-                    <img src="calendar-icon" alt="Calendar Icon" class="icon-img">
+                    <img src=/images-logos/calendar-icon.png alt="Calendar Icon" class="icon-img">
                     <div class="card-body">
                         <h5 class="card-title">July 24-27, 2025</h5>
                         <p>Four days of unforgettable experiences.</p>

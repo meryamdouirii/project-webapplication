@@ -19,15 +19,6 @@ switch ($url) {
     case "/";
         $homeController->index();
         break;
-    case "/music-icon":
-        $homeController->musicIcon();
-        break;
-    case "/location-icon":
-        $homeController->locationIcon();
-        break;
-    case "/calendar-icon":
-        $homeController->calendarIcon();
-        break;
     default:
         http_response_code(404);
 }
