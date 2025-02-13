@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="stylesheets/style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="images-logos/logo.png">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="/images-logos/logo.png" alt="Haarlem Festival Logo" height="50">
