@@ -1,7 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
-header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
@@ -19,6 +18,12 @@ session_start();
 switch ($url) {
     case "/";
         $homeController->index();
+        break;
+    case "/login";
+        $homeController->login();
+        break;
+    case "/register";
+        $homeController->register();
         break;
     default:
         http_response_code(404);

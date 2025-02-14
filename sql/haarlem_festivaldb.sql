@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 07 feb 2025 om 11:36
+-- Gegenereerd op: 14 feb 2025 om 16:45
 -- Serverversie: 11.6.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.27
 
@@ -24,47 +24,89 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `about_event`
+--
+
+CREATE TABLE `about_event` (
+  `about_event_id` int(11) NOT NULL,
+  `event_id` int(11) DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `button_text` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `detail_event`
 --
 
 CREATE TABLE `detail_event` (
   `id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(5000) DEFAULT NULL,
-  `amount_stars` int(11) DEFAULT NULL,
-  `banner_image` mediumblob DEFAULT NULL,
-  `detail_image_1` blob DEFAULT NULL,
-  `detail_image_2` blob DEFAULT NULL
+  `banner_description` varchar(200) DEFAULT NULL,
+  `banner_image` varchar(200) DEFAULT NULL,
+  `name` varchar(200) NOT NULL,
+  `description` varchar(500) DEFAULT NULL,
+  `image_description_1` varchar(500) DEFAULT NULL,
+  `image_description_2` varchar(500) DEFAULT NULL,
+  `card_image` varchar(500) DEFAULT NULL,
+  `card_description` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `event_page`
+-- Tabelstructuur voor tabel `detail_event_card_tag`
 --
 
-CREATE TABLE `event_page` (
+CREATE TABLE `detail_event_card_tag` (
   `id` int(11) NOT NULL,
-  `home_page_id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(5000) DEFAULT NULL,
-  `banner_image` mediumblob DEFAULT NULL,
-  `smaller_image` blob DEFAULT NULL
+  `detail_event_id` int(11) NOT NULL,
+  `tag` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `home_page`
+-- Tabelstructuur voor tabel `event`
 --
 
-CREATE TABLE `home_page` (
+CREATE TABLE `event` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `description` varchar(5000) DEFAULT NULL,
-  `banner_image` mediumblob DEFAULT NULL
+  `name` varchar(200) NOT NULL,
+  `description_homepage` varchar(2000) DEFAULT NULL,
+  `banner_description` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `event`
+--
+
+INSERT INTO `event` (`id`, `name`, `description_homepage`, `banner_description`) VALUES
+(1, 'dance', 'Top DJs make an appearance for unforgettable nights.', 'Top DJ\'s performing in DANCE festival!'),
+(2, 'Yummy', 'A culinary journey through Haarlem\'s finest dining', 'Visit the best restaurants in Haarlem!');
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `homepage`
+--
+
+CREATE TABLE `homepage` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `homepage_description` varchar(200) DEFAULT NULL,
+  `banner_image` varchar(200) DEFAULT NULL,
+  `banner_description` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `homepage`
+--
+
+INSERT INTO `homepage` (`id`, `name`, `homepage_description`, `banner_image`, `banner_description`) VALUES
+(1, 'The festival', NULL, 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1600', 'Join us for three days of music, food, and unforgettable memories');
 
 -- --------------------------------------------------------
 
@@ -75,13 +117,13 @@ CREATE TABLE `home_page` (
 CREATE TABLE `session` (
   `id` int(11) NOT NULL,
   `detail_event_id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
   `description` varchar(5000) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
   `ticket_limit` int(11) NOT NULL,
   `duration_minutes` int(11) NOT NULL,
-  `price` float NOT NULL,
-  `datetime` datetime NOT NULL
+  `price` decimal(10,2) NOT NULL,
+  `datetime_start` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- --------------------------------------------------------
@@ -92,9 +134,9 @@ CREATE TABLE `session` (
 
 CREATE TABLE `song` (
   `id` int(11) NOT NULL,
-  `dance_event_id` int(11) NOT NULL,
-  `photo` blob DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `detail_event_id` int(11) NOT NULL,
+  `photo` varchar(200) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `description` varchar(5000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
@@ -146,6 +188,13 @@ CREATE TABLE `user` (
 --
 
 --
+-- Indexen voor tabel `about_event`
+--
+ALTER TABLE `about_event`
+  ADD PRIMARY KEY (`about_event_id`),
+  ADD KEY `event_id` (`event_id`);
+
+--
 -- Indexen voor tabel `detail_event`
 --
 ALTER TABLE `detail_event`
@@ -153,16 +202,22 @@ ALTER TABLE `detail_event`
   ADD KEY `event_id` (`event_id`);
 
 --
--- Indexen voor tabel `event_page`
+-- Indexen voor tabel `detail_event_card_tag`
 --
-ALTER TABLE `event_page`
+ALTER TABLE `detail_event_card_tag`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `home_page_id` (`home_page_id`);
+  ADD KEY `detail_event_id` (`detail_event_id`);
 
 --
--- Indexen voor tabel `home_page`
+-- Indexen voor tabel `event`
 --
-ALTER TABLE `home_page`
+ALTER TABLE `event`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexen voor tabel `homepage`
+--
+ALTER TABLE `homepage`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -177,7 +232,7 @@ ALTER TABLE `session`
 --
 ALTER TABLE `song`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `dance_event_id` (`dance_event_id`);
+  ADD KEY `detail_event_id` (`detail_event_id`);
 
 --
 -- Indexen voor tabel `ticket`
@@ -205,22 +260,34 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT voor een tabel `about_event`
+--
+ALTER TABLE `about_event`
+  MODIFY `about_event_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT voor een tabel `detail_event`
 --
 ALTER TABLE `detail_event`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `event_page`
+-- AUTO_INCREMENT voor een tabel `detail_event_card_tag`
 --
-ALTER TABLE `event_page`
+ALTER TABLE `detail_event_card_tag`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `home_page`
+-- AUTO_INCREMENT voor een tabel `event`
 --
-ALTER TABLE `home_page`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT voor een tabel `homepage`
+--
+ALTER TABLE `homepage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT voor een tabel `session`
@@ -257,41 +324,47 @@ ALTER TABLE `user`
 --
 
 --
+-- Beperkingen voor tabel `about_event`
+--
+ALTER TABLE `about_event`
+  ADD CONSTRAINT `about_event_fk_event_id` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
+
+--
 -- Beperkingen voor tabel `detail_event`
 --
 ALTER TABLE `detail_event`
-  ADD CONSTRAINT `detail_event_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event_page` (`id`);
+  ADD CONSTRAINT `detail_event_fk_event_id` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
 
 --
--- Beperkingen voor tabel `event_page`
+-- Beperkingen voor tabel `detail_event_card_tag`
 --
-ALTER TABLE `event_page`
-  ADD CONSTRAINT `event_page_ibfk_1` FOREIGN KEY (`home_page_id`) REFERENCES `home_page` (`id`);
+ALTER TABLE `detail_event_card_tag`
+  ADD CONSTRAINT `detail_event_card_tag_fk_detail_event_id` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
 
 --
 -- Beperkingen voor tabel `session`
 --
 ALTER TABLE `session`
-  ADD CONSTRAINT `session_ibfk_1` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
+  ADD CONSTRAINT `session_fk_detail_event_id` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
 
 --
 -- Beperkingen voor tabel `song`
 --
 ALTER TABLE `song`
-  ADD CONSTRAINT `song_ibfk_1` FOREIGN KEY (`dance_event_id`) REFERENCES `detail_event` (`id`);
+  ADD CONSTRAINT `song_fk_detail_event_id` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
 
 --
 -- Beperkingen voor tabel `ticket`
 --
 ALTER TABLE `ticket`
-  ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `ticket_order` (`id`),
-  ADD CONSTRAINT `ticket_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`);
+  ADD CONSTRAINT `ticket_fk_order_id` FOREIGN KEY (`order_id`) REFERENCES `ticket_order` (`id`),
+  ADD CONSTRAINT `ticket_fk_session_id` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`);
 
 --
 -- Beperkingen voor tabel `ticket_order`
 --
 ALTER TABLE `ticket_order`
-  ADD CONSTRAINT `ticket_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `ticket_order_fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
