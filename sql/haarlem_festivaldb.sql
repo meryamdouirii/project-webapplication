@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 14 feb 2025 om 16:45
+-- Gegenereerd op: 15 feb 2025 om 14:09
 -- Serverversie: 11.6.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.27
 
@@ -76,16 +76,17 @@ CREATE TABLE `event` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `description_homepage` varchar(2000) DEFAULT NULL,
-  `banner_description` varchar(50) DEFAULT NULL
+  `banner_description` varchar(50) DEFAULT NULL,
+  `picture_homepage` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `event`
 --
 
-INSERT INTO `event` (`id`, `name`, `description_homepage`, `banner_description`) VALUES
-(1, 'dance', 'Top DJs make an appearance for unforgettable nights.', 'Top DJ\'s performing in DANCE festival!'),
-(2, 'Yummy', 'A culinary journey through Haarlem\'s finest dining', 'Visit the best restaurants in Haarlem!');
+INSERT INTO `event` (`id`, `name`, `description_homepage`, `banner_description`, `picture_homepage`) VALUES
+(1, 'Dance', 'Top DJs make an appearance for unforgettable nights.', 'Top DJ\'s performing in DANCE festival!', 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=500'),
+(2, 'Yummy', 'A culinary journey through Haarlem\'s finest dining', 'Visit the best restaurants in Haarlem!', 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,6 @@ INSERT INTO `event` (`id`, `name`, `description_homepage`, `banner_description`)
 CREATE TABLE `homepage` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `homepage_description` varchar(200) DEFAULT NULL,
   `banner_image` varchar(200) DEFAULT NULL,
   `banner_description` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
@@ -105,8 +105,8 @@ CREATE TABLE `homepage` (
 -- Gegevens worden geëxporteerd voor tabel `homepage`
 --
 
-INSERT INTO `homepage` (`id`, `name`, `homepage_description`, `banner_image`, `banner_description`) VALUES
-(1, 'The festival', NULL, 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1600', 'Join us for three days of music, food, and unforgettable memories');
+INSERT INTO `homepage` (`id`, `name`, `banner_image`, `banner_description`) VALUES
+(1, 'The festival', 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1600', 'Join us for three days of music, food, and unforgettable memories');
 
 -- --------------------------------------------------------
 
