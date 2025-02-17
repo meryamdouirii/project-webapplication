@@ -175,7 +175,7 @@ CREATE TABLE `ticket_order` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `type` int(11) NOT NULL,
+  `type` ENUM('employee', 'customer', 'administrator') NOT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
