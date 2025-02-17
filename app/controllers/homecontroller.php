@@ -1,11 +1,17 @@
 <?php 
 
 namespace App\controllers;
+use App\Repositories\EventRepository;
+use App\Repositories\HomepageRepository;
 
 
 class HomeController 
 {
     public function index() {
+        $eventRepository = new EventRepository();
+        $events = $eventRepository->getAll();
+        $homepageRepository = new HomepageRepository();
+        $homepage = $homepageRepository->getById(1);
         require("../views/index.php");
     }
    
@@ -29,9 +35,11 @@ class HomeController
 
         
     }
+
     public function register(){
         require("../views/user/register.php");
     }
+
     public function logout(){
         require("../views/user/logout.php");
     }
