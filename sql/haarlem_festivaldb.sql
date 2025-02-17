@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 07 feb 2025 om 11:36
+-- Gegenereerd op: 12 feb 2025 om 11:39
 -- Serverversie: 11.6.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.27
 
@@ -134,7 +134,8 @@ CREATE TABLE `ticket_order` (
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `type` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
