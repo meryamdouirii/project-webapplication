@@ -26,7 +26,12 @@
                     <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
+                    <?php if (!isset($_SESSION['user'])): ?>
                     <li class="nav-item"><a class="button" href="/login">Log In</a></li>
+                    <?php endif; ?>
+                    <?php if (isset($_SESSION['user'])): ?>
+                    <li class="nav-item"><a class="button" href="/logout">Log Out</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

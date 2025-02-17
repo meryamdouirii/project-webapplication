@@ -106,6 +106,7 @@ html, body {
 }
 main {
     flex: 1; 
+    
 }
 .navbar .container {
     margin:0  2.5%;

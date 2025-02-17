@@ -7,6 +7,12 @@ use App\Repositories\HomepageRepository;
 
 class HomeController 
 {
+    private $userService;
+
+    function __construct(){
+        $this->userService = new \App\Services\UserService();
+    }
+
     public function index() {
         $eventRepository = new EventRepository();
         $events = $eventRepository->getAll();
@@ -23,13 +29,11 @@ class HomeController
             $email = htmlspecialchars($_POST['email']);
             $password = htmlspecialchars($_POST['password']);
             $user = $this->userService->getByEmail($email);
-            if ($user != null && password_verify($password, $user->hashed_password)) {
+            if ($user != null  && password_verify($password, $user->hashed_password) ) {
                 $_SESSION['user'] = $user;
-                $this->about();
+                $this->index();
             } else {
-                require __DIR__ . '/../views/home/login.php';
-                ?>
-                <?php
+                require __DIR__ . '/../views/user/login.php';
             }
         }
 
@@ -37,11 +41,51 @@ class HomeController
     }
 
     public function register(){
-        require("../views/user/register.php");
+        if ($_SERVER['REQUEST_METHOD']=="GET"){
+            require("../views/user/register.php");
+        }
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $email = htmlspecialchars($_POST['email']);
+            $raw_password = htmlspecialchars($_POST['password']);
+            $password = password_hash($raw_password, PASSWORD_DEFAULT);
+            $type_of_user = \App\Models\enums\UserType::Customer;
+            $first_name = !empty($_POST['first_name']) ? htmlspecialchars($_POST['first_name']) : null;
+            $last_name = !empty($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : null;
+            $phone_number = !empty($_POST['phone_number']) ? htmlspecialchars($_POST['phone_number']) : null;
+
+            if ($this->userService->getByEmail($email) !== null) {
+                $error = "This email is already registered.";
+    
+                $formData = $_POST;
+    
+                require __DIR__ . '/../views/user/register.php';
+                exit;
+            }
+
+            $user = new \App\Models\User();
+            $user->email = $email;
+            $user->hashed_password = $password;
+            $user->type_of_user = $type_of_user;
+            $user->first_name = $first_name;
+            $user->last_name = $last_name;
+            $user->phone_number = $phone_number;
+            $user->salt= "salt";
+
+            $this->userService->insert($user);
+
+            
+            $_SESSION['user'] = $user;
+            $this->index();
+        }
+        
     }
 
     public function logout(){
-        require("../views/user/logout.php");
+        session_unset();  
+        session_destroy();  
+
+        header("Location: /");
+        exit;
     }
 
 }

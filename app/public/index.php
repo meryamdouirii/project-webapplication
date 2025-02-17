@@ -25,6 +25,9 @@ switch ($url) {
     case "/register";
         $homeController->register();
         break;
+    case "/logout";
+        $homeController->logout();
+        break;
     default:
         http_response_code(404);
 }
