@@ -1,3 +1,10 @@
+<?php
+require_once __DIR__ . '/../vendor/autoload.php'; // de events laden niet in de header.php file zonder dit.
+$eventRepository = new \App\Repositories\EventRepository();
+$events = $eventRepository->getAll();
+?>
+
+
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -21,9 +28,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Yummy</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Dance</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
+                    <!-- <pre><?php print_r($events); ?></pre> -->
+                <?php foreach ($events as $event): ?>
+                    <li class="nav-item"><a class="nav-link" href="#"><?= htmlspecialchars($event->name); ?></a></li>
+                <?php endforeach; ?>
+                <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <?php if (!isset($_SESSION['user'])): ?>
