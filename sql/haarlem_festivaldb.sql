@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 15 feb 2025 om 14:09
--- Serverversie: 11.6.2-MariaDB-ubu2404
--- PHP-versie: 8.2.27
+-- Generation Time: Feb 18, 2025 at 10:50 PM
+-- Server version: 11.6.2-MariaDB-ubu2404
+-- PHP Version: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `about_event`
+-- Table structure for table `about_event`
 --
 
 CREATE TABLE `about_event` (
@@ -38,7 +38,7 @@ CREATE TABLE `about_event` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `detail_event`
+-- Table structure for table `detail_event`
 --
 
 CREATE TABLE `detail_event` (
@@ -57,7 +57,7 @@ CREATE TABLE `detail_event` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `detail_event_card_tag`
+-- Table structure for table `detail_event_card_tag`
 --
 
 CREATE TABLE `detail_event_card_tag` (
@@ -69,7 +69,7 @@ CREATE TABLE `detail_event_card_tag` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `event`
+-- Table structure for table `event`
 --
 
 CREATE TABLE `event` (
@@ -81,17 +81,17 @@ CREATE TABLE `event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `event`
+-- Dumping data for table `event`
 --
 
 INSERT INTO `event` (`id`, `name`, `description_homepage`, `banner_description`, `picture_homepage`) VALUES
-(1, 'Dance', 'Top DJs make an appearance for unforgettable nights.', 'Top DJ\'s performing in DANCE festival!', 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=500'),
+(1, 'Dance', 'Top DJs make an appearance for unforgettable nights.', 'Top DJ\'s performing in DANCE festival!', 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?'),
 (2, 'Yummy', 'A culinary journey through Haarlem\'s finest dining', 'Visit the best restaurants in Haarlem!', 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500');
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `homepage`
+-- Table structure for table `homepage`
 --
 
 CREATE TABLE `homepage` (
@@ -102,7 +102,7 @@ CREATE TABLE `homepage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `homepage`
+-- Dumping data for table `homepage`
 --
 
 INSERT INTO `homepage` (`id`, `name`, `banner_image`, `banner_description`) VALUES
@@ -111,7 +111,7 @@ INSERT INTO `homepage` (`id`, `name`, `banner_image`, `banner_description`) VALU
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `session`
+-- Table structure for table `session`
 --
 
 CREATE TABLE `session` (
@@ -129,7 +129,7 @@ CREATE TABLE `session` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `song`
+-- Table structure for table `song`
 --
 
 CREATE TABLE `song` (
@@ -143,7 +143,7 @@ CREATE TABLE `song` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `ticket`
+-- Table structure for table `ticket`
 --
 
 CREATE TABLE `ticket` (
@@ -158,7 +158,7 @@ CREATE TABLE `ticket` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `ticket_order`
+-- Table structure for table `ticket_order`
 --
 
 CREATE TABLE `ticket_order` (
@@ -170,73 +170,82 @@ CREATE TABLE `ticket_order` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `type` ENUM('employee', 'customer', 'administrator') NOT NULL,
+  `type` enum('employee','customer','administrator') NOT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
-  `salt` varchar(255) NOT NULL
+  `salt` varchar(255) NOT NULL,
+  `reset_token_hash` varchar(64) DEFAULT NULL,
+  `reset_token_expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
--- Indexen voor geëxporteerde tabellen
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `type`, `first_name`, `last_name`, `phone_number`, `email_address`, `password_hash`, `salt`, `reset_token_hash`, `reset_token_expires_at`) VALUES
+(1, 'customer', 'Meryam', 'Douiri', '0643209996', 'douirimeryam14@gmail.com', '$2y$12$9EO5OmD2qLiunmJy3iH2iu2qjyU4mx5IiU/v1c9yfnsFPNvwk4RDG', 'salt', 'c56321a9d72163240b2b9d151ee3e801a9a174512e5f936088518face1ef302a', '2025-02-19 00:19:37');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `about_event`
+-- Indexes for table `about_event`
 --
 ALTER TABLE `about_event`
   ADD PRIMARY KEY (`about_event_id`),
   ADD KEY `event_id` (`event_id`);
 
 --
--- Indexen voor tabel `detail_event`
+-- Indexes for table `detail_event`
 --
 ALTER TABLE `detail_event`
   ADD PRIMARY KEY (`id`),
   ADD KEY `event_id` (`event_id`);
 
 --
--- Indexen voor tabel `detail_event_card_tag`
+-- Indexes for table `detail_event_card_tag`
 --
 ALTER TABLE `detail_event_card_tag`
   ADD PRIMARY KEY (`id`),
   ADD KEY `detail_event_id` (`detail_event_id`);
 
 --
--- Indexen voor tabel `event`
+-- Indexes for table `event`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexen voor tabel `homepage`
+-- Indexes for table `homepage`
 --
 ALTER TABLE `homepage`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexen voor tabel `session`
+-- Indexes for table `session`
 --
 ALTER TABLE `session`
   ADD PRIMARY KEY (`id`),
   ADD KEY `detail_event_id` (`detail_event_id`);
 
 --
--- Indexen voor tabel `song`
+-- Indexes for table `song`
 --
 ALTER TABLE `song`
   ADD PRIMARY KEY (`id`),
   ADD KEY `detail_event_id` (`detail_event_id`);
 
 --
--- Indexen voor tabel `ticket`
+-- Indexes for table `ticket`
 --
 ALTER TABLE `ticket`
   ADD PRIMARY KEY (`id`),
@@ -244,125 +253,126 @@ ALTER TABLE `ticket`
   ADD KEY `session_id` (`session_id`);
 
 --
--- Indexen voor tabel `ticket_order`
+-- Indexes for table `ticket_order`
 --
 ALTER TABLE `ticket_order`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexen voor tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `reset_token_hash` (`reset_token_hash`);
 
 --
--- AUTO_INCREMENT voor geëxporteerde tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT voor een tabel `about_event`
+-- AUTO_INCREMENT for table `about_event`
 --
 ALTER TABLE `about_event`
   MODIFY `about_event_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `detail_event`
+-- AUTO_INCREMENT for table `detail_event`
 --
 ALTER TABLE `detail_event`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `detail_event_card_tag`
+-- AUTO_INCREMENT for table `detail_event_card_tag`
 --
 ALTER TABLE `detail_event_card_tag`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `event`
+-- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT voor een tabel `homepage`
+-- AUTO_INCREMENT for table `homepage`
 --
 ALTER TABLE `homepage`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT voor een tabel `session`
+-- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `song`
+-- AUTO_INCREMENT for table `song`
 --
 ALTER TABLE `song`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `ticket`
+-- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `ticket_order`
+-- AUTO_INCREMENT for table `ticket_order`
 --
 ALTER TABLE `ticket_order`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Beperkingen voor geëxporteerde tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Beperkingen voor tabel `about_event`
+-- Constraints for table `about_event`
 --
 ALTER TABLE `about_event`
   ADD CONSTRAINT `about_event_fk_event_id` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
 
 --
--- Beperkingen voor tabel `detail_event`
+-- Constraints for table `detail_event`
 --
 ALTER TABLE `detail_event`
   ADD CONSTRAINT `detail_event_fk_event_id` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
 
 --
--- Beperkingen voor tabel `detail_event_card_tag`
+-- Constraints for table `detail_event_card_tag`
 --
 ALTER TABLE `detail_event_card_tag`
   ADD CONSTRAINT `detail_event_card_tag_fk_detail_event_id` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
 
 --
--- Beperkingen voor tabel `session`
+-- Constraints for table `session`
 --
 ALTER TABLE `session`
   ADD CONSTRAINT `session_fk_detail_event_id` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
 
 --
--- Beperkingen voor tabel `song`
+-- Constraints for table `song`
 --
 ALTER TABLE `song`
   ADD CONSTRAINT `song_fk_detail_event_id` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
 
 --
--- Beperkingen voor tabel `ticket`
+-- Constraints for table `ticket`
 --
 ALTER TABLE `ticket`
   ADD CONSTRAINT `ticket_fk_order_id` FOREIGN KEY (`order_id`) REFERENCES `ticket_order` (`id`),
   ADD CONSTRAINT `ticket_fk_session_id` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`);
 
 --
--- Beperkingen voor tabel `ticket_order`
+-- Constraints for table `ticket_order`
 --
 ALTER TABLE `ticket_order`
   ADD CONSTRAINT `ticket_order_fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
