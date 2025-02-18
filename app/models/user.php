@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 use App\Models\Enums\UserType;
+use DateTime;
 use JsonSerializable;
 
 class User implements JsonSerializable {
@@ -13,6 +14,10 @@ class User implements JsonSerializable {
     public string $email;
     public string $hashed_password; 
     public string $salt;
+
+    public ?string $reset_token_hash;
+    public ?DateTime $reset_token_expires_at;
+
 
     /**
      * Get the value of id

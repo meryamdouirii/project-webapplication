@@ -2,17 +2,27 @@
 
 namespace App\controllers;
 
+// include __DIR__ . '/../vendor/autoload.php';
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\SMTP;
+// use PHPMailer\PHPMailer\Exception;
+
+use \DateTime;
+use \DateTimeZone;
+
 
 class HomeController 
 {
     private $userService;
     private $homepageService;
     private $eventService;
+    private $emailService;
 
     function __construct(){
         $this->userService = new \App\Services\UserService();
         $this->homepageService = new \App\Services\HomepageService();
         $this->eventService = new \App\Services\EventService();
+        $this->emailService = new \App\Services\EmailService();
     }
 
     public function index() {
@@ -94,8 +104,46 @@ class HomeController
     }
 
     public function sentPasswordResetEmail(){
+        
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['email'])) {
+            $email = htmlspecialchars($_POST['email']);
+            $token = bin2hex(random_bytes(64));
+            $reset_token_hash = hash("sha256", $token);
+
+            $timezone = new DateTimeZone("Europe/Amsterdam"); 
+            $expiry = (new DateTime("now", $timezone))
+            ->modify("+30 minutes")
+                ->format("Y-m-d H:i:s");
+
+            $this->userService->setToken($reset_token_hash, $expiry, $email);
+            $this->emailService->sendPasswordResetEmail($email, $token);
+        }
         require("../views/user/passwordResetEmailSent.php");
     }
+
+    public function resetPasswordThroughMailLink(){
+        if (!isset($_GET['token'])) {
+            die("Link not valid: Missing token.");
+        }
+
+        // Get token from URL
+        $token = $_GET['token'];
+        $token_hash = hash('sha256', $token);
+
+        $user = $this->userService->getByResetTokenHash($token_hash);
+
+
+        // Check if user exists and token is valid
+        if (!is_object($user))  {
+            die("Link not valid: Invalid or expired tokennn.");
+        }
+
+        //Token is valid, load the reset password page
+        require("../views/user/resetPasswordThroughMailLink.php");
+        
+    }
+
+
 
 }
 

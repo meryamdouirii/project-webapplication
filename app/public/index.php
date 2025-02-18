@@ -6,6 +6,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
+
 use \App\Controllers\HomeController;
 
 require_once("../vendor/autoload.php");
@@ -33,6 +34,9 @@ switch ($url) {
         break;
     case "/sentPasswordResetEmail";
         $homeController->sentPasswordResetEmail();
+        break;
+    case "/resetPasswordThroughMailLink";
+        $homeController->resetPasswordThroughMailLink();
         break;
     default:
         http_response_code(404);

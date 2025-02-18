@@ -1,9 +1,12 @@
 <?php
 namespace App\Repositories;
 
+use DateTime;
+
 use PDO;
 use App\Models\User;
 use App\Models\Enums\UserType;
+
 
 class UserRepository extends Repository {
 
@@ -95,4 +98,38 @@ class UserRepository extends Repository {
     
         return $results;
     }
+
+    public function setToken($reset_token_hash, $reset_token_expires_at, $email) {
+        $stmt = $this->connection->prepare("UPDATE user SET reset_token_hash = :reset_token_hash, reset_token_expires_at = :reset_token_expires_at WHERE email_address = :email_address");
+    
+        $results = $stmt->execute([
+            ':reset_token_hash' => $reset_token_hash,
+            ':reset_token_expires_at' => $reset_token_expires_at,
+            ':email_address' => $email
+        ]);
+        return $results;
+    }
+
+    public function getByResetTokenHash($token_hash) {
+        $stmt = $this->connection->prepare(
+            "SELECT * FROM user WHERE reset_token_hash = :reset_token_hash AND reset_token_expires_at > NOW()"
+        );
+    
+        $stmt->execute([':reset_token_hash' => $token_hash]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if (!$row) {
+            return null; // No matching user found
+        }
+    
+        $user = new User();
+        $user->id = (int)$row['id'];
+        $user->email = $row['email_address'];
+        $user->reset_token_hash = $row['reset_token_hash'];
+        $user->reset_token_expires_at = new DateTime($row['reset_token_expires_at']); // Convert string to DateTime
+    
+        return $user;
+    }
+    
+
 }
