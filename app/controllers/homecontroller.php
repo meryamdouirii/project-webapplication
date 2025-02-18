@@ -88,6 +88,10 @@ class HomeController
         exit;
     }
 
+    public function resetPassword(){
+        require("../views/user/resetPassword.php");
+    }
+
 }
 
 

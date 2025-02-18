@@ -16,7 +16,13 @@ include __DIR__ . '/../header.php';?>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
             </div>
             <button type="submit" class="button">Log In</button>
-            <div style="padding-top:10%;"class="mb-3 d-flex flex-column align-items-start">
+
+            <div class="mb-3 pt-3">
+                <strong class="d-block">Forgot password?</strong>
+                <a href="/resetPassword" class="d-block">Reset</a>
+            </div>
+
+            <div style="padding-top:5%;"class="mb-3 d-flex flex-column align-items-start">
                 <strong>Don't have an account?</strong>
                 <a href="/register">Make an account</a>
             </div>

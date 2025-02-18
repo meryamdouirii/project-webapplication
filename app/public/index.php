@@ -28,6 +28,9 @@ switch ($url) {
     case "/logout";
         $homeController->logout();
         break;
+    case "/resetPassword";
+        $homeController->resetPassword();
+        break;
     default:
         http_response_code(404);
 }
