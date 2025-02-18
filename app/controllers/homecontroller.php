@@ -93,6 +93,10 @@ class HomeController
         require("../views/user/resetPassword.php");
     }
 
+    public function sentPasswordResetEmail(){
+        require("../views/user/passwordResetEmailSent.php");
+    }
+
 }
 
 

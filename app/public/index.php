@@ -31,6 +31,9 @@ switch ($url) {
     case "/resetPassword";
         $homeController->resetPassword();
         break;
+    case "/sentPasswordResetEmail";
+        $homeController->sentPasswordResetEmail();
+        break;
     default:
         http_response_code(404);
 }
