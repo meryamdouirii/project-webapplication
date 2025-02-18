@@ -3,17 +3,7 @@ namespace App\Repositories;
 
 use PDO;
 
-class EventRepository {
-
-    protected PDO $connection;
-
-    function __construct() {
-        $this->connection = new PDO(
-            "mysql:host=mysql;dbname=haarlem_festivaldb",
-            "root",
-            "secret123"
-        );
-    }
+class EventRepository extends Repository { 
 
     public function getAll() {
         $stmt = $this->connection->prepare("SELECT id, name, description_homepage, banner_description, picture_homepage 

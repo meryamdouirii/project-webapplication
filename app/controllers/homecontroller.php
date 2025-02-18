@@ -1,23 +1,24 @@
 <?php 
 
 namespace App\controllers;
-use App\Repositories\EventRepository;
-use App\Repositories\HomepageRepository;
 
 
 class HomeController 
 {
     private $userService;
+    private $homepageService;
+    private $eventService;
 
     function __construct(){
         $this->userService = new \App\Services\UserService();
+        $this->homepageService = new \App\Services\HomepageService();
+        $this->eventService = new \App\Services\EventService();
     }
 
     public function index() {
-        $eventRepository = new EventRepository();
-        $events = $eventRepository->getAll();
-        $homepageRepository = new HomepageRepository();
-        $homepage = $homepageRepository->getById(1);
+        $events = $this->eventService->getAll();
+
+        $homepage = $this->homepageService->getById(1);
         require("../views/index.php");
     }
    
