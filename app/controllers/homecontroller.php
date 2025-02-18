@@ -29,7 +29,8 @@ class HomeController
             $email = htmlspecialchars($_POST['email']);
             $password = htmlspecialchars($_POST['password']);
             $user = $this->userService->getByEmail($email);
-            if ($user != null  && password_verify($password, $user->hashed_password) ) {
+            $salt = $user->salt;
+            if ($user != null  && password_verify(($password.$salt), $user->hashed_password) ) {
                 $_SESSION['user'] = $user;
                 $this->index();
             } else {
@@ -62,7 +63,8 @@ class HomeController
 
             
             $raw_password = htmlspecialchars($_POST['password']);
-            $password = password_hash($raw_password, PASSWORD_DEFAULT);
+            $salt = base64_encode(random_bytes(16));
+            $password = password_hash($raw_password . $salt, PASSWORD_DEFAULT);
             $type_of_user = \App\Models\enums\UserType::Customer;
             $first_name = !empty($_POST['first_name']) ? htmlspecialchars($_POST['first_name']) : null;
             $last_name = !empty($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : null;
@@ -74,7 +76,7 @@ class HomeController
             $user->first_name = $first_name;
             $user->last_name = $last_name;
             $user->phone_number = $phone_number;
-            $user->salt= "salt";
+            $user->salt= $salt;
 
             $this->userService->insert($user);
 
