@@ -6,10 +6,13 @@ include __DIR__ . '/../header.php';?>
 <main class="container d-flex justify-content-center align-items-center vh-100">     
     <div class="card p-4 my-5" style="width: 35%;">
         <h3 class="text-center">Login</h3>
+        <div id="error-message" style="display: none;" class="alert alert-danger" role="alert">
+        </div>
         <form method="POST" action="">
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="text" name="email" id="email" class="form-control" placeholder="Enter you email address" required>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Enter you email address" required
+                value="<?php echo isset($formData['email']) ? $formData['email'] : ''; ?>">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
