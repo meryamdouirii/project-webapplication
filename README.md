@@ -10,5 +10,6 @@
 3. Open een browser en navigeer naar:
    http://localhost
 4. Log in met de verstrekte inloggegevens.
+5. run "composer install" voor de phpmailer
 
 

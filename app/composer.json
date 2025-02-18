@@ -10,5 +10,7 @@
             "App\\Views\\": "./views"
         }
     },
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
 }
