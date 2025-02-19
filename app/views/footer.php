@@ -25,6 +25,6 @@
             </div>
         </div>
         <hr class="border-light my-4">
-        <p class="text-center m-0">&copy; 2024 Haarlem Festival. All rights reserved.</p>
+        <p class="text-center m-0">&copy; 2025 Haarlem Festival. All rights reserved.</p>
     </div>
 </footer>
