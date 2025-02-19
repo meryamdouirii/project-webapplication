@@ -10,6 +10,9 @@
 3. Open een browser en navigeer naar:
    http://localhost
 4. Log in met de verstrekte inloggegevens.
-5. run "composer install" voor de phpmailer
+als dit niet lukt moet je eerst dit doen: 
+5. run "docker exec -it project-webapplication-php-1 bash"
+   5.1 Als je errors ziet zoals failed to download run "apt-get update && apt-get install -y unzip git"
+6. run "composer install"
 
 
