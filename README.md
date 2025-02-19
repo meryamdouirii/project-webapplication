@@ -2,6 +2,9 @@
 
 ### Inloggegevens
 - **Wachtwoord voor alle gebruikers:** `password123!`
+- Administrator: groenromy0@gmail.com
+- Employee: 701224@student.inholland.nl
+- Customer: douirimeryam14@gmail.com
 
 ## Instructies voor het starten van de applicatie
 1. Open de terminal.
