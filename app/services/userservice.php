@@ -18,6 +18,10 @@ class UserService {
         $repository = new \App\Repositories\UserRepository();
         return $repository->insert($user);
     }
+    public function update($user) {
+        $repository = new \App\Repositories\UserRepository();
+        return $repository->update($user);
+    }
     public function delete($id) {
         $repository = new \App\Repositories\UserRepository();
         return $repository->delete($id);

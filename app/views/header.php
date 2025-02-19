@@ -12,7 +12,7 @@ $events = $eventRepository->getAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="images-logos/logo.png">
 </head>
 
@@ -29,18 +29,20 @@ $events = $eventRepository->getAll();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <!-- <pre><?php print_r($events); ?></pre> -->
-                <?php foreach ($events as $event): ?>
-                    <li class="nav-item"><a class="nav-link" href="#"><?= htmlspecialchars($event->name); ?></a></li>
-                <?php endforeach; ?>
-                <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
+                    <?php foreach ($events as $event): ?>
+                        <li class="nav-item"><a class="nav-link" href="#"><?= htmlspecialchars($event->name); ?></a></li>
+                    <?php endforeach; ?>
+                    <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/manage-users">Manage users</a></li>
                     <?php if (!isset($_SESSION['user'])): ?>
-                    <li class="nav-item"><a class="button" href="/login">Log In</a></li>
+                    <li class="nav-item me-5 pt-1"><a class="button" href="/login">Log In</a></li>
                     <?php endif; ?>
                     <?php if (isset($_SESSION['user'])): ?>
-                    <li class="nav-item"><a class="button" href="/logout">Log Out</a></li>
+                    <li class="nav-item me-5"><a class="button" href="/logout">Log Out</a></li>
                     <?php endif; ?>
+                   
                 </ul>
             </div>
         </div>

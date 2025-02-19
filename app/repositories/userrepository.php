@@ -89,6 +89,22 @@ class UserRepository extends Repository {
 
         return $results;
     }
+    public function update($user){
+        $stmt = $this->connection->prepare("UPDATE user SET password_hash = :password_hash, email_address = :email_address, type = :type_of_user, first_name = :first_name, last_name = :last_name, phone_number = :phone_number, salt = :salt WHERE id = :id");
+
+        $results = $stmt->execute([
+            ':password_hash' => $user->hashed_password,
+            ':email_address' => $user->email,
+            ':type_of_user' => $user->type_of_user->jsonSerialize(), 
+            ':first_name' => $user->first_name,
+            ':last_name' => $user->last_name,
+            ':phone_number' => $user->phone_number,
+            ':salt' => $user->salt,
+            ':id' => $user->id
+        ]);
+
+        return $results;
+    }
     public function delete($id) {
         $stmt = $this->connection->prepare("DELETE FROM user WHERE id = :id");
     

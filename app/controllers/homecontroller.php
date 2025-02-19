@@ -71,9 +71,13 @@ class HomeController
             if ($this->userService->getByEmail($email) !== null ) {
                 return $this->showError("Email already exists!", $_POST);
             }
+            $raw_password = htmlspecialchars($_POST['password']);
+            if ($raw_password != htmlspecialchars($_POST['confirm_password'])) {
+                return $this->showError("Passwords do not match.", $_POST);
+            }
 
             
-            $raw_password = htmlspecialchars($_POST['password']);
+           
             $salt = base64_encode(random_bytes(16));
             $password = password_hash($raw_password . $salt, PASSWORD_DEFAULT);
             $type_of_user = \App\Models\enums\UserType::Customer;
@@ -91,6 +95,7 @@ class HomeController
 
             $this->userService->insert($user);
 
+            $user = $this->userService->getByEmail($email);
             
             $_SESSION['user'] = $user;
             $this->index();

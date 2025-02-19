@@ -8,10 +8,12 @@ header("Access-Control-Allow-Headers: Content-Type");
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 use \App\Controllers\HomeController;
+use \App\Controllers\UserController;
 
 require_once("../vendor/autoload.php");
 
 $homeController = new HomeController();
+$userController = new UserController();
 
 
 session_start();
@@ -37,6 +39,17 @@ switch ($url) {
         break;
     case "/resetPasswordThroughMailLink";
         $homeController->resetPasswordThroughMailLink();
+    case "/manage-users";
+        $userController->index();
+        break;
+    case "/manage-users/add";
+        $userController->add();
+        break;
+    case "/manage-users/edit";
+        $userController->edit();
+        break;
+    case "/manage-users/delete";
+        $userController->delete();
         break;
     default:
         http_response_code(404);
