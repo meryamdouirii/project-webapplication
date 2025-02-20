@@ -8,7 +8,7 @@ include __DIR__ . '/../vendor/autoload.php';
 
 class EmailService {
 
-    public function sendPasswordResetEmail($email, $token) 
+    public function sendEmail($email, $token, $subject, $body) 
     {
         $mail = new PHPMailer(true);
         // Enable Debugging (for troubleshooting)

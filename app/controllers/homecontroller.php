@@ -140,7 +140,11 @@ class HomeController
                 ->format("Y-m-d H:i:s");
 
             $this->userService->setToken($reset_token_hash, $expiry, $email);
-            $this->emailService->sendPasswordResetEmail($email, $token);
+
+            $subject = "Password Reset";
+            $body = "Click <a href='localhost/resetPasswordThroughMailLink?token=$token'>here</a> to reset your password.";
+
+            $this->emailService->sendEmail($email, $token, $subject, $body);
         }
         require("../views/user/passwordResetEmailSent.php");
     }
