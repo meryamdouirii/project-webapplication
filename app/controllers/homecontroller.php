@@ -41,15 +41,20 @@ class HomeController
             $password = htmlspecialchars($_POST['password']);
             $user = $this->userService->getByEmail($email);
             $salt = $user->salt;
-            if ($user != null  && password_verify(($password.$salt), $user->hashed_password) ) {
-                $_SESSION['user'] = $user;
+            if ($user !== null && password_verify($password . $user->salt, $user->hashed_password)) {
+                $_SESSION['user'] = [
+                    'id' => $user->id,
+                    'email' => $user->email,
+                    'type' => $user->type_of_user->jsonSerialize(), 
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
+                    'phone_number' => $user->phone_number
+                ];
                 $this->index();
             } else {
                 return $this->showError("Invalid email or password!", $_POST);
             }
-        }
-
-        
+        }   
     }
 
     public function register(){
@@ -214,7 +219,6 @@ class HomeController
         require("../views/user/passwordResetSuccess.php");
     }
     
-
 }
 
 

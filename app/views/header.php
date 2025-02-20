@@ -28,7 +28,6 @@ $events = $eventRepository->getAll();
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <!-- <pre><?php print_r($events); ?></pre> -->
                     <?php foreach ($events as $event): ?>
                         <li class="nav-item"><a class="nav-link" href="#"><?= htmlspecialchars($event->name); ?></a></li>
                     <?php endforeach; ?>
@@ -36,14 +35,28 @@ $events = $eventRepository->getAll();
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="/manage-users">Manage users</a></li>
+                    
                     <?php if (!isset($_SESSION['user'])): ?>
-                    <li class="nav-item me-5 pt-1"><a class="button" href="/login">Log In</a></li>
+                        <li class="nav-item me-5 pt-1"><a class="button" href="/login">Log In</a></li>
+                    <?php else: ?>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                My account
+                            </a>
+                            <ul class="dropdown-menu">
+                                <?php if (isset($_SESSION['user']) && $_SESSION['user']['type'] === 'customer'): ?>
+                                    <li><a class="dropdown-item" href="/manageAccount">Manage account</a></li>
+                                <?php endif; ?>
+                                <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+                            </ul>
+                        </li>
                     <?php endif; ?>
-                    <?php if (isset($_SESSION['user'])): ?>
-                    <li class="nav-item me-5"><a class="button" href="/logout">Log Out</a></li>
-                    <?php endif; ?>
-                   
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Bootstrap JS (menu Dropdown) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>

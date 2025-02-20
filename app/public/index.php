@@ -9,11 +9,13 @@ $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 use \App\Controllers\HomeController;
 use \App\Controllers\UserController;
+use \App\Controllers\CustomerController;
 
 require_once("../vendor/autoload.php");
 
 $homeController = new HomeController();
 $userController = new UserController();
+$customerController = new CustomerController();
 
 
 session_start();
@@ -57,6 +59,9 @@ switch ($url) {
         break;
     case "/manage-users/delete";
         $userController->delete();
+        break;
+    case "/manageAccount";
+        $customerController->manageAccount();
         break;
     default:
         http_response_code(404);

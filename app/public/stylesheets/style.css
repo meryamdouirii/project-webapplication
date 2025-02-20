@@ -6,6 +6,9 @@ body {
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 .hero {
     background-image: url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1600');
     background-size: cover;
