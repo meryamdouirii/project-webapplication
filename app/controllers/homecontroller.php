@@ -167,7 +167,49 @@ class HomeController
         
     }
 
+    public function updatePassword() {
+        //Debug: Print the POST data
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+        // exit(); 
 
+        if ($_SERVER['REQUEST_METHOD'] !== "POST") {
+            die("Invalid request method.");
+        }
+        if (empty($_POST['token']) || empty($_POST['password']) || empty($_POST['confirm_password'])) {
+            die("Missing required fields.");
+        }
+        
+    
+        $token = $_POST['token'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
+    
+        if ($password !== $confirm_password) {
+            die("Passwords do not match.");
+        }
+    
+        $token_hash = hash('sha256', $token);
+        $user = $this->userService->getByResetTokenHash($token_hash);
+    
+        if (!is_object($user)) {
+            die("Invalid or expired token.");
+        }
+
+        $new_salt = base64_encode(random_bytes(16));
+        $hashed_password = password_hash($password . $new_salt, PASSWORD_DEFAULT);
+        $this->userService->updateUserPassword($user->email, $hashed_password, $new_salt);
+    
+        // Redirect naar login pagina of bevestigingspagina
+        header("Location: /passwordResetSuccess");
+        exit();        
+    }
+
+    public function passwordResetSuccess(){
+        require("../views/user/passwordResetSuccess.php");
+    }
+    
 
 }
 

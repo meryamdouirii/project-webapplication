@@ -39,6 +39,13 @@ switch ($url) {
         break;
     case "/resetPasswordThroughMailLink";
         $homeController->resetPasswordThroughMailLink();
+        break;
+    case "/updatePassword";
+        $homeController->updatePassword();
+        break;
+    case "/passwordResetSuccess";
+        $homeController->passwordResetSuccess();
+        break;
     case "/manage-users";
         $userController->index();
         break;

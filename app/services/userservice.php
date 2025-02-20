@@ -34,5 +34,11 @@ class UserService {
         $repository = new \App\Repositories\UserRepository();
         return $repository->getByResetTokenHash($token_hash);
     }
+    
+    public function updateUserPassword($email, $hashed_password, $salt){ 
+        $repository = new \App\Repositories\UserRepository();
+        return $repository->updateUserPassword($email, $hashed_password, $salt);
+    }
+    
 
 }

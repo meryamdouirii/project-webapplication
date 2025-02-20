@@ -146,6 +146,29 @@ class UserRepository extends Repository {
     
         return $user;
     }
+
+    
+    public function updateUserPassword($email, $hashed_password, $salt) {
+        $stmt = $this->connection->prepare("
+            UPDATE user 
+            SET password_hash = :password_hash, 
+                salt = :salt
+            WHERE email_address = :email_address
+        ");
+
+        //reset_token_hash = NULL, 
+        //reset_token_expires_at = NULL 
+    
+        $results = $stmt->execute([
+            ':password_hash' => $hashed_password,
+            ':salt' => $salt,
+            ':email_address' => $email
+        ]);
+        
+    
+        return $results;
+    }
+
     
 
 }
