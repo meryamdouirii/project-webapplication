@@ -34,19 +34,19 @@ switch ($url) {
         $homeController->logout();
         break;
     case "/resetPassword";
-        $homeController->resetPassword();
+        $userController->resetPassword();
         break;
     case "/sentPasswordResetEmail";
-        $homeController->sentPasswordResetEmail();
+        $userController->sentPasswordResetEmail();
         break;
     case "/resetPasswordThroughMailLink";
-        $homeController->resetPasswordThroughMailLink();
+        $userController->resetPasswordThroughMailLink();
         break;
     case "/updatePassword";
-        $homeController->updatePassword();
+        $userController->updatePassword();
         break;
     case "/passwordResetSuccess";
-        $homeController->passwordResetSuccess();
+        $userController->passwordResetSuccess();
         break;
     case "/manage-users";
         $userController->index();
@@ -62,6 +62,12 @@ switch ($url) {
         break;
     case "/manageAccount";
         $customerController->manageAccount();
+        break;
+    case "/updateAccount";
+        $userController->updatePersonalInformation();
+        break;
+    case "/changePassword";
+        $userController->updatePasswordInManageAccount();
         break;
     default:
         http_response_code(404);

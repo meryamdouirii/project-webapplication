@@ -16,13 +16,11 @@ class HomeController
     private $userService;
     private $homepageService;
     private $eventService;
-    private $emailService;
 
     function __construct(){
         $this->userService = new \App\Services\UserService();
         $this->homepageService = new \App\Services\HomepageService();
         $this->eventService = new \App\Services\EventService();
-        $this->emailService = new \App\Services\EmailService();
     }
 
     public function index() {
@@ -80,9 +78,7 @@ class HomeController
             if ($raw_password != htmlspecialchars($_POST['confirm_password'])) {
                 return $this->showError("Passwords do not match.", $_POST);
             }
-
-            
-           
+  
             $salt = base64_encode(random_bytes(16));
             $password = password_hash($raw_password . $salt, PASSWORD_DEFAULT);
             $type_of_user = \App\Models\enums\UserType::Customer;
@@ -128,96 +124,7 @@ class HomeController
         exit;
     }
 
-    public function resetPassword(){
-        require("../views/user/resetPassword.php");
-    }
 
-    public function sentPasswordResetEmail(){
-        
-        if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['email'])) {
-            $email = htmlspecialchars($_POST['email']);
-            $token = bin2hex(random_bytes(64));
-            $reset_token_hash = hash("sha256", $token);
-
-            $timezone = new DateTimeZone("Europe/Amsterdam"); 
-            $expiry = (new DateTime("now", $timezone))
-            ->modify("+30 minutes")
-                ->format("Y-m-d H:i:s");
-
-            $this->userService->setToken($reset_token_hash, $expiry, $email);
-
-            $subject = "Password Reset";
-            $body = "Click <a href='localhost/resetPasswordThroughMailLink?token=$token'>here</a> to reset your password.";
-
-            $this->emailService->sendEmail($email, $token, $subject, $body);
-        }
-        require("../views/user/passwordResetEmailSent.php");
-    }
-
-    public function resetPasswordThroughMailLink(){
-        if (!isset($_GET['token'])) {
-            die("Link not valid: Missing token.");
-        }
-
-        // Get token from URL
-        $token = $_GET['token'];
-        $token_hash = hash('sha256', $token);
-
-        $user = $this->userService->getByResetTokenHash($token_hash);
-
-
-        // Check if user exists and token is valid
-        if (!is_object($user))  {
-            die("Link not valid: Invalid or expired tokennn.");
-        }
-
-        //Token is valid, load the reset password page
-        require("../views/user/resetPasswordThroughMailLink.php");
-        
-    }
-
-    public function updatePassword() {
-        //Debug: Print the POST data
-        // echo "<pre>";
-        // print_r($_POST);
-        // echo "</pre>";
-        // exit(); 
-
-        if ($_SERVER['REQUEST_METHOD'] !== "POST") {
-            die("Invalid request method.");
-        }
-        if (empty($_POST['token']) || empty($_POST['password']) || empty($_POST['confirm_password'])) {
-            die("Missing required fields.");
-        }
-        
-    
-        $token = $_POST['token'];
-        $password = $_POST['password'];
-        $confirm_password = $_POST['confirm_password'];
-    
-        if ($password !== $confirm_password) {
-            die("Passwords do not match.");
-        }
-    
-        $token_hash = hash('sha256', $token);
-        $user = $this->userService->getByResetTokenHash($token_hash);
-    
-        if (!is_object($user)) {
-            die("Invalid or expired token.");
-        }
-
-        $new_salt = base64_encode(random_bytes(16));
-        $hashed_password = password_hash($password . $new_salt, PASSWORD_DEFAULT);
-        $this->userService->updateUserPassword($user->email, $hashed_password, $new_salt);
-    
-        // Redirect naar login pagina of bevestigingspagina
-        header("Location: /passwordResetSuccess");
-        exit();        
-    }
-
-    public function passwordResetSuccess(){
-        require("../views/user/passwordResetSuccess.php");
-    }
     
 }
 

@@ -1,15 +1,19 @@
 <?php
 namespace App\Controllers;
 use App\Models\Enums\UserType;
+use DateTimeZone;
+use \DateTime;
 
 class UserController
 {
 
     private $userService;
+    private $emailService;
 
     function __construct()
     {
         $this->userService = new \App\Services\UserService();
+        $this->emailService = new \App\Services\EmailService();
     }
     public function index()
     {
@@ -147,4 +151,158 @@ class UserController
         header("Location: /manage-users");
         exit;
     }
+
+    public function resetPassword(){
+        require("../views/user/resetPassword.php");
+    }
+
+    public function sentPasswordResetEmail(){
+        
+        if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['email'])) {
+            $email = htmlspecialchars($_POST['email']);
+            $token = bin2hex(random_bytes(64));
+            $reset_token_hash = hash("sha256", $token);
+
+            $timezone = new DateTimeZone("Europe/Amsterdam"); 
+            $expiry = (new DateTime("now", $timezone))
+            ->modify("+30 minutes")
+                ->format("Y-m-d H:i:s");
+
+            $this->userService->setToken($reset_token_hash, $expiry, $email);
+
+            $subject = "Password Reset";
+            $body = "Click <a href='localhost/resetPasswordThroughMailLink?token=$token'>here</a> to reset your password.";
+
+            $this->emailService->sendEmail($email, $token, $subject, $body);
+        }
+        require("../views/user/passwordResetEmailSent.php");
+    }
+
+    public function resetPasswordThroughMailLink(){
+        if (!isset($_GET['token'])) {
+            die("Link not valid: Missing token.");
+        }
+
+        // Get token from URL
+        $token = $_GET['token'];
+        $token_hash = hash('sha256', $token);
+
+        $user = $this->userService->getByResetTokenHash($token_hash);
+
+
+        // Check if user exists and token is valid
+        if (!is_object($user))  {
+            die("Link not valid: Invalid or expired tokennn.");
+        }
+
+        //Token is valid, load the reset password page
+        require("../views/user/resetPasswordThroughMailLink.php");
+        
+    }
+
+    public function updatePassword() {
+        //Debug: Print the POST data
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+        // exit(); 
+
+        if ($_SERVER['REQUEST_METHOD'] !== "POST") {
+            die("Invalid request method.");
+        }
+        if (empty($_POST['token']) || empty($_POST['password']) || empty($_POST['confirm_password'])) {
+            die("Missing required fields.");
+        }
+        
+    
+        $token = $_POST['token'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
+    
+        if ($password !== $confirm_password) {
+            die("Passwords do not match.");
+        }
+    
+        $token_hash = hash('sha256', $token);
+        $user = $this->userService->getByResetTokenHash($token_hash);
+    
+        if (!is_object($user)) {
+            die("Invalid or expired token.");
+        }
+
+        $new_salt = base64_encode(random_bytes(16));
+        $hashed_password = password_hash($password . $new_salt, PASSWORD_DEFAULT);
+        $this->userService->updateUserPassword($user->email, $hashed_password, $new_salt);
+    
+        // Redirect naar login pagina of bevestigingspagina
+        header("Location: /passwordResetSuccess");
+        exit();        
+    }
+
+
+    public function passwordResetSuccess(){
+        require("../views/user/passwordResetSuccess.php");
+    }
+
+    public function updatePersonalInformation()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userId = $_SESSION['user']['id'];
+            $newEmail = htmlspecialchars($_POST['email']);
+            $firstName = htmlspecialchars($_POST['first_name']);
+            $lastName = htmlspecialchars($_POST['last_name']);
+            $phoneNumber = htmlspecialchars($_POST['phone_number']);
+
+            $existingUser = $this->userService->getByEmail($newEmail);
+            if ($existingUser && $existingUser->id !== $userId) {
+                $_SESSION['error'] = "This email is already in use.";
+                header("Location: /manageAccount");
+                exit;
+            }
+
+            $user = $this->userService->getById($userId);
+            $user->email = $newEmail;
+            $user->first_name = $firstName;
+            $user->last_name = $lastName;
+            $user->phone_number = $phoneNumber;
+
+            $this->userService->updatePersonalInformation($user);
+
+            // Update the session array with the new values
+            $_SESSION['user']['email'] = $newEmail;
+            $_SESSION['user']['first_name'] = $firstName;
+            $_SESSION['user']['last_name'] = $lastName;
+            $_SESSION['user']['phone_number'] = $phoneNumber;
+            header("Location: /");
+            exit;
+        }
+    }
+
+    public function updatePasswordInManageAccount() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userId = $_SESSION['user']['id'];
+            $newPassword = htmlspecialchars($_POST['new_password']);
+            $confirmNewPassword = htmlspecialchars($_POST['confirm_new_password']);
+    
+    
+            if ($newPassword !== $confirmNewPassword) {
+                $_SESSION['error'] = "New passwords do not match.";
+                header("Location: /manageAccount");
+                exit;
+            }
+    
+            $newSalt = base64_encode(random_bytes(16));
+            $newHashedPassword = password_hash($newPassword . $newSalt, PASSWORD_DEFAULT);
+            $this->userService->updatePasswordInManageAccount($userId, $newHashedPassword, $newSalt);
+            $_SESSION['success'] = "Password updated successfully!";
+            header("Location: /");
+            exit;
+        }
+    }
+
+
+
+
+
+    
 }

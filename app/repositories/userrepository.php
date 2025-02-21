@@ -169,6 +169,42 @@ class UserRepository extends Repository {
         return $results;
     }
 
+    public function updatePersonalInformation(User $user) {
+        $stmt = $this->connection->prepare("
+            UPDATE user 
+            SET email_address = :email_address,
+                first_name = :first_name,
+                last_name = :last_name,
+                phone_number = :phone_number
+            WHERE id = :id
+        ");
+        return $stmt->execute([
+            ':email_address' => $user->email,
+            ':first_name'    => $user->first_name,
+            ':last_name'     => $user->last_name,
+            ':phone_number'  => $user->phone_number,
+            ':id'            => $user->id
+        ]);
+    }
+
+    public function updatePasswordInManageAccount($userId, $newHashedPassword, $newSalt) {
+        $stmt = $this->connection->prepare("
+            UPDATE user 
+            SET password_hash = :password_hash,
+                salt = :salt
+            WHERE id = :id
+        ");
+        
+        $result = $stmt->execute([
+            ':password_hash' => $newHashedPassword,
+            ':salt'          => $newSalt,
+            ':id'            => $userId
+        ]); 
+        return $result;
+    }
+
+    
+
     
 
 }

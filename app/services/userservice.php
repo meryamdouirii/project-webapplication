@@ -39,6 +39,18 @@ class UserService {
         $repository = new \App\Repositories\UserRepository();
         return $repository->updateUserPassword($email, $hashed_password, $salt);
     }
+
+    public function updatePersonalInformation($user){
+        $repository = new \App\Repositories\UserRepository();
+        return $repository->updatePersonalInformation($user);
+    }
+
+    public function updatePasswordInManageAccount($userId, $newHashedPassword, $newSalt){
+        $repository = new \App\Repositories\UserRepository();
+        return $repository->updatePasswordInManageAccount($userId, $newHashedPassword, $newSalt);
+    }
+
+
     
 
 }
