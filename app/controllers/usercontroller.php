@@ -173,7 +173,7 @@ class UserController
             $subject = "Password Reset";
             $body = "Click <a href='localhost/resetPasswordThroughMailLink?token=$token'>here</a> to reset your password.";
 
-            $this->emailService->sendEmail($email, $token, $subject, $body);
+            $this->emailService->sendEmail($email, $subject, $body);
         }
         require("../views/user/passwordResetEmailSent.php");
     }
@@ -287,6 +287,7 @@ class UserController
     
             if ($newPassword !== $confirmNewPassword) {
                 $_SESSION['error'] = "New passwords do not match.";
+                echo "Passwords do not match";
                 header("Location: /manageAccount");
                 exit;
             }

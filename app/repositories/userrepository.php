@@ -6,6 +6,7 @@ use DateTime;
 use PDO;
 use App\Models\User;
 use App\Models\Enums\UserType;
+use App\Services\EmailService;
 
 
 class UserRepository extends Repository {
@@ -178,6 +179,24 @@ class UserRepository extends Repository {
                 phone_number = :phone_number
             WHERE id = :id
         ");
+
+        $emailService = new EmailService();
+        $subject = "Personal Information Updated";
+        $body = "
+            <html>
+                <body>
+                    <p>Hello <strong>{$user->first_name} {$user->last_name}</strong>,</p>
+                    <p>Your update was successful! Here are the details we received:</p>
+                    <ul>
+                        <li><strong>Email:</strong> {$user->email}</li>
+                        <li><strong>Phone:</strong> {$user->phone_number}</li>
+                    </ul>
+                    <p>Thank you!</p>
+                </body>
+            </html>
+        ";
+
+        $emailService->sendEmail($user->email, $subject, $body);
         return $stmt->execute([
             ':email_address' => $user->email,
             ':first_name'    => $user->first_name,
@@ -185,6 +204,7 @@ class UserRepository extends Repository {
             ':phone_number'  => $user->phone_number,
             ':id'            => $user->id
         ]);
+
     }
 
     public function updatePasswordInManageAccount($userId, $newHashedPassword, $newSalt) {

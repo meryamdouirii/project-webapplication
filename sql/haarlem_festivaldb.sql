@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Feb 18, 2025 at 10:50 PM
--- Server version: 11.6.2-MariaDB-ubu2404
--- PHP Version: 8.2.27
+-- Gegenereerd op: 21 feb 2025 om 18:07
+-- Serverversie: 11.6.2-MariaDB-ubu2404
+-- PHP-versie: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `about_event`
+-- Tabelstructuur voor tabel `about_event`
 --
 
 CREATE TABLE `about_event` (
@@ -38,7 +38,7 @@ CREATE TABLE `about_event` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_event`
+-- Tabelstructuur voor tabel `detail_event`
 --
 
 CREATE TABLE `detail_event` (
@@ -57,7 +57,7 @@ CREATE TABLE `detail_event` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_event_card_tag`
+-- Tabelstructuur voor tabel `detail_event_card_tag`
 --
 
 CREATE TABLE `detail_event_card_tag` (
@@ -69,7 +69,7 @@ CREATE TABLE `detail_event_card_tag` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event`
+-- Tabelstructuur voor tabel `event`
 --
 
 CREATE TABLE `event` (
@@ -81,7 +81,7 @@ CREATE TABLE `event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
--- Dumping data for table `event`
+-- Gegevens worden geëxporteerd voor tabel `event`
 --
 
 INSERT INTO `event` (`id`, `name`, `description_homepage`, `banner_description`, `picture_homepage`) VALUES
@@ -91,7 +91,7 @@ INSERT INTO `event` (`id`, `name`, `description_homepage`, `banner_description`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `homepage`
+-- Tabelstructuur voor tabel `homepage`
 --
 
 CREATE TABLE `homepage` (
@@ -102,7 +102,7 @@ CREATE TABLE `homepage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
--- Dumping data for table `homepage`
+-- Gegevens worden geëxporteerd voor tabel `homepage`
 --
 
 INSERT INTO `homepage` (`id`, `name`, `banner_image`, `banner_description`) VALUES
@@ -111,7 +111,7 @@ INSERT INTO `homepage` (`id`, `name`, `banner_image`, `banner_description`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `session`
+-- Tabelstructuur voor tabel `session`
 --
 
 CREATE TABLE `session` (
@@ -129,7 +129,7 @@ CREATE TABLE `session` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `song`
+-- Tabelstructuur voor tabel `song`
 --
 
 CREATE TABLE `song` (
@@ -143,7 +143,7 @@ CREATE TABLE `song` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ticket`
+-- Tabelstructuur voor tabel `ticket`
 --
 
 CREATE TABLE `ticket` (
@@ -158,7 +158,7 @@ CREATE TABLE `ticket` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ticket_order`
+-- Tabelstructuur voor tabel `ticket_order`
 --
 
 CREATE TABLE `ticket_order` (
@@ -170,7 +170,7 @@ CREATE TABLE `ticket_order` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Tabelstructuur voor tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -187,70 +187,67 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
--- Dumping data for table `user`
+-- Gegevens worden geëxporteerd voor tabel `user`
 --
 
-INSERT INTO `user` (`type`, `first_name`, `last_name`, `phone_number`, `email_address`, `password_hash`, `salt`, `reset_token_hash`, `reset_token_expires_at`) 
-VALUES ('customer', 'Meryam', 'Douiri', '0643209996', 'douirimeryam14@gmail.com', '$2y$12$9EO5OmD2qLiunmJy3iH2iu2qjyU4mx5IiU/v1c9yfnsFPNvwk4RDG', 'salt', 'c56321a9d72163240b2b9d151ee3e801a9a174512e5f936088518face1ef302a', '2025-02-19 00:19:37');
+INSERT INTO `user` (`id`, `type`, `first_name`, `last_name`, `phone_number`, `email_address`, `password_hash`, `salt`, `reset_token_hash`, `reset_token_expires_at`) VALUES
+(1, 'customer', 'Meryam', 'Douiri', '0643209996', 'Douirimeryam14@gmail.com', '$2y$12$dQNW0iVlL9ww/KixeDqEu.eyNKS/VYhyAxb.OYgy.5HDRcN9Lyydi', 'SlK0a/1ZOUBjougzEDPk7g==', 'b19f2415f12c86c7cce5bd32ea0a4034a8742c1dc1fa0bfc8dd6493def532b4d', '2025-02-21 19:29:59'),
+(2, 'administrator', 'Romy', 'Groen', NULL, 'groenromy0@gmail.com', '$2y$12$w6Vh.v5QvPOglb2HAmDkXOvWz2/oyzCui4fc8jxbWW6LKswt4V20G', 'el6XUJnPebqT4oQPrewI3A==', NULL, NULL),
+(3, 'employee', 'Fiona', 'Shrek', NULL, '701224@student.inholland.nl', '$2y$12$3S3MFqiiCrSfpMp9pCmBWeJguq3EhrAnwlTtr24c3BsU8f/Z4kAdm', 'xMZpfw1LiC+St2cGSu1i7g==', NULL, NULL);
 
-INSERT INTO `user` (`type`, `first_name`, `last_name`, `phone_number`, `email_address`, `password_hash`, `salt`, `reset_token_hash`, `reset_token_expires_at`) 
-VALUES ('administrator', 'Romy', 'Groen', NULL, 'groenromy0@gmail.com', '$2y$12$w6Vh.v5QvPOglb2HAmDkXOvWz2/oyzCui4fc8jxbWW6LKswt4V20G', 'el6XUJnPebqT4oQPrewI3A==', NULL, NULL);
-
-INSERT INTO `user` (`type`, `first_name`, `last_name`, `phone_number`, `email_address`, `password_hash`, `salt`, `reset_token_hash`, `reset_token_expires_at`) 
-VALUES ('employee', 'Fiona', 'Shrek', NULL, '701224@student.inholland.nl', '$2y$12$3S3MFqiiCrSfpMp9pCmBWeJguq3EhrAnwlTtr24c3BsU8f/Z4kAdm', 'xMZpfw1LiC+St2cGSu1i7g==', NULL, NULL);
-
--- Indexes for dumped tables
+--
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `about_event`
+-- Indexen voor tabel `about_event`
 --
 ALTER TABLE `about_event`
   ADD PRIMARY KEY (`about_event_id`),
   ADD KEY `event_id` (`event_id`);
 
 --
--- Indexes for table `detail_event`
+-- Indexen voor tabel `detail_event`
 --
 ALTER TABLE `detail_event`
   ADD PRIMARY KEY (`id`),
   ADD KEY `event_id` (`event_id`);
 
 --
--- Indexes for table `detail_event_card_tag`
+-- Indexen voor tabel `detail_event_card_tag`
 --
 ALTER TABLE `detail_event_card_tag`
   ADD PRIMARY KEY (`id`),
   ADD KEY `detail_event_id` (`detail_event_id`);
 
 --
--- Indexes for table `event`
+-- Indexen voor tabel `event`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `homepage`
+-- Indexen voor tabel `homepage`
 --
 ALTER TABLE `homepage`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `session`
+-- Indexen voor tabel `session`
 --
 ALTER TABLE `session`
   ADD PRIMARY KEY (`id`),
   ADD KEY `detail_event_id` (`detail_event_id`);
 
 --
--- Indexes for table `song`
+-- Indexen voor tabel `song`
 --
 ALTER TABLE `song`
   ADD PRIMARY KEY (`id`),
   ADD KEY `detail_event_id` (`detail_event_id`);
 
 --
--- Indexes for table `ticket`
+-- Indexen voor tabel `ticket`
 --
 ALTER TABLE `ticket`
   ADD PRIMARY KEY (`id`),
@@ -258,129 +255,27 @@ ALTER TABLE `ticket`
   ADD KEY `session_id` (`session_id`);
 
 --
--- Indexes for table `ticket_order`
+-- Indexen voor tabel `ticket_order`
 --
 ALTER TABLE `ticket_order`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `user`
+-- Indexen voor tabel `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `reset_token_hash` (`reset_token_hash`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `about_event`
---
-ALTER TABLE `about_event`
-  MODIFY `about_event_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `detail_event`
---
-ALTER TABLE `detail_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `detail_event_card_tag`
---
-ALTER TABLE `detail_event_card_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `event`
---
-ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `homepage`
---
-ALTER TABLE `homepage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `session`
---
-ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `song`
---
-ALTER TABLE `song`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ticket`
---
-ALTER TABLE `ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ticket_order`
---
-ALTER TABLE `ticket_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `about_event`
---
-ALTER TABLE `about_event`
-  ADD CONSTRAINT `about_event_fk_event_id` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
-
---
--- Constraints for table `detail_event`
---
-ALTER TABLE `detail_event`
-  ADD CONSTRAINT `detail_event_fk_event_id` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
-
---
--- Constraints for table `detail_event_card_tag`
---
-ALTER TABLE `detail_event_card_tag`
-  ADD CONSTRAINT `detail_event_card_tag_fk_detail_event_id` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
-
---
--- Constraints for table `session`
---
-ALTER TABLE `session`
-  ADD CONSTRAINT `session_fk_detail_event_id` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
-
---
--- Constraints for table `song`
---
-ALTER TABLE `song`
-  ADD CONSTRAINT `song_fk_detail_event_id` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
-
---
--- Constraints for table `ticket`
---
-ALTER TABLE `ticket`
-  ADD CONSTRAINT `ticket_fk_order_id` FOREIGN KEY (`order_id`) REFERENCES `ticket_order` (`id`),
-  ADD CONSTRAINT `ticket_fk_session_id` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`);
-
---
--- Constraints for table `ticket_order`
---
-ALTER TABLE `ticket_order`
-  ADD CONSTRAINT `ticket_order_fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

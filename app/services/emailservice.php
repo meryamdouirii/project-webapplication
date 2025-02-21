@@ -8,7 +8,7 @@ include __DIR__ . '/../vendor/autoload.php';
 
 class EmailService {
 
-    public function sendEmail($email, $token, $subject, $body) 
+    public function sendEmail($email, $subject, $body) 
     {
         $mail = new PHPMailer(true);
         // Enable Debugging (for troubleshooting)
@@ -29,9 +29,8 @@ class EmailService {
         $mail->addAddress($email); // This is the recipient's email address
 
         $mail->isHTML(true);
-        $mail->Subject = "Password Reset";
-        
-        $mail->Body    = "Click <a href='localhost/resetPasswordThroughMailLink?token=$token'>here</a> to reset your password.";
+        $mail->Subject = $subject;
+        $mail->Body    = $body;
     
         // Send Email
         if ($mail->send()) {
