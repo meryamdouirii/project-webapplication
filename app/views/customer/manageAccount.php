@@ -11,7 +11,12 @@
         <!-- Personal Information Form -->
         <div class="card shadow-sm p-4 my-3">
             <h3 class="text-center">Manage Account</h3>
-            <div id="error-message" style="display: none;" class="alert alert-danger" role="alert"></div>
+            <?php if (isset($_SESSION['error'])): ?>
+                <div id="error-message" class="alert alert-danger" role="alert">
+                    <?php echo $_SESSION['error']; ?>
+                </div>
+                <?php unset($_SESSION['error']); // Verwijder de foutmelding na weergave ?>
+            <?php endif; ?>
             <form action="/updateAccount" method="POST">
                 <div class="card p-3 mb-3 border-0">
                     <h5 class="card-title">Personal Information</h5>

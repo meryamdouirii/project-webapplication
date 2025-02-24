@@ -124,7 +124,9 @@ class HomeController
         exit;
     }
 
-
+    public function danceEvent(){
+        require("../views/customer/danceEvent.php");
+    }
     
 }
 

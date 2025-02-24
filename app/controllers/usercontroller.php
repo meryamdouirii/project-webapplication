@@ -220,7 +220,9 @@ class UserController
         $confirm_password = $_POST['confirm_password'];
     
         if ($password !== $confirm_password) {
-            die("Passwords do not match.");
+            $_SESSION['error'] = "New passwords do not match.";
+            header("Location: /resetPasswordThroughMailLink?token=$token");
+            exit;
         }
     
         $token_hash = hash('sha256', $token);
@@ -287,7 +289,6 @@ class UserController
     
             if ($newPassword !== $confirmNewPassword) {
                 $_SESSION['error'] = "New passwords do not match.";
-                echo "Passwords do not match";
                 header("Location: /manageAccount");
                 exit;
             }

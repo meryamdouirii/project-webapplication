@@ -21,6 +21,12 @@ include __DIR__ . '/../header.php';
                 <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm your passworddd" required>
             </div>
             <button type="submit" class="button">Reset Password</button>
+            <?php if (isset($_SESSION['error'])): ?>
+                <div id="error-message" class="alert alert-danger" role="alert">
+                    <?php echo $_SESSION['error']; ?>
+                </div>
+                <?php unset($_SESSION['error']); // Verwijder de foutmelding na weergave ?>
+            <?php endif; ?>
         </form>
     </div>
 </main>
