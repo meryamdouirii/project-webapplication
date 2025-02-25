@@ -11,7 +11,7 @@ class EmailService {
     public function sendEmail($email, $subject, $body) 
     {
         $mail = new PHPMailer(true);
-        // Enable Debugging (for troubleshooting)
+        // Enable Debugging
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         // $mail->Debugoutput = 'html';
     

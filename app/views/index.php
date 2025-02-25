@@ -22,7 +22,7 @@
             <div class="row justify-content-center">
                 <?php foreach ($events as $event): ?>
                     <div class="col-md-5">
-                        <a href="#" class="card">
+                        <a href="<?= htmlspecialchars($event->name); ?>" class="card">
                             <img src="<?= htmlspecialchars($event->picture_homepage ?? 'default.jpg'); ?>"
                                 alt="<?= htmlspecialchars($event->name); ?>">
                             <div class="card-body">

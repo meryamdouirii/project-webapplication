@@ -29,7 +29,7 @@ $events = $eventRepository->getAll();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <?php foreach ($events as $event): ?>
-                        <li class="nav-item"><a class="nav-link" href="#"><?= htmlspecialchars($event->name); ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= htmlspecialchars($event->name); ?>"><?= htmlspecialchars($event->name); ?></a></li>
                     <?php endforeach; ?>
                     <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
                 </ul>
