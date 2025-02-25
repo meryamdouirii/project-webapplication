@@ -10,12 +10,14 @@ $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 use \App\Controllers\HomeController;
 use \App\Controllers\UserController;
 use \App\Controllers\CustomerController;
+use \App\Controllers\EventController;
 
 require_once("../vendor/autoload.php");
 
 $homeController = new HomeController();
 $userController = new UserController();
 $customerController = new CustomerController();
+$eventController = new EventController();
 
 
 session_start();
