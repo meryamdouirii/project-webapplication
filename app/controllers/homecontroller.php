@@ -43,14 +43,14 @@ class HomeController
                 $_SESSION['user'] = [
                     'id' => $user->id,
                     'email' => $user->email,
-                    'type' => $user->type_of_user->jsonSerialize(), 
+                    'type_of_user' => $user->type_of_user->jsonSerialize(), 
                     'first_name' => $user->first_name,
                     'last_name' => $user->last_name,
                     'phone_number' => $user->phone_number
                 ];
                 $this->index();
             } else {
-                return $this->showError("Invalid email or password!", $_POST);
+                return $this->showError("Invalid email or password!", $_POST, '/../views/user/login.php');
             }
         }   
     }
@@ -69,14 +69,14 @@ class HomeController
             $response_data = json_decode($response);
             $email = htmlspecialchars($_POST['email']);
             if (!$response_data->success){
-                return $this->showError("Please verify that you're not a robot.", $_POST);
+                return $this->showError("Please verify that you're not a robot.", $_POST, '/../views/user/register.php');
             }
             if ($this->userService->getByEmail($email) !== null ) {
-                return $this->showError("Email already exists!", $_POST);
+                return $this->showError("Email already exists!", $_POST, '/../views/user/register.php');
             }
             $raw_password = htmlspecialchars($_POST['password']);
             if ($raw_password != htmlspecialchars($_POST['confirm_password'])) {
-                return $this->showError("Passwords do not match.", $_POST);
+                return $this->showError("Passwords do not match.", $_POST, '/../views/user/register.php');
             }
   
             $salt = base64_encode(random_bytes(16));
@@ -98,15 +98,22 @@ class HomeController
 
             $user = $this->userService->getByEmail($email);
             
-            $_SESSION['user'] = $user;
+            $_SESSION['user'] = [
+                'id' => $user->id,
+                'email' => $user->email,
+                'type_of_user' => $user->type_of_user->jsonSerialize(), 
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'phone_number' => $user->phone_number
+            ];
             $this->index();
         }
         
     }
 
-    private function showError($message, $formData) {
+    private function showError($message, $formData, $directory) {
         $formData = $_POST;
-        require __DIR__ . '/../views/user/register.php';
+        require __DIR__ . $directory;
         echo "<script>
             const errorMessageDiv = document.getElementById('error-message');
             errorMessageDiv.style.display = 'block';

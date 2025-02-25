@@ -34,8 +34,6 @@ $events = $eventRepository->getAll();
                     <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/manage-users">Manage users</a></li>
-                    
                     <?php if (!isset($_SESSION['user'])): ?>
                         <li class="nav-item me-5 pt-1"><a class="button" href="/login">Log In</a></li>
                     <?php else: ?>
@@ -45,8 +43,11 @@ $events = $eventRepository->getAll();
                                 My account
                             </a>
                             <ul class="dropdown-menu">
-                                <?php if (isset($_SESSION['user']) && $_SESSION['user']['type'] === 'customer'): ?>
+                                <?php if (isset($_SESSION['user']) && $_SESSION['user']['type_of_user'] === 'customer'): ?>
                                     <li><a class="dropdown-item" href="/manageAccount">Manage account</a></li>
+                                <?php endif; ?>
+                                <?php if (isset($_SESSION['user']) && $_SESSION['user']['type_of_user'] === 'administrator'): ?>
+                                    <li><a class="dropdown-item" href="/manage-users">Manage users</a></li>
                                 <?php endif; ?>
                                 <li><a class="dropdown-item" href="/logout">Log Out</a></li>
                             </ul>
