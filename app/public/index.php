@@ -73,6 +73,11 @@ switch ($url) {
         break;
     case "/Dance"; //naam haal je op uit database event=>name
         $eventController->danceEvent();
+    case "/Yummy!";
+        $eventController->yummyMain();
+        break;
+    case "/danceEvent";
+        $homeController->danceEvent();
         break;
     default:
         http_response_code(404);

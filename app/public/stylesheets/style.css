@@ -2,6 +2,9 @@
 body {
     font-family: Arial, sans-serif;
 }
+p{
+    line-height:1.25;
+}
 .navbar {
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -45,7 +48,7 @@ a.card:hover {
 .card img {
     display: block; 
     width: 80%;
-    margin: 40 auto; 
+    margin: 40% auto; 
     
 }
 .card-title {
@@ -203,7 +206,7 @@ main {
     -webkit-text-stroke: 5px #17295B;
     font-family: 'Skranji';
     font-weight: bold;
-    color: FF1493;
+    color: #FF1493;
     transform: rotate(-5deg);
 }
 
@@ -231,7 +234,9 @@ main {
 .hero-section-event .position-relative {
     position: relative;
 }
-
+.event-background{
+    position:absolute;
+}
 .event-hero {
     background-size: cover;
     height: 80vh;
@@ -268,8 +273,26 @@ main {
     color:  #FF1493; 
     transform: rotate(-3deg);
     -webkit-text-stroke: 2px #17295B;
+    width: 300px;
 }
-
+.event-info-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    min-width: 240px;
+}
+.event-info-image{
+    
+    max-width: 300px;
+    max-height: 300px; 
+    width: auto;      
+    height: auto;      
+    display: block;    
+    margin: 0 auto;
+    border-radius: 5%;
+}
 
 .event-info-title {
     position: absolute;
@@ -283,4 +306,13 @@ main {
     transform: rotate(-3deg);
     -webkit-text-stroke: 2px #17295B;
 }
+.stars{
+    width: auto;      
+    height: auto;      
+    display: block;    
+    margin: 0 auto;
+    color: #FFD700;
+}
+
+
 
