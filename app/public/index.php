@@ -71,6 +71,9 @@ switch ($url) {
     case "/changePassword";
         $userController->updatePasswordInManageAccount();
         break;
+    case "/Yummy!";
+        $eventController->yummyMain();
+        break;
     case "/danceEvent";
         $homeController->danceEvent();
         break;
