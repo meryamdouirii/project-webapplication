@@ -50,7 +50,7 @@
     </section>
 
 
-    <!--<section class="artist-section">
+    <section class="artist-section">
         <div class="container">
             <div class="section-title-container">
                 <h2 class="section-title">Participating DJ"S</h2>
@@ -89,7 +89,15 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section> 
+
+    <?php print_r($session); ?>
+    <br>
+    <?php print_r($detailEvents); ?>
+    <br>
+    <?php print_r($tags); ?>
+    <br>
+    <?php print_r($event); ?>
 
 
 
