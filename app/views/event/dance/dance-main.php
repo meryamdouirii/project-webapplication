@@ -2,11 +2,12 @@
     <title>Dance Event</title>
     <link href="/stylesheets/style.css" rel="stylesheet">  
     <link href="/stylesheets/styleCard.css" rel="stylesheet">  
+    <link href="/stylesheets/StyleSchedule.css" rel="stylesheet">  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <?php include __DIR__ . '/../../header.php'; ?>
-<main class="container-fluid p-0">
+<main class="bg-light-blue container-fluid p-0">
     <section class="hero-section-event text-white text-center event-hero" style="background-image: url('/images-logos/event-hero.jpg');">
         <div class="overlay event-overlay">
             <div class="container">
@@ -85,16 +86,210 @@
                         </div>
                     </div>
                 </div>
-                <!-- Herhaal voor andere artiesten -->
+                <!-- Herhaal voor andere artiesten ophalen uit database -->
             </div>
         </div>
     </section>
 
     
     <section class="schedule-section">
+        <div class="container">
+            <h2 class="section-title">Event Schedule</h2>
+            <div class="schedule-tabs">
+                <button class="tab-button active" data-day="friday">Friday</button>
+                <button class="tab-button" data-day="saturday">Saturday</button>
+                <button class="tab-button" data-day="sunday">Sunday</button>
+            </div>
+
+            <div class="schedule-cards">
+                <!-- Friday Schedule -->
+                <div class="schedule-card active" id="friday">
+                    <h2 class="schedule-day">Friday - 25 July</h2>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Artist</th>
+                                <th>Location</th>
+                                <th>Time</th>
+                                <th>Price</th>
+                                <th>Tickets available</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nicky Romero/ Afrojack</td>
+                                <td>Lichtfabriek</td>
+                                <td>20:00 - 02:00</td>
+                                <td>€ 75,00</td>
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>Tiësto</td>
+                                <td>Slachthuis</td>
+                                <td>22:00 - 23:30</td>
+                                <td>€ 60,00</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Armin van Buuren</td>
+                                <td>XO the club</td>
+                                <td>22:00 - 23:30</td>
+                                <td>€ 60,00</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Martin Garrix</td>
+                                <td>Puncer comedy club</td>
+                                <td>22:00 - 23:30</td>
+                                <td>€ 60,00</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Hardwell</td>
+                                <td>Jopenkerk</td>
+                                <td>23:00 - 00:30</td>
+                                <td>€ 60,00</td>
+                                <td>300</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="all-access">*All-Access pass for Friday €125,00</p>
+                    <a href="#" class="button schedule-button">GET TICKETS</a>
+                </div>
+
+                <!-- Saturday Schedule -->
+                <div class="schedule-card" id="saturday">
+                    <h2 class="schedule-day">Saturday - 26 July</h2>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Artist</th>
+                                <th>Location</th>
+                                <th>Time</th>
+                                <th>Price</th>
+                                <th>Tickets available</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nicky Romero/ Afrojack</td>
+                                <td>Lichtfabriek</td>
+                                <td>20:00 - 02:00</td>
+                                <td>€ 75,00</td>
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>Tiësto</td>
+                                <td>Slachthuis</td>
+                                <td>22:00 - 23:30</td>
+                                <td>€ 60,00</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Armin van Buuren</td>
+                                <td>XO the club</td>
+                                <td>22:00 - 23:30</td>
+                                <td>€ 60,00</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Martin Garrix</td>
+                                <td>Puncer comedy club</td>
+                                <td>22:00 - 23:30</td>
+                                <td>€ 60,00</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Hardwell</td>
+                                <td>Jopenkerk</td>
+                                <td>23:00 - 00:30</td>
+                                <td>€ 60,00</td>
+                                <td>300</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="all-access">*All-Access pass for Saturday €125,00</p>
+                    <a href="#" class="button schedule-button">GET TICKETS</a>
+                </div>
+
+                <!-- Sunday Schedule -->
+                <div class="schedule-card" id="sunday">
+                    <h2 class="schedule-day">Sunday - 27 July</h2>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Artist</th>
+                                <th>Location</th>
+                                <th>Time</th>
+                                <th>Price</th>
+                                <th>Tickets available</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nicky Romero/ Afrojack</td>
+                                <td>Lichtfabriek</td>
+                                <td>20:00 - 02:00</td>
+                                <td>€ 75,00</td>
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>Tiësto</td>
+                                <td>Slachthuis</td>
+                                <td>22:00 - 23:30</td>
+                                <td>€ 60,00</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Armin van Buuren</td>
+                                <td>XO the club</td>
+                                <td>22:00 - 23:30</td>
+                                <td>€ 60,00</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Martin Garrix</td>
+                                <td>Puncer comedy club</td>
+                                <td>22:00 - 23:30</td>
+                                <td>€ 60,00</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Hardwell</td>
+                                <td>Jopenkerk</td>
+                                <td>23:00 - 00:30</td>
+                                <td>€ 60,00</td>
+                                <td>300</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="all-access">*All-Access pass for Sunday €125,00</p>
+                    <a href="#" class="button schedule-button">GET TICKETS</a>
+                </div>
+            </div>
+        </div>
     </section>
 </main> 
 
 <?php include __DIR__ . '/../../footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Voeg dit toe aan je pagina voor de tab functionaliteit
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab-button');
+    const cards = document.querySelectorAll('.schedule-card');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs and cards
+            tabs.forEach(t => t.classList.remove('active'));
+            cards.forEach(c => c.classList.remove('active'));
+
+            // Add active class to clicked tab and corresponding card
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.day).classList.add('active');
+        });
+    });
+});
+</script>
 </body>

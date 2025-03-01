@@ -137,6 +137,9 @@ main {
     background-color: #FF1493 !important;
     color: white;
 }
+.bg-light-blue {
+    background-color: #4B5EAA
+}
 
 .hero .button {
     width: 270px; 
