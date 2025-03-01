@@ -35,7 +35,7 @@
                 <div class="col-md-3 bg-blue text-white p-3 m-4 position-relative event-info-box">
                     <h3 class="skiranjiHeader event-info-title">3 Days</h3>
                     <p>Three full days of electronic music from the world's best DJs</p>
-                    <a href="#" class="button overlap-button">View Schedule</a>
+                    <a href="#" class="button overlap-button" style="width: 100%;">VIEW SCHEDULE</a>
                 </div>
                 <div class="col-md-3 bg-blue text-white p-3 m-4 position-relative event-info-box">
                     <h3 class="skiranjiHeader event-info-title">6 Big Artists</h3>
@@ -49,7 +49,8 @@
         </div>
     </section>
 
-    <section class="artist-section">
+
+    <!--<section class="artist-section">
         <div class="container">
             <div class="section-title-container">
                 <h2 class="section-title">Participating DJ"S</h2>
@@ -86,10 +87,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Herhaal voor andere artiesten ophalen uit database -->
             </div>
         </div>
-    </section>
+    </section> -->
+
+
 
     
     <section class="schedule-section">

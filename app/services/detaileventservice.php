@@ -6,16 +6,11 @@ use App\Models\DetailEvent;
 
 class DetailEventService
 {
-    private DetailEventRepository $detailEventRepository;
-
-    public function __construct(DetailEventRepository $detailEventRepository)
-    {
-        $this->detailEventRepository = $detailEventRepository;
-    }
 
     public function getById(int $id): ?DetailEvent
     {
-        return $this->detailEventRepository->getById($id);
+        $repository = new \App\Repositories\DetailEventRepository();
+        return $repository->getById($id);
     }
 
     /**
@@ -23,6 +18,7 @@ class DetailEventService
      */
     public function getAll(): array
     {
-        return $this->detailEventRepository->getAll();
+        $repository = new \App\Repositories\DetailEventRepository();
+        return $repository->getAll();
     }
 }

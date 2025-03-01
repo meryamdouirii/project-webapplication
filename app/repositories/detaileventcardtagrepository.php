@@ -44,4 +44,24 @@ class DetailEventCardTagRepository extends Repository
 
         return $results;
     }
+
+    /**
+     * @return string[]
+     */
+    public function getTagsByDetailEventId(int $detailEventId): array
+    {
+        $sql = 'SELECT tag FROM detail_event_card_tag WHERE detail_event_id = :detailEventId';
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':detailEventId', $detailEventId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $tags = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $tags[] = $row['tag'];
+        }
+        return $tags;
+    }
+
+
+
 }
