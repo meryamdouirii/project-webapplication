@@ -6,7 +6,7 @@ namespace App\controllers;
 
 class EventController 
 {
-    public function danceEvent(){
+    public function danceMain(){
         require("../views/event/dance/dance-main.php");
     }
     public function yummyMain(){
