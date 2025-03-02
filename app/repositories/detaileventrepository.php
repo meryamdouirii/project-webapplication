@@ -1,5 +1,6 @@
 <?php
 namespace App\Repositories;
+use App\Models\DetailEvent;
 use PDO;
 
 class DetailEventRepository extends Repository {
@@ -7,7 +8,9 @@ class DetailEventRepository extends Repository {
 
     public function getByMainEvent($id) {
         $sql = 'SELECT * FROM detail_event WHERE event_id = :id';
-        $stmt = $this->connection->query($sql);
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
         $results = [];
 
 
@@ -22,11 +25,10 @@ class DetailEventRepository extends Repository {
                 $row['image_description_1'],
                 $row['image_description_2'],
                 $row['card_image'],
-                $row['card_description']
+                $row['card_description'],
+                $row['amount_of_stars'],
+                $this->getTagsForDetailEvent($row['id'])
             );
-        }
-        foreach ($results as $event) {
-            $event->tags = $this->getTagsForDetailEvent($event->id);
         }
         return $results;
     }
@@ -34,14 +36,14 @@ class DetailEventRepository extends Repository {
 
     private function getTagsForDetailEvent($detailEventId) {
         // Fetch tags related to the given detail_event_id
-        $stmt = $this->connection->prepare("SELECT name FROM restaurant_tags WHERE detail_event_id = :detail_event_id");
+        $stmt = $this->connection->prepare("SELECT tag FROM detail_event_card_tag WHERE detail_event_id = :detail_event_id");
         $stmt->bindParam(':detail_event_id', $detailEventId, PDO::PARAM_INT);
         $stmt->execute();
         $tags = $stmt->fetchAll(PDO::FETCH_COLUMN); // This will return an array of tag names
 
         return $tags;
     }
-}
+
     public function getById(int $id): ?DetailEvent
     {
         $sql = 'SELECT * FROM detail_event WHERE id = :id';
@@ -54,7 +56,7 @@ class DetailEventRepository extends Repository {
             return null;
         }
 
-        $event = new DetailEvent(
+        return new DetailEvent(
             $row['id'],
             $row['event_id'],
             $row['banner_description'],
@@ -64,10 +66,11 @@ class DetailEventRepository extends Repository {
             $row['image_description_1'],
             $row['image_description_2'],
             $row['card_image'],
-            $row['card_description']
+            $row['card_description'],
+            $row['amount_of_stars'],
+            $this->getTagsForDetailEvent($row['id'])
         );
-        $event->tags = $this->getTagsForDetailEvent($event->id);
-        return $event;
+
     }
 
     /**
@@ -90,12 +93,12 @@ class DetailEventRepository extends Repository {
                 $row['image_description_1'],
                 $row['image_description_2'],
                 $row['card_image'],
-                $row['card_description']
+                $row['card_description'],
+                $row['amount_of_stars'],
+                $this->getTagsForDetailEvent($row['id'])
             );
-        }
-        foreach ($results as $event) {
-            $event->tags = $this->getTagsForDetailEvent($event->id);
         }
         return $results;
     }
+}
 ?>

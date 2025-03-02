@@ -26,26 +26,29 @@
             <div class="row justify-content-center" style="margin-top: -40px;">
             <?php foreach ($detailEvents as $detailEvent): ?>
                 <div class="col-md-3 bg-blue text-white p-3 m-4 position-relative event-info-box">
-                    <h3 class="skiranjiHeader event-info-title"><?= htmlspecialchars($detailEvent->name); ?></h3>
+                    <h3 class="skiranjiHeader event-info-title"><?= htmlspecialchars($detailEvent->getName()); ?></h3>
                     <h2 class="stars">
-                        <?php   $amountOfStars = $detailEvent->amount_of_stars ?? 0;
-                                $fullStars = str_repeat('&#9733;',$amountOfStars);
-                                $emptyStars = str_repeat('&#9734;',5-$amountOfStars);
-                                echo $fullStars . $emptyStars;
-                        ?>      
+                        <?php
+                            $amountOfStars = $detailEvent->getAmountOfStars() ?? 0;
+                            $fullStars = str_repeat('&#9733;', $amountOfStars);
+                            $emptyStars = str_repeat('&#9734;', 5 - $amountOfStars);
+                            echo $fullStars . $emptyStars;
+                        ?>
                     </h2>
-                    <?php if ($detailEvent->card_image): ?>
-                        <img class="h-auto w-100 event-info-image" src="data:image/jpeg;base64,<?= base64_encode($detailEvent->card_image); ?>" alt="Restaurant Image" ></img>	
+                    <?php if ($detailEvent->getCardImage()): ?>
+                        <img class="h-auto w-100 event-info-image" src="data:image/jpeg;base64,<?= base64_encode($detailEvent->getCardImage()); ?>" alt="Restaurant Image" />
                     <?php endif; ?>
                     <div class="tags mt-1">
-                    <?php foreach ($detailEvent->tags as $tag): ?>
-                        <span class="small-tag bg-transparent text-white border border-white px-3 py-1 mt-1 mx-1 d-inline-block"><?= htmlspecialchars($tag); ?></span>
+                    <?php if (!empty($detailEvent->getTags())): ?>
+                        <?php foreach ($detailEvent->getTags() as $tag): ?>
+                            <span class="small-tag bg-transparent text-white border border-white px-3 py-1 mt-1 mx-1 d-inline-block"><?= htmlspecialchars($tag); ?></span>
                         <?php endforeach; ?>
+                    <?php endif; ?>
                     </div>
                     <p class="mt-2">
-                    <?= htmlspecialchars($detailEvent->card_description ?? ''); ?>
+                    <?= htmlspecialchars($detailEvent->getCardDescription() ?? ''); ?>
                     </p>
-                        <a href="#" class="button">MORE</a>
+                    <a href="#" class="button">MORE</a>
                 </div>
             <?php endforeach; ?>
             </div>
@@ -53,7 +56,7 @@
     </section>
     <div class="d-flex justify-content-center">
         <section class="bg-blue w-75 py-5 " style="margin-top: 2.5rem;">
-            <h2 class="skiranjiHeader"style="-webkit-text-stroke: 2px #17295B; margin-top: -100px;">Locations</h2>
+            <h2 class="skiranjiHeader" style="-webkit-text-stroke: 2px #17295B; margin-top: -100px;">Locations</h2>
             <div class="bg-blue text-white p-3 m-4 position-relative">
                 <div class="map-responsive">
                     <iframe
@@ -64,7 +67,7 @@
             </div>
         </section>
     </div>
-</main> 
+</main>
 
 <?php include __DIR__ . '/../../footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

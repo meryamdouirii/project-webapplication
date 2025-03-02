@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 01 mrt 2025 om 18:11
--- Serverversie: 11.6.2-MariaDB-ubu2404
+-- Gegenereerd op: 02 mrt 2025 om 19:29
+-- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -37,20 +37,22 @@ CREATE TABLE `detail_event` (
   `image_description_1` varchar(500) DEFAULT NULL,
   `image_description_2` varchar(500) DEFAULT NULL,
   `card_image` varchar(500) DEFAULT NULL,
-  `card_description` varchar(200) DEFAULT NULL
+  `card_description` varchar(200) DEFAULT NULL,
+  `amount_of_stars` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `detail_event`
 --
 
-INSERT INTO `detail_event` (`id`, `event_id`, `banner_description`, `banner_image`, `name`, `description`, `image_description_1`, `image_description_2`, `card_image`, `card_description`) VALUES
-(1, 1, 'One of the world-class DJs performing at Haarlem Festival is Hardwell!', 'default.jpg', 'Hardwell', 'Hardwell, born Robbert van de Corput, is a globally renowned Dutch DJ, music producer, and remixer. He gained fame for his contributions to electronic dance music (EDM), specifically in the genres of progressive house and big room house. Rising to prominence in the early 2010s, Hardwell quickly established himself as a festival headliner. Known for his dynamic live performances, he was crowned the World\'s No.1 DJ twice in a row (2013, 2014) by DJ Mag\'s Top 100 DJs poll.', 'default.jpg', NULL, 'default.jpg', 'Hardwell is known for his energetic performances. Hardwell hails from Breda, Netherlands, and began DJing at the age of 14.'),
-(2, 1, 'One of the world-class DJs performing at Haarlem Festival is Martin Garrix!', 'default.jpg', 'Martin Garrix', 'Martin Garrix, de jonge superster uit Nederland, heeft zichzelf bewezen als een van de grootste namen in de dance- en elektronische muziekwereld. Met hits zoals \"Animals\" en \"Scared to Be Lonely\" domineert hij zowel de charts als festivals over de hele wereld. Zijn energieke optredens en pakkende producties hebben hem de titel van werelds beste DJ opgeleverd in meerdere DJ Mag Top 100-lijsten.', 'default.jpg', NULL, 'default.jpg', '(Martijn Garritsen): Martin is an animal lover, particularly fond of dogs, and supports various charitable causes. He has had a succesfull career since he was young.'),
-(3, 1, 'One of the world-class DJs performing at Haarlem Festival is Tiesto!', 'default.jpg', 'Tiesto', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Tijs Michiel Verwest): Tiësto, also from Breda, Netherlands, is known for being a trailblazer in electronic music.  '),
-(4, 1, 'One of the world-class DJs performing at Haarlem Festival is Armin van Buuren!', 'default.jpg', 'Armin van Buuren', 'NULL', 'default.jpg', NULL, 'default.jpg', 'Armin is known for his meticulous work ethic and dedication to his fans. Despite his success, he remains approachable and enjoys connecting with his global audience.  '),
-(5, 1, 'One of the world-class DJs performing at Haarlem Festival is Afrojack!', 'default.jpg', 'Afrojack', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick van de Wall): Afrojack is not only a DJ but also an entrepreneur, owning his own label, Wall Recordings.  '),
-(6, 1, 'One of the world-class DJs performing at Haarlem Festival is Nicky Romero!', 'default.jpg', 'Nicky Romero', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick Rotteveel): Nicky is known for his collaborative and friendly nature in the music industry.   ');
+INSERT INTO `detail_event` (`id`, `event_id`, `banner_description`, `banner_image`, `name`, `description`, `image_description_1`, `image_description_2`, `card_image`, `card_description`, `amount_of_stars`) VALUES
+(1, 1, 'One of the world-class DJs performing at Haarlem Festival is Hardwell!', 'default.jpg', 'Hardwell', 'Hardwell, born Robbert van de Corput, is a globally renowned Dutch DJ, music producer, and remixer. He gained fame for his contributions to electronic dance music (EDM), specifically in the genres of progressive house and big room house. Rising to prominence in the early 2010s, Hardwell quickly established himself as a festival headliner. Known for his dynamic live performances, he was crowned the World\'s No.1 DJ twice in a row (2013, 2014) by DJ Mag\'s Top 100 DJs poll.', 'default.jpg', NULL, 'default.jpg', 'Hardwell is known for his energetic performances. Hardwell hails from Breda, Netherlands, and began DJing at the age of 14.', NULL),
+(2, 1, 'One of the world-class DJs performing at Haarlem Festival is Martin Garrix!', 'default.jpg', 'Martin Garrix', 'Martin Garrix, de jonge superster uit Nederland, heeft zichzelf bewezen als een van de grootste namen in de dance- en elektronische muziekwereld. Met hits zoals \"Animals\" en \"Scared to Be Lonely\" domineert hij zowel de charts als festivals over de hele wereld. Zijn energieke optredens en pakkende producties hebben hem de titel van werelds beste DJ opgeleverd in meerdere DJ Mag Top 100-lijsten.', 'default.jpg', NULL, 'default.jpg', '(Martijn Garritsen): Martin is an animal lover, particularly fond of dogs, and supports various charitable causes. He has had a succesfull career since he was young.', NULL),
+(3, 1, 'One of the world-class DJs performing at Haarlem Festival is Tiesto!', 'default.jpg', 'Tiesto', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Tijs Michiel Verwest): Tiësto, also from Breda, Netherlands, is known for being a trailblazer in electronic music.  ', NULL),
+(4, 1, 'One of the world-class DJs performing at Haarlem Festival is Armin van Buuren!', 'default.jpg', 'Armin van Buuren', 'NULL', 'default.jpg', NULL, 'default.jpg', 'Armin is known for his meticulous work ethic and dedication to his fans. Despite his success, he remains approachable and enjoys connecting with his global audience.  ', NULL),
+(5, 1, 'One of the world-class DJs performing at Haarlem Festival is Afrojack!', 'default.jpg', 'Afrojack', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick van de Wall): Afrojack is not only a DJ but also an entrepreneur, owning his own label, Wall Recordings.  ', NULL),
+(6, 1, 'One of the world-class DJs performing at Haarlem Festival is Nicky Romero!', 'default.jpg', 'Nicky Romero', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick Rotteveel): Nicky is known for his collaborative and friendly nature in the music industry.   ', NULL),
+(7, 2, 'Visit Ratatouille!', NULL, 'Ratatouille', 'Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.', NULL, NULL, NULL, 'Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.', 4);
 
 -- --------------------------------------------------------
 
@@ -80,6 +82,9 @@ INSERT INTO `detail_event_card_tag` (`id`, `detail_event_id`, `tag`) VALUES
 (9, 5, 'House'),
 (10, 6, 'House'),
 (11, 6, 'Electro');
+(12, 7, 'French'),
+(13, 7, 'European'),
+(14, 7, 'Fish & Seafood');
 
 -- --------------------------------------------------------
 
@@ -101,7 +106,7 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`id`, `name`, `description_homepage`, `banner_description`, `picture_homepage`) VALUES
 (1, 'Dance', 'Top DJs make an appearance for unforgettable nights.', 'Top DJ\'s performing in DANCE festival!', 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?'),
-(2, 'Yummy', 'A culinary journey through Haarlem\'s finest dining', 'Visit the best restaurants in Haarlem!', 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500');
+(2, 'Yummy!', 'A culinary journey through Haarlem\'s finest dining', 'Visit the best restaurants in Haarlem!', 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500');
 
 -- --------------------------------------------------------
 
@@ -307,7 +312,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT voor een tabel `detail_event`
 --
 ALTER TABLE `detail_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT voor een tabel `detail_event_card_tag`
@@ -326,6 +331,16 @@ ALTER TABLE `session`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Beperkingen voor geëxporteerde tabellen
+--
+
+--
+-- Beperkingen voor tabel `detail_event`
+--
+ALTER TABLE `detail_event`
+  ADD CONSTRAINT `detail_event_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

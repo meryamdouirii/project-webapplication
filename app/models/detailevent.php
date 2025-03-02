@@ -55,7 +55,14 @@ class DetailEvent
     {
         return $this->event_id;
     }
-
+    public function getTags(): ?array
+    {
+        return $this->tags;
+    }
+    public function getAmountOfStars(): ?int
+    {
+        return $this->amount_of_stars;
+    }
     public function getBannerDescription(): ?string
     {
         return $this->banner_description;
