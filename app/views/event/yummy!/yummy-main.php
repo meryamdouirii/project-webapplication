@@ -24,20 +24,30 @@
     <section class="card-list-section">
         <div class="container" style="margin-top: -40px;">
             <div class="row justify-content-center style="margin-top: -40px;">
+            <?php foreach ($detailEvents as $detailEvent): ?>
                 <div class="col-md-3 bg-blue text-white p-3 m-4 position-relative event-info-box">
-                    <h3 class="skiranjiHeader event-info-title">Restaurant Title</h3>
-                    <h2 class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</h2>
-                    <img class="h-auto w-100 event-info-image" src="/images-logos/placeholder.png" alt="Restaurant Image" ></img>
+                    <h3 class="skiranjiHeader event-info-title"><?= htmlspecialchars($detailEvent->name); ?></h3>
+                    <h2 class="stars">
+                        <?php   $amountOfStars = $detailEvent->amount_of_stars ?? 0;
+                                $fullStars = str_repeat('&#9733;',$amountOfStars);
+                                $emptyStars = str_repeat('&#9734;',5-$amountOfStars);
+                                echo $fullStars . $emptyStars;
+                        ?>      
+                    </h2>
+                    <?php if ($detailEvent->card_image): ?>
+                        <img class="h-auto w-100 event-info-image" src="data:image/jpeg;base64,<?= base64_encode($detailEvent->card_image); ?>" alt="Restaurant Image" ></img>	
+                    <?php endif; ?>
                     <div class="tags mt-1">
-                    
-                        <span class="small-tag bg-transparent text-white border border-white px-3 py-1 mt-1 mx-1 d-inline-block">Fine Dining</span>
-                        <span class="small-tag bg-transparent text-white border border-white px-3 py-1 mt-1 mx-1 d-inline-block">Vegan Options</span>
-                        <span class="small-tag bg-transparent text-white border border-white px-3 py-1 mt-1 mx-1 d-inline-block">Michelin Star</span>
+                    <?php foreach ($detailEvent->tags as $tag): ?>
+                        <span class="small-tag bg-transparent text-white border border-white px-3 py-1 mt-1 mx-1 d-inline-block"><?= htmlspecialchars($tag); ?></span>
+                        <?php endforeach; ?>
                     </div>
-                    <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed tempus purus, eget sollicitudin augue. Nunc elementum auctor tellus ut volutpat. Quisque vehicula ligula at eleifend sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean at dolor eget magna porttitor bibendum. Nullam sed congue nibh.</p>
-                    <a href="#" class="button">MORE</a>
+                    <p class="mt-2">
+                    <?= htmlspecialchars($detailEvent->card_description ?? ''); ?>
+                    </p>
+                        <a href="#" class="button">MORE</a>
                 </div>
-                
+            <?php endforeach; ?>
             </div>
         </div>
     </section>

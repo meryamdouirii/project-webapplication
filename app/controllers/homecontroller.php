@@ -130,10 +130,6 @@ class HomeController
         header("Location: /");
         exit;
     }
-
-    public function danceEvent(){
-        require("../views/customer/danceEvent.php");
-    }
     
 }
 
