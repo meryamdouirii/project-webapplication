@@ -71,11 +71,11 @@ switch ($url) {
     case "/changePassword";
         $userController->updatePasswordInManageAccount();
         break;
+    case "/Dance"; //naam haal je op uit database event=>name
+        $eventController->danceMain();
+        break;
     case "/Yummy!";
         $eventController->yummyMain();
-        break;
-    case "/danceEvent";
-        $homeController->danceEvent();
         break;
     default:
         http_response_code(404);

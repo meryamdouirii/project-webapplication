@@ -13,7 +13,7 @@
                     <div class="col-md-3 text-start bg-blue-transparent p-3 position-relative event-artist-list">
                         <h1 class="event-title">DANCE</h1>
                         <ul class="list-unstyled">
-                            <li>Martin Garrix</li>
+                            <li>Martin Garrixxx</li>
                             <li>Hardwell</li>
                             <li>Armin van Buuren</li>
                             <li>Tiesto</li>

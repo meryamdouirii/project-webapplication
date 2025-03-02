@@ -1,59 +1,36 @@
 <?php
 namespace App\Repositories;
-
 use PDO;
 
 class DetailEventRepository extends Repository {
 
-    public function getAll() {
-        $stmt = $this->connection->prepare("SELECT id, event_id, banner_description, banner_image, name, description, image_description_1, image_description_2, card_image, card_description, amount_of_stars 
-        FROM detail_event");
-
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, '\App\Models\DetailEvent');
-        $events = $stmt->fetchAll();
-
-        // Fetch tags for each event
-        foreach ($events as $event) {
-            $event->tags = $this->getTagsForDetailEvent($event->id);
-        }
-
-        return $events;
-    }
 
     public function getByMainEvent($id) {
-        $stmt = $this->connection->prepare("SELECT id, event_id, banner_description, banner_image, name, description, image_description_1, image_description_2, card_image, card_description, amount_of_stars 
-        FROM detail_event
-        WHERE event_id = :id");
+        $sql = 'SELECT * FROM detail_event WHERE event_id = :id';
+        $stmt = $this->connection->query($sql);
+        $results = [];
 
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, '\App\Models\DetailEvent');
-        $events = $stmt->fetchAll();
 
-        // Fetch tags for each event
-        foreach ($events as $event) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = new DetailEvent(
+                $row['id'],
+                $row['event_id'],
+                $row['banner_description'],
+                $row['banner_image'],
+                $row['name'],
+                $row['description'],
+                $row['image_description_1'],
+                $row['image_description_2'],
+                $row['card_image'],
+                $row['card_description']
+            );
+        }
+        foreach ($results as $event) {
             $event->tags = $this->getTagsForDetailEvent($event->id);
         }
-
-        return $events;
+        return $results;
     }
 
-    public function getById($id) {
-        $stmt = $this->connection->prepare("SELECT id, event_id, banner_description, banner_image, name, description, image_description_1, image_description_2, card_image, card_description, amount_of_stars 
-        FROM detail_event
-        WHERE id = :id");
-
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, '\App\Models\DetailEvent');
-        $event = $stmt->fetch();
-
-        // Fetch tags for the event
-        $event->tags = $this->getTagsForDetailEvent($event->id);
-
-        return $event;
-    }
 
     private function getTagsForDetailEvent($detailEventId) {
         // Fetch tags related to the given detail_event_id
@@ -65,4 +42,60 @@ class DetailEventRepository extends Repository {
         return $tags;
     }
 }
+    public function getById(int $id): ?DetailEvent
+    {
+        $sql = 'SELECT * FROM detail_event WHERE id = :id';
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$row) {
+            return null;
+        }
+
+        $event = new DetailEvent(
+            $row['id'],
+            $row['event_id'],
+            $row['banner_description'],
+            $row['banner_image'],
+            $row['name'],
+            $row['description'],
+            $row['image_description_1'],
+            $row['image_description_2'],
+            $row['card_image'],
+            $row['card_description']
+        );
+        $event->tags = $this->getTagsForDetailEvent($event->id);
+        return $event;
+    }
+
+    /**
+     * @return DetailEvent[]
+     */       
+    public function getAll(): array
+    {
+        $sql = 'SELECT * FROM detail_event';
+        $stmt = $this->connection->query($sql);
+        $results = [];
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = new DetailEvent(
+                $row['id'],
+                $row['event_id'],
+                $row['banner_description'],
+                $row['banner_image'],
+                $row['name'],
+                $row['description'],
+                $row['image_description_1'],
+                $row['image_description_2'],
+                $row['card_image'],
+                $row['card_description']
+            );
+        }
+        foreach ($results as $event) {
+            $event->tags = $this->getTagsForDetailEvent($event->id);
+        }
+        return $results;
+    }
 ?>

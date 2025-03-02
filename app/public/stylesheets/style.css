@@ -48,7 +48,7 @@ a.card:hover {
 .card img {
     display: block; 
     width: 80%;
-    margin: 40% auto; 
+    margin: 5% auto; 
     
 }
 .card-title {
@@ -136,6 +136,9 @@ main {
 .bg-pink {
     background-color: #FF1493 !important;
     color: white;
+}
+.bg-light-blue {
+    background-color: #4B5EAA
 }
 
 .hero .button {
@@ -265,6 +268,9 @@ main {
 /*About event section*/
 .info-section .col-md-4 {
     border-radius: 10px;
+    min-height: 400px;
+    padding: 2rem;
+    position: relative;
 }
 .info-section .skiranjiHeader { 
     font-size: 2rem;
@@ -274,6 +280,10 @@ main {
     transform: rotate(-3deg);
     -webkit-text-stroke: 2px #17295B;
     width: 300px;
+}
+.info-section p {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 .event-info-box{
     display: flex;
@@ -303,7 +313,6 @@ main {
     font-weight: bold;
     font-family: 'Skranji';
     color: #FF1493;
-    transform: rotate(-3deg);
     -webkit-text-stroke: 2px #17295B;
 }
 .stars{
@@ -312,6 +321,50 @@ main {
     display: block;    
     margin: 0 auto;
     color: #FFD700;
+}
+
+.button.overlap-button {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    padding: 15px 30px;
+    margin-bottom: 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.info-section {
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.info-section .col-md-3:nth-child(odd) {
+    transform: rotate(-2deg);
+}
+
+.info-section .col-md-3:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.section-title {
+    font-family: 'Skranji', sans-serif;
+    color: #FF1493;
+    font-size: 3.5rem;
+    transform: rotate(-2deg);
+    margin-bottom: 3rem;
+    text-align: center;
+    background-color: #17295B;
+    padding: 0.5rem 2rem;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding-left: 300px;padding-right: 300px;
+}
+
+.section-title-container {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
 
