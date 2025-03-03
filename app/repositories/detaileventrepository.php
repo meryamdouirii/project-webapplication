@@ -1,20 +1,24 @@
 <?php
 namespace App\Repositories;
 use App\Models\DetailEvent;
+use App\Models\Session;
 use PDO;
 
-class DetailEventRepository extends Repository {
+class DetailEventRepository extends Repository
+{
 
 
-    public function getByMainEvent($id) {
+    public function getByMainEvent($id)
+    {
         $sql = 'SELECT * FROM detail_event WHERE event_id = :id';
         $stmt = $this->connection->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $results = [];
-
-
+    
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $sessions = $this->getSessionsForDetailEvent($row['id']); // Ophalen van sessies voor dit detailEvent
+            
             $results[] = new DetailEvent(
                 $row['id'],
                 $row['event_id'],
@@ -27,14 +31,18 @@ class DetailEventRepository extends Repository {
                 $row['card_image'],
                 $row['card_description'],
                 $row['amount_of_stars'],
-                $this->getTagsForDetailEvent($row['id'])
+                $this->getTagsForDetailEvent($row['id']),
+                $sessions // Voeg de sessies toe aan het object
             );
         }
+    
         return $results;
     }
+    
 
 
-    private function getTagsForDetailEvent($detailEventId) {
+    private function getTagsForDetailEvent($detailEventId)
+    {
         // Fetch tags related to the given detail_event_id
         $stmt = $this->connection->prepare("SELECT tag FROM detail_event_card_tag WHERE detail_event_id = :detail_event_id");
         $stmt->bindParam(':detail_event_id', $detailEventId, PDO::PARAM_INT);
@@ -75,7 +83,7 @@ class DetailEventRepository extends Repository {
 
     /**
      * @return DetailEvent[]
-     */       
+     */
     public function getAll(): array
     {
         $sql = 'SELECT * FROM detail_event';
@@ -100,5 +108,31 @@ class DetailEventRepository extends Repository {
         }
         return $results;
     }
+
+    private function getSessionsForDetailEvent(int $detailEventId): array
+    {
+        $stmt = $this->connection->prepare("
+        SELECT * FROM session WHERE detail_event_id = :detail_event_id
+    ");
+        $stmt->bindParam(':detail_event_id', $detailEventId, PDO::PARAM_INT);
+        $stmt->execute();
+        $sessions = [];
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $sessions[] = new Session(
+                $row['id'],
+                $row['detail_event_id'],
+                $row['name'],
+                $row['description'],
+                $row['location'],
+                $row['ticket_limit'],
+                $row['duration_minutes'],
+                $row['price'],
+                $row['datetime_start']
+            );
+        }
+        return $sessions;
+    }
+
 }
 ?>

@@ -15,7 +15,7 @@
         </div>
     </section>
 
-    <!-- <pre><?php print_r($events); ?></pre> -->
+    <pre><?php print_r($events); ?></pre>
 
     <section class="bg-blue py-5">
         <div class="container">

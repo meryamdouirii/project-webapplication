@@ -71,7 +71,7 @@ switch ($url) {
     case "/changePassword";
         $userController->updatePasswordInManageAccount();
         break;
-    case "/Dance"; //naam haal je op uit database event=>name
+    case "/Dance";
         $eventController->danceMain();
         break;
     case "/Yummy!";

@@ -5,16 +5,19 @@ namespace App\controllers;
 class EventController 
 {
     private $detailEventService;
-    
+    private $EventService;
     function __construct()
     {
         $this->detailEventService = new \App\Services\DetailEventService();
+        $this->EventService = new \App\Services\EventService();
     }
 
     public function danceMain(){
         $detailEvents = $this->detailEventService->getByMainEvent(1);
+        $event = $this->EventService->getById(1);
         require("../views/event/dance/dance-main.php");
     }
+
     public function yummyMain(){
         $detailEvents = $this->detailEventService->getByMainEvent(2);
         require("../views/event/yummy!/yummy-main.php");
