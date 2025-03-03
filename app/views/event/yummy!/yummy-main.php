@@ -36,7 +36,9 @@
                         ?>
                     </h2>
                     <?php if ($detailEvent->getCardImage()): ?>
-                        <img class="h-auto w-100 event-info-image" src="data:image/jpeg;base64,<?= base64_encode($detailEvent->getCardImage()); ?>" alt="Restaurant Image" />
+                        <img class="h-auto w-100 event-info-image mt-2" src="<?= htmlspecialchars($detailEvent->getCardImage());?>" alt="<?=$detailEvent->getName()?> Image" />
+                        <?php else: ?>
+                        <img class="h-auto w-100 event-info-image mt-2" src="/images-logos/default.jpg" alt="<?=$detailEvent->getName()?> Image" />
                     <?php endif; ?>
                     <div class="tags mt-1">
                     <?php if (!empty($detailEvent->getTags())): ?>
@@ -48,7 +50,7 @@
                     <p class="mt-2">
                     <?= htmlspecialchars($detailEvent->getCardDescription() ?? ''); ?>
                     </p>
-                    <a href="#" class="button">MORE</a>
+                    <a href="/Yummy!/detail?id=<?= $detailEvent->getId(); ?>" class="button">MORE</a>
                 </div>
             <?php endforeach; ?>
             </div>

@@ -77,6 +77,9 @@ switch ($url) {
     case "/Yummy!";
         $eventController->yummyMain();
         break;
+    case "/Yummy!/detail";
+        $eventController->yummyDetail();
+        break;
     default:
         http_response_code(404);
 }

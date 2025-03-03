@@ -28,4 +28,22 @@ class EventController
         $detailEvents = $this->detailEventService->getByMainEvent(2);
         require("../views/event/yummy!/yummy-main.php");
     }
+    public function yummyDetail() {
+
+        if (!isset($_GET['id']) || empty($_GET['id'])) {
+            header("Location: /event/yummy-main");
+            exit;
+        }
+    
+        $eventId = intval($_GET['id']);
+    
+        $detailEvent = $this->detailEventService->getById($eventId);
+    
+        if (!$detailEvent) {
+            header("Location: /event/yummy-main");
+            exit;
+        }
+        require("../views/event/yummy!/yummy-detail.php");
+    }
+    
 }
