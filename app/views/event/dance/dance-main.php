@@ -91,11 +91,8 @@
         </div>
     </section> 
 
-    <?php print_r($session); ?>
-    <br>
     <?php print_r($detailEvents); ?>
     <br>
-    <?php print_r($tags); ?>
     <br>
     <?php print_r($event); ?>
 
