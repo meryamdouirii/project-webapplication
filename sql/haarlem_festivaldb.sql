@@ -81,7 +81,7 @@ INSERT INTO `detail_event_card_tag` (`id`, `detail_event_id`, `tag`) VALUES
 (8, 4, 'Techno'),
 (9, 5, 'House'),
 (10, 6, 'House'),
-(11, 6, 'Electro');
+(11, 6, 'Electro'),
 (12, 7, 'French'),
 (13, 7, 'European'),
 (14, 7, 'Fish & Seafood');
