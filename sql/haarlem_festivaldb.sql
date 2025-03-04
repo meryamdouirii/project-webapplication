@@ -168,7 +168,19 @@ INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location
 (15, 6, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00'),
 (16, 4, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-27 19:00:00'),
 (17, 1, 'club', NULL, 'XO the Club', 1500, 90, 90.00, '2025-07-27 21:00:00'),
-(18, 2, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00');
+(18, 2, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00'),
+(19, 7, 'Ratatouille Ticket 24 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 17:00:00'),
+(20, 7, 'Ratatouille Ticket 25 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 17:00:00'),
+(21, 7, 'Ratatouille Ticket 26 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 17:00:00'),
+(22, 7, 'Ratatouille Ticket 27 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 17:00:00'),
+(23, 7, 'Ratatouille Ticket 27 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 19:00:00'),
+(24, 7, 'Ratatouille Ticket 26 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 19:00:00'),
+(25, 7, 'Ratatouille Ticket 25 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 19:00:00'),
+(26, 7, 'Ratatouille Ticket 24 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 19:00:00'),
+(27, 7, 'Ratatouille Ticket 24 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00'),
+(28, 7, 'Ratatouille Ticket 25 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00'),
+(29, 7, 'Ratatouille Ticket 26 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00'),
+(30, 7, 'Ratatouille Ticket 27 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00');
 
 -- --------------------------------------------------------
 
