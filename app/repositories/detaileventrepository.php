@@ -7,6 +7,52 @@ use PDO;
 class DetailEventRepository extends Repository
 {
 
+    public function add(DetailEvent $detailEvent): bool
+{
+    try {
+        $this->connection->beginTransaction();
+
+        $sql = 'INSERT INTO detail_event 
+                (event_id, banner_description, banner_image, name, description, image_description_1, image_description_2, card_image, card_description, amount_of_stars) 
+                VALUES 
+                (:event_id, :banner_description, :banner_image, :name, :description, :image_description_1, :image_description_2, :card_image, :card_description, :amount_of_stars)';
+        
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([
+            ':event_id' => $detailEvent->getEventId(),
+            ':banner_description' => $detailEvent->getBannerDescription(),
+            ':banner_image' => $detailEvent->getBannerImage(),
+            ':name' => $detailEvent->getName(),
+            ':description' => $detailEvent->getDescription(),
+            ':image_description_1' => $detailEvent->getImageDescription1(),
+            ':image_description_2' => $detailEvent->getImageDescription2(),
+            ':card_image' => $detailEvent->getCardImage(),
+            ':card_description' => $detailEvent->getCardDescription(),
+            ':amount_of_stars' => $detailEvent->getAmountOfStars(),
+        ]);
+        $detailEventId = $this->connection->lastInsertId();
+
+        if (!empty($detailEvent->getTags())) {
+            $tagSql = "INSERT INTO detail_event_card_tag (detail_event_id, tag) VALUES (:detail_event_id, :tag)";
+            $tagStmt = $this->connection->prepare($tagSql);
+            
+            foreach ($detailEvent->getTags() as $tag) {
+                $tagStmt->execute([
+                    ':detail_event_id' => $detailEventId,
+                    ':tag' => $tag
+                ]);
+            }
+        }
+
+        $this->connection->commit();
+        return true;
+        
+    } catch (Exception $e) {
+        $this->connection->rollBack();
+        error_log("Error adding DetailEvent: " . $e->getMessage());
+        return false;
+    }
+}
 
     public function getByMainEvent($id)
     {
