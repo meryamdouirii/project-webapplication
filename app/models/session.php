@@ -39,7 +39,10 @@ class Session
     {
         return $this->price;
     }
-
+    public function getDateTimeStart(): string
+    {
+        return $this->datetime_start;
+    }
     public function getDate(): string
     {
         return date("d F", strtotime($this->datetime_start)); // Formatteer naar "25 July"

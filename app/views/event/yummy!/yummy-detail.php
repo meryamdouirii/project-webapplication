@@ -85,7 +85,7 @@ use App\Models\Session;
                                             }
                                             
                                         }
-                                        echo "<td>" . $session->getTicketLimit() . "</td>";    
+                                        echo "<td>" . $session->getTicketsAvailable() . "</td>";    
                                         echo "<td>" . $session->getPrice() . "</td>";
                                         echo "<td>" . ($session->getPrice() / 2) . "</td>";
                                         echo "</tr>";

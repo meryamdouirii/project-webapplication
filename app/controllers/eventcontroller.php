@@ -6,10 +6,13 @@ class EventController
 {
     private $detailEventService;
     private $EventService;
+
+    private $sessionService;
     function __construct()
     {
         $this->detailEventService = new \App\Services\DetailEventService();
         $this->EventService = new \App\Services\EventService();
+        $this->sessionService = new \App\Services\SessionService();
     }
 
     public function danceMain(){
