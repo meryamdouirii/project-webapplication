@@ -34,7 +34,7 @@ class EventController
         }
     
         $eventId = intval($_GET['id']);
-        $detailEvent = $this->detailEventService->getById($eventId);
+        $detailYummyEvent = $this->detailEventService->getById($eventId);
         $yummySessions = $this->sessionService->getSessionsByEventId($eventId);
     
         if (!$detailEvent) {
@@ -43,5 +43,6 @@ class EventController
         }
         require("../views/event/yummy!/yummy-detail.php");
     }
+    
     
 }

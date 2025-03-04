@@ -13,7 +13,11 @@
             $repository = new \App\Repositories\DetailEventRepository();
             return $repository->getById($id);
         }
-
+        public function add(DetailEvent $detailEvent): bool
+        {
+            $repository = new \App\Repositories\DetailEventRepository();
+            return $repository->add($detailEvent);
+        }
         /**
          * @return DetailEvent[]
          */

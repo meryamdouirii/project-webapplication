@@ -11,6 +11,7 @@ use \App\Controllers\HomeController;
 use \App\Controllers\UserController;
 use \App\Controllers\CustomerController;
 use \App\Controllers\EventController;
+use \App\Controllers\ManageDetailEventController;
 
 require_once("../vendor/autoload.php");
 
@@ -18,6 +19,7 @@ $homeController = new HomeController();
 $userController = new UserController();
 $customerController = new CustomerController();
 $eventController = new EventController();
+$manageDetailEventController = new ManageDetailEventController();
 
 
 session_start();
@@ -61,6 +63,12 @@ switch ($url) {
         break;
     case "/manage-users/delete";
         $userController->delete();
+        break;
+    case "/manageDetailEvent";
+        $manageDetailEventController->manageDetailEvent();
+        break;
+    case "/manageDetailEvent/uploadImage";
+        $manageDetailEventController->uploadImage();
         break;
     case "/manageAccount";
         $customerController->manageAccount();
