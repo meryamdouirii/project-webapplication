@@ -32,4 +32,17 @@ class SessionService
         $repository = new SessionRepository();
         return $repository->getByEventId($eventId);
     }
+
+    public function getSessionsGroupedByDate(): array
+    {
+        $sessions = $this->getAll();
+        $groupedSessions = [];
+
+        foreach ($sessions as $session) {
+            $date = $session->getDate();
+            $groupedSessions[$date][] = $session;
+        }
+
+        return $groupedSessions;
+    }
 }

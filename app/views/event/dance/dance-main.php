@@ -52,265 +52,137 @@
         </section>
 
         <section class="artist-section">
-    <div class="container">
-        <div class="section-title-container">
-            <h2 class="section-title">Participating DJ'S</h2>
-        </div>
-        <div class="row">
-            <?php foreach ($detailEvents as $event): ?>
-                <div class="col-md-4">
-                    <div class="card-artist">
-                        <img src="/images-logos/<?php echo htmlspecialchars($event->getCardImage()); ?>"
-                            alt="<?php echo htmlspecialchars($event->getName()); ?>">
-                        <div class="card-content">
-                            <div class="genre-tags">
-                                <?php foreach ($event->getTags() as $tag): ?>
-                                    <span class="genre-tag"><?php echo htmlspecialchars($tag); ?></span>
-                                <?php endforeach; ?>
-                            </div>
-                            <h3 class="artist-name"><?php echo htmlspecialchars($event->getName()); ?></h3>
-                            <p><?php echo htmlspecialchars($event->getCardDescription()); ?></p>
-
-                            <!-- Dynamically display session details -->
-                            <?php foreach ($event->getSessions() as $session): ?>
-                                <div class="event-details">
-                                    <div class="event-details-left">
-                                        <div class="event-date">
-                                        <?php echo $session->getDate(); ?>
-                                        </div>
-                                        <div class="event-location">
-                                            <?php echo htmlspecialchars($session->getLocation()); ?>
-                                        </div>
-                                    </div>
-                                    <div class="event-details-right">
-                                        <div class="event-time">
-                                            <?php echo $session->getStartTime(); ?> - <?php echo $session->getEndTime(); ?>
-                                        </div>
-                                        <div class="price">
-                                            €<?php echo number_format($session->getPrice(), 2, ',', '.'); ?>
-                                        </div>
-                                        <div class="tickets-available">
-                                            <?php echo $session->getTicketsAvailable(); ?> tickets available
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-
-                        <div class="action-buttons">
-                            <a href="#" class="button">INFO & SHOWS</a>
-                            <a href="#" class="button">GET TICKETS</a>
-                        </div>
-                    </div>
+            <div class="container">
+                <div class="section-title-container">
+                    <h2 class="section-title">Participating DJ'S</h2>
                 </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
+                <div class="row">
+                    <?php foreach ($detailEvents as $event): ?>
+                        <div class="col-md-4">
+                            <div class="card-artist">
+                                <img src="/images-logos/<?php echo htmlspecialchars($event->getCardImage()); ?>"
+                                    alt="<?php echo htmlspecialchars($event->getName()); ?>">
+                                <div class="card-content">
+                                    <div class="genre-tags">
+                                        <?php foreach ($event->getTags() as $tag): ?>
+                                            <span class="genre-tag"><?php echo htmlspecialchars($tag); ?></span>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <h3 class="artist-name"><?php echo htmlspecialchars($event->getName()); ?></h3>
+                                    <p><?php echo htmlspecialchars($event->getCardDescription()); ?></p>
 
-        <!-- <pre><?php print_r($detailEvents); ?></pre>
-        <br>
-        <pre><?php print_r($event); ?></pre> -->
+                                    <!-- Dynamically display session details -->
+                                    <?php foreach ($event->getSessions() as $session): ?>
+                                        <div class="event-details">
+                                            <div class="event-details-left">
+                                                <div class="event-date">
+                                                    <?php echo $session->getDate(); ?>
+                                                </div>
+                                                <div class="event-location">
+                                                    <?php echo htmlspecialchars($session->getLocation()); ?>
+                                                </div>
+                                            </div>
+                                            <div class="event-details-right">
+                                                <div class="event-time">
+                                                    <?php echo $session->getStartTime(); ?> -
+                                                    <?php echo $session->getEndTime(); ?>
+                                                </div>
+                                                <div class="price">
+                                                    €<?php echo number_format($session->getPrice(), 2, ',', '.'); ?>
+                                                </div>
+                                                <div class="tickets-available">
+                                                    <?php echo $session->getTicketsAvailable(); ?> tickets available
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
 
+                                <div class="action-buttons">
+                                    <a href="#" class="button">INFO & SHOWS</a>
+                                    <a href="#" class="button">GET TICKETS</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+
+        <!-- <pre><?php print_r($detailEvents); ?></pre> -->
+        <pre><?php echo htmlspecialchars($eventDance->name); ?></pre>
+
+
+        // Define event days
+        <?php
+        $eventDays = ["25 July" => "friday", "26 July" => "saturday", "27 July" => "sunday"];
+        ?>
 
         <section class="schedule-section">
             <div class="container">
                 <h2 class="section-title">Event Schedule</h2>
                 <div class="schedule-tabs">
-                    <button class="tab-button active" data-day="friday">Friday</button>
-                    <button class="tab-button" data-day="saturday">Saturday</button>
-                    <button class="tab-button" data-day="sunday">Sunday</button>
+                    <?php foreach ($eventDays as $date => $day): ?>
+                        <button class="tab-button <?= $day === "friday" ? 'active' : '' ?>" data-day="<?= $day ?>">
+                            <?= ucfirst($day) ?>
+                        </button>
+                    <?php endforeach; ?>
                 </div>
 
                 <div class="schedule-cards">
-                    <!-- Friday Schedule -->
-                    <div class="schedule-card active" id="friday">
-                        <h2 class="schedule-day">Friday - 25 July</h2>
-                        <table class="schedule-table">
-                            <thead>
-                                <tr>
-                                    <th>Artist</th>
-                                    <th>Location</th>
-                                    <th>Time</th>
-                                    <th>Price</th>
-                                    <th>Tickets available</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Nicky Romero/ Afrojack</td>
-                                    <td>Lichtfabriek</td>
-                                    <td>20:00 - 02:00</td>
-                                    <td>€ 75,00</td>
-                                    <td>1500</td>
-                                </tr>
-                                <tr>
-                                    <td>Tiësto</td>
-                                    <td>Slachthuis</td>
-                                    <td>22:00 - 23:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>200</td>
-                                </tr>
-                                <tr>
-                                    <td>Armin van Buuren</td>
-                                    <td>XO the club</td>
-                                    <td>22:00 - 23:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>200</td>
-                                </tr>
-                                <tr>
-                                    <td>Martin Garrix</td>
-                                    <td>Puncer comedy club</td>
-                                    <td>22:00 - 23:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>200</td>
-                                </tr>
-                                <tr>
-                                    <td>Hardwell</td>
-                                    <td>Jopenkerk</td>
-                                    <td>23:00 - 00:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>300</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="all-access">*All-Access pass for Friday €125,00</p>
-                        <a href="#" class="button schedule-button">GET TICKETS</a>
-                    </div>
-
-                    <!-- Saturday Schedule -->
-                    <div class="schedule-card" id="saturday">
-                        <h2 class="schedule-day">Saturday - 26 July</h2>
-                        <table class="schedule-table">
-                            <thead>
-                                <tr>
-                                    <th>Artist</th>
-                                    <th>Location</th>
-                                    <th>Time</th>
-                                    <th>Price</th>
-                                    <th>Tickets available</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Nicky Romero/ Afrojack</td>
-                                    <td>Lichtfabriek</td>
-                                    <td>20:00 - 02:00</td>
-                                    <td>€ 75,00</td>
-                                    <td>1500</td>
-                                </tr>
-                                <tr>
-                                    <td>Tiësto</td>
-                                    <td>Slachthuis</td>
-                                    <td>22:00 - 23:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>200</td>
-                                </tr>
-                                <tr>
-                                    <td>Armin van Buuren</td>
-                                    <td>XO the club</td>
-                                    <td>22:00 - 23:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>200</td>
-                                </tr>
-                                <tr>
-                                    <td>Martin Garrix</td>
-                                    <td>Puncer comedy club</td>
-                                    <td>22:00 - 23:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>200</td>
-                                </tr>
-                                <tr>
-                                    <td>Hardwell</td>
-                                    <td>Jopenkerk</td>
-                                    <td>23:00 - 00:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>300</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="all-access">*All-Access pass for Saturday €125,00</p>
-                        <a href="#" class="button schedule-button">GET TICKETS</a>
-                    </div>
-
-                    <!-- Sunday Schedule -->
-                    <div class="schedule-card" id="sunday">
-                        <h2 class="schedule-day">Sunday - 27 July</h2>
-                        <table class="schedule-table">
-                            <thead>
-                                <tr>
-                                    <th>Artist</th>
-                                    <th>Location</th>
-                                    <th>Time</th>
-                                    <th>Price</th>
-                                    <th>Tickets available</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Nicky Romero/ Afrojack</td>
-                                    <td>Lichtfabriek</td>
-                                    <td>20:00 - 02:00</td>
-                                    <td>€ 75,00</td>
-                                    <td>1500</td>
-                                </tr>
-                                <tr>
-                                    <td>Tiësto</td>
-                                    <td>Slachthuis</td>
-                                    <td>22:00 - 23:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>200</td>
-                                </tr>
-                                <tr>
-                                    <td>Armin van Buuren</td>
-                                    <td>XO the club</td>
-                                    <td>22:00 - 23:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>200</td>
-                                </tr>
-                                <tr>
-                                    <td>Martin Garrix</td>
-                                    <td>Puncer comedy club</td>
-                                    <td>22:00 - 23:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>200</td>
-                                </tr>
-                                <tr>
-                                    <td>Hardwell</td>
-                                    <td>Jopenkerk</td>
-                                    <td>23:00 - 00:30</td>
-                                    <td>€ 60,00</td>
-                                    <td>300</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="all-access">*All-Access pass for Sunday €125,00</p>
-                        <a href="#" class="button schedule-button">GET TICKETS</a>
-                    </div>
+                    <?php foreach ($eventDays as $date => $day): ?>
+                        <div class="schedule-card <?= $day === "friday" ? 'active' : '' ?>" id="<?= $day ?>">
+                            <h2 class="schedule-day"><?= ucfirst($day) ?> - <?= $date ?></h2>
+                            <table class="schedule-table">
+                                <thead>
+                                    <tr>
+                                        <th>Artist</th>
+                                        <th>Location</th>
+                                        <th>Time</th>
+                                        <th>Price</th>
+                                        <th>Tickets available</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (!empty($sessionsByDate[$date])): ?>
+                                        <?php foreach ($sessionsByDate[$date] as $session): ?>
+                                            <tr>
+                                                <td><?= htmlspecialchars($session->getDetailEventName()); ?></td>
+                                                <td><?= htmlspecialchars($session->getLocation()); ?></td>
+                                                <td><?= $session->getStartTime(); ?> - <?= $session->getEndTime(); ?></td>
+                                                <td>€ <?= number_format($session->getPrice(), 2, ',', '.'); ?></td>
+                                                <td><?= $session->getTicketsAvailable(); ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="5">No sessions available for this day.</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                            <p class="all-access">*All-Access pass for <?= ucfirst($day) ?> €125,00</p>
+                            <a href="#" class="button schedule-button">GET TICKETS</a>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
-    </main>
 
-    <?php include __DIR__ . '/../../footer.php'; ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Voeg dit toe aan je pagina voor de tab functionaliteit
-        document.addEventListener('DOMContentLoaded', function () {
-            const tabs = document.querySelectorAll('.tab-button');
-            const cards = document.querySelectorAll('.schedule-card');
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const tabs = document.querySelectorAll('.tab-button');
+                const cards = document.querySelectorAll('.schedule-card');
 
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remove active class from all tabs and cards
-                    tabs.forEach(t => t.classList.remove('active'));
-                    cards.forEach(c => c.classList.remove('active'));
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        tabs.forEach(t => t.classList.remove('active'));
+                        cards.forEach(c => c.classList.remove('active'));
 
-                    // Add active class to clicked tab and corresponding card
-                    tab.classList.add('active');
-                    document.getElementById(tab.dataset.day).classList.add('active');
+                        tab.classList.add('active');
+                        document.getElementById(tab.dataset.day).classList.add('active');
+                    });
                 });
             });
-        });
-    </script>
+        </script>
 </body>

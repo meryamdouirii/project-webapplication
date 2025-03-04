@@ -6,10 +6,13 @@ use PDO;
 
 class SessionRepository extends Repository
 {
-
     public function getById(int $id): ?Session
     {
-        $sql = 'SELECT * FROM session WHERE id = :id';
+        $sql = 'SELECT s.*, d.name AS detailEventName 
+                FROM session s
+                JOIN detail_event d ON s.detail_event_id = d.id
+                WHERE s.id = :id';
+                
         $stmt = $this->connection->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -22,7 +25,8 @@ class SessionRepository extends Repository
         return new Session(
             $row['id'],
             $row['detail_event_id'],
-            $row['name'],
+            $row['name'], 
+            $row['detailEventName'], 
             $row['description'],
             $row['location'],
             $row['ticket_limit'],
@@ -32,12 +36,13 @@ class SessionRepository extends Repository
         );
     }
 
-    /**
-     * @return Session[]
-     */
     public function getAll(): array
     {
-        $sql = 'SELECT * FROM session';
+        $sql = 'SELECT s.*, d.name AS detailEventName 
+                FROM session s
+                JOIN detail_event d ON s.detail_event_id = d.id
+                ORDER BY s.datetime_start ASC';
+        
         $stmt = $this->connection->query($sql);
         $results = [];
 
@@ -45,7 +50,8 @@ class SessionRepository extends Repository
             $results[] = new Session(
                 $row['id'],
                 $row['detail_event_id'],
-                $row['name'],
+                $row['name'], 
+                $row['detailEventName'], 
                 $row['description'],
                 $row['location'],
                 $row['ticket_limit'],
@@ -57,8 +63,14 @@ class SessionRepository extends Repository
 
         return $results;
     }
-    public function getSessionsByEventId(int $eventId) :array{
-        $sql = 'SELECT * FROM session WHERE detail_event_id = :eventId';
+
+    public function getSessionsByEventId(int $eventId): array
+    {
+        $sql = 'SELECT s.*, d.name AS detailEventName 
+                FROM session s
+                JOIN detail_event d ON s.detail_event_id = d.id
+                WHERE s.detail_event_id = :eventId';
+                
         $stmt = $this->connection->prepare($sql);
         $stmt->bindValue(':eventId', $eventId, PDO::PARAM_INT);
         $stmt->execute();
@@ -68,7 +80,8 @@ class SessionRepository extends Repository
             $results[] = new Session(
                 $row['id'],
                 $row['detail_event_id'],
-                $row['name'],
+                $row['name'], 
+                $row['detailEventName'], 
                 $row['description'],
                 $row['location'],
                 $row['ticket_limit'],
@@ -80,9 +93,14 @@ class SessionRepository extends Repository
 
         return $results;
     }
+
     public function getByEventId(int $eventId): ?Session
     {
-        $sql = 'SELECT * FROM session WHERE detail_event_id = :eventId';
+        $sql = 'SELECT s.*, d.name AS detailEventName 
+                FROM session s
+                JOIN detail_event d ON s.detail_event_id = d.id
+                WHERE s.detail_event_id = :eventId';
+
         $stmt = $this->connection->prepare($sql);
         $stmt->bindValue(':eventId', $eventId, PDO::PARAM_INT);
         $stmt->execute();   
@@ -95,7 +113,8 @@ class SessionRepository extends Repository
         return new Session(
             $row['id'],
             $row['detail_event_id'],
-            $row['name'],
+            $row['name'], // ✅ Keep session name
+            $row['detailEventName'], // ✅ Fetch `detail_event.name`
             $row['description'],
             $row['location'],
             $row['ticket_limit'],
@@ -104,5 +123,4 @@ class SessionRepository extends Repository
             $row['datetime_start']
         );
     }
-
 }

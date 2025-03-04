@@ -17,7 +17,8 @@ class EventController
 
     public function danceMain(){
         $detailEvents = $this->detailEventService->getByMainEvent(1);
-        $event = $this->EventService->getById(1);
+        $eventDance = $this->EventService->getById(1);
+        $sessionsByDate = $this->sessionService->getSessionsGroupedByDate();
         require("../views/event/dance/dance-main.php");
     }
 

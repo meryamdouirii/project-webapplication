@@ -109,30 +109,34 @@ class DetailEventRepository extends Repository
         return $results;
     }
 
-    private function getSessionsForDetailEvent(int $detailEventId): array
+    public function getSessionsForDetailEvent(int $detailEventId): array
     {
-        $stmt = $this->connection->prepare("
-        SELECT * FROM session WHERE detail_event_id = :detail_event_id
-    ");
-        $stmt->bindParam(':detail_event_id', $detailEventId, PDO::PARAM_INT);
+        $sql = 'SELECT s.*, d.name AS detailEventName
+                FROM session s
+                JOIN detail_event d ON s.detail_event_id = d.id
+                WHERE s.detail_event_id = :detailEventId';
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':detailEventId', $detailEventId, PDO::PARAM_INT);
         $stmt->execute();
-        $sessions = [];
-
+        $results = [];
+    
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $sessions[] = new Session(
+            $results[] = new Session(
                 $row['id'],
                 $row['detail_event_id'],
-                $row['name'],
+                $row['name'], // session name
+                $row['detailEventName'] ?? "Unknown Event", // detail_event name; provide default if null
                 $row['description'],
                 $row['location'],
-                $row['ticket_limit'],
-                $row['duration_minutes'],
-                $row['price'],
+                (int)$row['ticket_limit'],
+                (int)$row['duration_minutes'],
+                (float)$row['price'], // <--- This cast is required!
                 $row['datetime_start']
             );
         }
-        return $sessions;
+        return $results;
     }
+    
 
 }
 ?>

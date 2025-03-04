@@ -10,7 +10,7 @@ class EventRepository extends Repository {
         FROM event");
 
         $stmt-> execute();
-        $stmt-> setFetchMode(PDO::FETCH_CLASS, '\App\Models\Event');
+        $stmt-> setFetchMode(PDO::FETCH_CLASS, '\\App\\Models\\Event');
         $result = $stmt-> fetchAll();
         return $result;
     }
@@ -30,7 +30,7 @@ class EventRepository extends Repository {
             die("⚠️ Geen event gevonden met ID: " . $id);
         }
     
-        $stmt->setFetchMode(PDO::FETCH_CLASS, '\App\Models\Event');
+        $stmt->setFetchMode(PDO::FETCH_CLASS, '\\App\\Models\\Event');
         $event = $stmt->fetch();
     
         // Debug de output
