@@ -1,6 +1,7 @@
 
 <?php include __DIR__ . '/../../header.php'; 
 use App\Models\DetailEvent;
+use App\Models\Session;
 ?>
 <head>
     <title>Yummy! - <?= htmlspecialchars($detailEvent->getName())?></title>
@@ -30,53 +31,69 @@ use App\Models\DetailEvent;
                             $emptyStars = str_repeat('&#9734;', 5 - $amountOfStars);
                             echo $fullStars . $emptyStars;
                         ?></h1>
-                    <div class="row">
-                        <div class="col-md-6 ">
+                    <div class="row mt-2">
+                        <div class="col-md-6 d-flex align-items-center">
                             <p>
                                 <?=htmlspecialchars($detailEvent->getDescription())?>
                             </p>
                         </div>
                         <div class="col-md-6">
-                            <img class="h-auto w-100 event-info-image mt-2" 
+                            <img class="h-auto w-100 event-info-image" 
                                 src="<?= !empty($detailEvent->getImageDescription1()) ? htmlspecialchars($detailEvent->getImageDescription1()) : "/images-logos/default.jpg" ?>" 
                                 alt="<?= htmlspecialchars($detailEvent->getName()) ?> Image" />
                         </div>
                     </div>
-                    <div class="row">
-                    <div class="col-4">
-                        <img class="h-auto w-100 event-info-image mt-2" 
+                    <div class="row mt-4">
+                    <div class="col-2">
+                        <img class="h-auto w-100 event-info-image" 
                             src="<?= !empty($detailEvent->getImageDescription2()) ? htmlspecialchars($detailEvent->getImageDescription2()) : "/images-logos/default.jpg" ?>" 
                             alt="<?= htmlspecialchars($detailEvent->getName()) ?> Image" />
                     </div>
-                        <div class="col-2">
+                        <div class="col-2 ">
                             <button class="button" href="#">BUY TICKETS</button>
                         </div>
-                        <div class="col-6">
-                        <table>
-                        <tr>
-                            <th>Dates</th>
-                            <th>Session 1</th>
-                            <th>Session 2</th>
-                            <th>Session 3</th>
-                            <th>Seats</th>
-                            <th>Price Adult</th>
-                            <th>Price Under 12</th>
-                        </tr>
-                        <?php
-                            $dates = ["24 July", "25 July", "26 July", "27 July"];
-                            foreach ($dates as $date) {
-                                echo "<tr>
-                                        <td>$date</td>
-                                        <td>17:00</td>
-                                        <td>19:00</td>
-                                        <td>21:00</td>
-                                        <td>52</td>
-                                        <td>&euro;45,-</td>
-                                        <td>&euro;22,50</td>
-                                    </tr>";
-                            }
-                        ?>
-                    </table>
+                        <div class="col-8 ">
+                                <table>
+                                    <tr>
+                                        <th>Dates</th>
+                                        <th>Session 1</th>
+                                        <th>Session 2</th>
+                                        <th>Session 3</th>
+                                        <th>Seats</th>
+                                        <th>Price 12+</th>
+                                        <th>Price 12-</th>
+                                    </tr>
+                                    <?php
+                                      $dates = [
+                                        new DateTime("2025-07-24"),
+                                        new DateTime("2025-07-25"),
+                                        new DateTime("2025-07-26"),
+                                        new DateTime("2025-07-27")
+                                    ];
+
+                            
+                                       foreach ($dates as $date) {
+                                        echo "<tr>
+                                        <td>" . $date->format('d F') . "</td>"; 
+                            
+                                        foreach ($yummySessions as $session) {
+                                            $sessionDate = (new DateTime($session->getDateTimeStart()))->format('Y-m-d');
+                                            if ($sessionDate == $date->format('Y-m-d')) {
+
+                                                echo "<td>" . (new DateTime($session->getDateTimeStart()))->format('H:i') . "</td>"; 
+                                               
+                                            }
+                                            
+                                        }
+                                        echo "<td>" . $session->getTicketLimit() . "</td>";    
+                                        echo "<td>" . $session->getPrice() . "</td>";
+                                        echo "<td>" . ($session->getPrice() / 2) . "</td>";
+                                        echo "</tr>";
+                                    }
+                                    
+                                        ?>
+
+                            </table>
                         </div>
                     </div>
                     
@@ -91,4 +108,4 @@ use App\Models\DetailEvent;
 
 <?php include __DIR__ . '/../../footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+
