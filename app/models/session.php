@@ -5,8 +5,8 @@ class Session
 {
     private int $id;
     private int $detail_event_id;
-    private string $name;  // ✅ Session name (e.g., "back2back", "club")
-    private ?string $detailEventName; // ✅ Name from `detail_event` (e.g., "Hardwell", "Tiesto")
+    private string $name;  
+    private ?string $detailEventName; 
     private ?string $description;
     private ?string $location;
     private int $ticket_limit;
@@ -18,7 +18,7 @@ class Session
         int $id,
         int $detail_event_id,
         string $name, 
-        ?string $detailEventName, // ✅ Fetch `detail_event.name`
+        ?string $detailEventName, 
         ?string $description,
         ?string $location,
         int $ticket_limit,
@@ -28,8 +28,8 @@ class Session
     ) {
         $this->id = $id;
         $this->detail_event_id = $detail_event_id;
-        $this->name = $name; // ✅ Store session name
-        $this->detailEventName = $detailEventName; // ✅ Store event name from `detail_event`
+        $this->name = $name; 
+        $this->detailEventName = $detailEventName; 
         $this->description = $description;
         $this->location = $location;
         $this->ticket_limit = $ticket_limit;

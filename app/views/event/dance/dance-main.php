@@ -110,10 +110,9 @@
         </section>
 
         <!-- <pre><?php print_r($detailEvents); ?></pre> -->
-        <pre><?php echo htmlspecialchars($eventDance->name); ?></pre>
+        <!-- <pre><?php echo htmlspecialchars($eventDance->name); ?></pre> --> 
 
 
-        // Define event days
         <?php
         $eventDays = ["25 July" => "friday", "26 July" => "saturday", "27 July" => "sunday"];
         ?>

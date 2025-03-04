@@ -35,7 +35,7 @@ class SessionService
 
     public function getSessionsGroupedByDate(): array
     {
-        $sessions = $this->getAll();
+        $sessions = $this->getSessionsByEventId(1);
         $groupedSessions = [];
 
         foreach ($sessions as $session) {

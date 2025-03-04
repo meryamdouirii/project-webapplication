@@ -69,7 +69,7 @@ class SessionRepository extends Repository
         $sql = 'SELECT s.*, d.name AS detailEventName 
                 FROM session s
                 JOIN detail_event d ON s.detail_event_id = d.id
-                WHERE s.detail_event_id = :eventId';
+                WHERE s.event_id = :eventId';
                 
         $stmt = $this->connection->prepare($sql);
         $stmt->bindValue(':eventId', $eventId, PDO::PARAM_INT);
