@@ -336,7 +336,19 @@ main {
     font-size: 3rem;
     color: #FFD700;
 }
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
+th, td {
+    padding: 5px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.1); 
+}
 .button.overlap-button {
     position: absolute;
     bottom: -25px;

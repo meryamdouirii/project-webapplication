@@ -36,8 +36,8 @@ class EventController
         }
     
         $eventId = intval($_GET['id']);
-    
         $detailEvent = $this->detailEventService->getById($eventId);
+        $yummySessions = $this->sessionService->getSessionsByEventId($eventId);
     
         if (!$detailEvent) {
             header("Location: /event/yummy-main");
