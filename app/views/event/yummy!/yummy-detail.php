@@ -6,7 +6,7 @@ use App\Models\Session;
 <head>
     <title>Yummy! - <?= htmlspecialchars($detailEvent->getName())?></title>
 </head>
-<main class="container-fluid p-0 mb-5">
+<main class="bg-light-blue container-fluid p-0">
     <section class="hero-section-event text-white text-center event-hero" style="background-image: url('<?= htmlspecialchars($detailEvent->getBannerImage() ?: '/images-logos/default.jpg') ?>');">
         <div class="overlay event-overlay">
             <div class="container">
@@ -21,7 +21,7 @@ use App\Models\Session;
         </div>
     </section>
 
-    <section class="card-list-section">
+    <section class="bg-light-blue card-list-section pb-5">
         <div class="container" style="margin-top: -40px;">
                 <div class="bg-blue text-white p-3 m-4 position-relative">
                     <h1 class="event-about-title">About <?=htmlspecialchars($detailEvent->getName())?></h1>
@@ -44,15 +44,15 @@ use App\Models\Session;
                         </div>
                     </div>
                     <div class="row mt-4">
-                    <div class="col-2">
+                    <div class="col-4">
                         <img class="h-auto w-100 event-info-image" 
                             src="<?= !empty($detailEvent->getImageDescription2()) ? htmlspecialchars($detailEvent->getImageDescription2()) : "/images-logos/default.jpg" ?>" 
                             alt="<?= htmlspecialchars($detailEvent->getName()) ?> Image" />
                     </div>
-                        <div class="col-2 ">
+                        <div class="col-2 d-flex align-items-center ">
                             <button class="button" href="#">BUY TICKETS</button>
                         </div>
-                        <div class="col-8 ">
+                        <div class="col-6 d-flex align-items-center ">
                                 <table>
                                     <tr>
                                         <th>Dates</th>
