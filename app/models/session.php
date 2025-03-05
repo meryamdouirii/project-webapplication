@@ -38,13 +38,20 @@ class Session
         $this->datetime_start = $datetime_start;
     }
 
-    // ✅ Get session name (e.g., "back2back", "club")
+    public function getTicketLimit(): int {
+        return $this->ticket_limit;
+    }
+
+    public function getDurationMinutes(): int {
+        return $this->duration_minutes;
+    }
+
     public function getName(): string
     {
         return $this->name;
     }
 
-    // ✅ Get event name from `detail_event` (e.g., "Hardwell", "Tiesto")
+
     public function getDetailEventName(): string
     {
         return $this->detailEventName;

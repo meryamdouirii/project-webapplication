@@ -14,7 +14,7 @@ $events = $eventRepository->getAll();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/../stylesheets/style.css" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="images-logos/logo.png">
-    
+    <link href="/../stylesheets/styleDetailPage.css" rel="stylesheet">
 </head>
 
 <body>
