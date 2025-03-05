@@ -13,6 +13,12 @@
             $repository = new \App\Repositories\DetailEventRepository();
             return $repository->getById($id);
         }
+        public function getSessionsForDetailEvent(int $detailEventId): array
+        {
+            $repository = new \App\Repositories\DetailEventRepository();
+            return $repository->getSessionsForDetailEvent($detailEventId);
+        }
+        
         public function add(DetailEvent $detailEvent): bool
         {
             $repository = new \App\Repositories\DetailEventRepository();
