@@ -19,6 +19,8 @@ class DetailEvent
 
     private ?array $sessions = [];
 
+    private ?array $songs = [];
+
     public function __construct(
         int $id,
         int $event_id,
@@ -32,7 +34,8 @@ class DetailEvent
         ?string $card_description,
         ?int $amount_of_stars,
         ?array $tags,
-        ?array $sessions = []
+        ?array $sessions = [],
+        ?array $songs = []
     ) {
         $this->id = $id;
         $this->event_id = $event_id;
@@ -47,6 +50,12 @@ class DetailEvent
         $this->amount_of_stars = $amount_of_stars;
         $this->tags = $tags;
         $this->sessions = $sessions;
+        $this->songs = $songs;
+    }
+
+    public function getSongs(): array
+    {
+        return $this->songs;
     }
 
     // --- Getters and setters

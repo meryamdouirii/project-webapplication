@@ -22,6 +22,23 @@ class EventController
         require("../views/event/dance/dance-main.php");
     }
 
+    public function danceDetail(){
+        if (!isset($_GET['id']) || empty($_GET['id'])) {
+            header("Location: /event/dance-main");
+            exit;
+        }
+
+        $detailEvent = intval($_GET['id']);
+        $detailEvent = $this->detailEventService->getById($detailEvent);
+        $sessionsForDetailEvent = $this->detailEventService->getSessionsForDetailEvent($detailEvent->getId());
+        
+        if (!$detailEvent) {
+            header("Location: /event/dance-main");
+            exit;
+        }
+        require("../views/event/dance/dance-detail.php");
+    }
+
     public function yummyMain(){
         $detailEvents = $this->detailEventService->getByMainEvent(2);
         require("../views/event/yummy!/yummy-main.php");

@@ -24,6 +24,7 @@
             $repository = new \App\Repositories\DetailEventRepository();
             return $repository->add($detailEvent);
         }
+
         /**
          * @return DetailEvent[]
          */
