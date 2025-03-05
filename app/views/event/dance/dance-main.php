@@ -69,7 +69,7 @@
                                         <?php endforeach; ?>
                                     </div>
                                     <h3 class="artist-name"><?php echo htmlspecialchars($event->getName()); ?></h3>
-                                    <p><?php echo htmlspecialchars($event->getCardDescription()); ?></p>
+                                    <p class="artist-description"><?php echo htmlspecialchars($event->getCardDescription()); ?></p>
 
                                     <!-- Dynamically display session details -->
                                     <?php foreach ($event->getSessions() as $session): ?>
@@ -99,7 +99,7 @@
                                 </div>
 
                                 <div class="action-buttons">
-                                    <a href="#" class="button">INFO & SHOWS</a>
+                                    <a href="/Dance/detail?id=<?= $event->getId(); ?>" class="button">INFO & SHOWS</a>
                                     <a href="#" class="button">GET TICKETS</a>
                                 </div>
                             </div>

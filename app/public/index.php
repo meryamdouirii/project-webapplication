@@ -74,6 +74,9 @@ switch ($url) {
     case "/Dance";
         $eventController->danceMain();
         break;
+    case "/Dance/detail";
+        $eventController->danceDetail();
+        break;
     case "/Yummy!";
         $eventController->yummyMain();
         break;

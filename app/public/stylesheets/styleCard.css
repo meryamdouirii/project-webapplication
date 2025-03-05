@@ -30,6 +30,7 @@
 
 .card-content {
     padding: 0;
+    /* height: 460px; */
 }
 
 .card-artist .genre-tags {
@@ -109,6 +110,10 @@
 .card-artist .tickets-available {
     color: #a0a0a0;
     font-size: 0.8rem;
+}
+
+.artist-description {
+    height: 90px;
 }
 
 .card-artist .action-buttons {
