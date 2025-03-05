@@ -63,7 +63,35 @@ class SessionRepository extends Repository
 
         return $results;
     }
+    public function getSessionsByDetailEventId(int $eventId): array
+    {
+        $sql = 'SELECT s.*, d.name AS detailEventName 
+                FROM session s
+                JOIN detail_event d ON s.detail_event_id = d.id
+                WHERE s.detail_event_id = :eventId';
+                
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->execute();
+        $results = [];
 
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = new Session(
+                $row['id'],
+                $row['detail_event_id'],
+                $row['name'], 
+                $row['detailEventName'], 
+                $row['description'],
+                $row['location'],
+                $row['ticket_limit'],
+                $row['duration_minutes'],
+                (float)$row['price'],
+                $row['datetime_start']
+            );
+        }
+
+        return $results;
+    }
     public function getSessionsByEventId(int $eventId): array
     {
         $sql = 'SELECT s.*, d.name AS detailEventName 

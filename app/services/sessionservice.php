@@ -26,6 +26,11 @@ class SessionService
         $repository = new SessionRepository();
         return $repository->getSessionsByEventId($eventId);
     }
+    public function getSessionsByDetailEventId(int $eventId): array
+    {
+        $repository = new SessionRepository();
+        return $repository->getSessionsByDetailEventId($eventId);
+    }
 
     public function getByEventId(int $eventId): ?Session
     {

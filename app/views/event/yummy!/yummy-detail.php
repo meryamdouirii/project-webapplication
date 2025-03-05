@@ -4,16 +4,16 @@ use App\Models\DetailEvent;
 use App\Models\Session;
 ?>
 <head>
-    <title>Yummy! - <?= htmlspecialchars($detaiEvent->getName())?></title>
+    <title>Yummy! - <?= htmlspecialchars($detailYummyEvent->getName())?></title>
 </head>
 <main class="bg-light-blue container-fluid p-0">
-    <section class="hero-section-event text-white text-center event-hero" style="background-image: url('<?= htmlspecialchars($detaiEvent->getBannerImage() ?: '/images-logos/default.jpg') ?>');">
+    <section class="hero-section-event text-white text-center event-hero" style="background-image: url('<?= htmlspecialchars($detailYummyEvent->getBannerImage() ?: '/images-logos/default.jpg') ?>');">
         <div class="overlay event-overlay">
             <div class="container">
                 <div class="row justify-content-end">
                     <div class="col-md-3 d-flex flex-column align-items-center justify-content-center mt-4 text-start bg-blue-transparent p-3 position-relative event-artist-list">
                         <h1 class="event-title">YUMMY!</h1>
-                        <h2 class="mt-5 mb-5 text-center"><?=htmlspecialchars($detailYummEvent->getBannerDescription())?></h2>
+                        <h2 class="mt-5 mb-5 text-center"><?=htmlspecialchars($detailYummyEvent->getBannerDescription())?></h2>
                         <a href="#" class="btn btn-lg mt-3 event-ticket-btn button">GET TICKETS</a>
                     </div>
                 </div>
@@ -24,7 +24,7 @@ use App\Models\Session;
     <section class="bg-light-blue card-list-section pb-5">
         <div class="container" style="margin-top: -40px;">
                 <div class="bg-blue text-white p-3 m-4 position-relative">
-                    <h1 class="event-about-title">About <?=htmlspecialchars($detailYumEvent->getName())?></h1>
+                    <h1 class="event-about-title">About <?=htmlspecialchars($detailYummyEvent->getName())?></h1>
                     <h1 class="stars mt-2 mb-2 text-center"> <?php
                             $amountOfStars = $detailYummyEvent->getAmountOfStars() ?? 0;
                             $fullStars = str_repeat('&#9733;', $amountOfStars);
@@ -34,17 +34,13 @@ use App\Models\Session;
                     <div class="row mt-2">
                         <div class="col-md-6 d-flex align-items-center">
                             <p>
-                                <?=htmlspecialchars($detailYummy
-Event->getDescription())?>
+                                <?=htmlspecialchars($detailYummyEvent->getDescription())?>
                             </p>
                         </div>
                         <div class="col-md-6">
                             <img class="h-auto w-100 event-info-image" 
-                                src="<?= !empty($detailYummy
-Event->getImageDescription1()) ? htmlspecialchars($detailYummy
-Event->getImageDescription1()) : "/images-logos/default.jpg" ?>" 
-                                alt="<?= htmlspecialchars($detailYummy
-Event->getName()) ?> Image" />
+                                src="<?= !empty($detailYummyEvent->getImageDescription1()) ? htmlspecialchars($detailYummyEvent->getImageDescription1()) : "/images-logos/default.jpg" ?>" 
+                                alt="<?= htmlspecialchars($detailYummyEvent->getName()) ?> Image" />
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -79,7 +75,6 @@ Event->getName()) ?> Image" />
                                        foreach ($dates as $date) {
                                         echo "<tr>
                                         <td>" . $date->format('d F') . "</td>"; 
-                            
                                         foreach ($yummySessions as $session) {
                                             $sessionDate = (new DateTime($session->getDateTimeStart()))->format('Y-m-d');
                                             if ($sessionDate == $date->format('Y-m-d')) {
