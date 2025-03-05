@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 04 mrt 2025 om 21:02
+-- Gegenereerd op: 05 mrt 2025 om 20:58
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.27
 
@@ -197,6 +197,18 @@ CREATE TABLE `song` (
   `description` varchar(5000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `song`
+--
+
+INSERT INTO `song` (`id`, `detail_event_id`, `photo`, `title`, `description`) VALUES
+(1, 1, 'default.jpg', 'Spaceman', 'Spaceman is one of Hardwell\'s most iconic tracks and a breakthrough hit. Released in 2012, this song became a staple at festivals worldwide. With its soaring synth melodies, explosive drops, and an unmistakable uplifting energy, \"Spaceman\" showcases Hardwell’s mastery of big room house. '),
+(2, 1, 'default.jpg', 'Appolo', 'Apollo features the angelic vocals of Amba Shepherd combined with Hardwell’s signature big-room style. The track balances heartfelt lyrics and a soaring melodic drop, which made it an instant favorite among fans. The emotional build-up and euphoric energy made \"Apollo\" a timeless anthem in Hardwell\'s discography and EDM history. '),
+(3, 1, 'default.jpg', 'Zero 76', 'Zero 76 is a collaborative effort between Hardwell and Tiësto, released in 2011. The track title pays homage to their hometown Breda, Netherlands, whose area code is 076. Combining the sounds of two Dutch powerhouses, this track offers punchy beats, a driving rhythm, and an electrifying drop.'),
+(4, 2, 'default.jpg', 'Animals', 'Martin Garrix\'s doorbraaknummer dat de wereld in één klap kennis liet maken met zijn unieke sound. Met zijn hypnotiserende beats en energie werd Animals een festivalanthem en een mijlpaal in de elektronische muziek.'),
+(5, 2, 'default.jpg', 'Scared to Be Lonely (met Dua Lipa)', 'Een emotionele samenwerking tussen Martin Garrix en Dua Lipa. Dit nummer combineert krachtige vocals met een diepgaande melodie, wat het tot een favoriet maakt bij zowel dance- als popliefhebbers.'),
+(6, 2, 'default.jpg', 'In the Name of Love (met Bebe Rexha)', 'Een perfecte mix van elektronische beats en pop, In the Name of Love benadrukt Martin Garrix\'s veelzijdigheid als producer. Samen met Bebe Rexha creëerde hij een nummer dat zowel gevoelig als energiek is');
+
 -- --------------------------------------------------------
 
 --
@@ -207,9 +219,8 @@ CREATE TABLE `ticket` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `session_id` int(11) NOT NULL,
-  `purchase_date` datetime NOT NULL,
-  `status` int(11) NOT NULL,
-  `bar_code` int(11) NOT NULL
+  `bar_code` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- --------------------------------------------------------
@@ -221,7 +232,7 @@ CREATE TABLE `ticket` (
 CREATE TABLE `ticket_order` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL
+  `order_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- --------------------------------------------------------
@@ -248,9 +259,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `type`, `first_name`, `last_name`, `phone_number`, `email_address`, `password_hash`, `salt`, `reset_token_hash`, `reset_token_expires_at`) VALUES
-(1, 'customer', 'Meryam', 'Douiri', '0643209996', 'Douirimeryam14@gmail.com', '$2y$12$Ur95y1Tws68/beiuhQTeVOGCNTwZ3saGD1nWgKhbnpynUZ4zR407u', 'eDyW6lt0dAA/FoAZTIMcUQ==', '206ba682bb5035bfdd31258a2312e1755b76ae0a34117ab870ce0ebb911cbbaf', '2025-02-25 11:30:53'),
+(1, 'customer', 'Meryam', 'Douiri', '0643209996', 'Douirimeryam14@gmail.com', '$2y$12$Ur95y1Tws68/beiuhQTeVOGCNTwZ3saGD1nWgKhbnpynUZ4zR407u', 'eDyW6lt0dAA/FoAZTIMcUQ==', NULL, NULL),
 (2, 'administrator', 'Romy', 'Groen', NULL, 'groenromy0@gmail.com', '$2y$12$w6Vh.v5QvPOglb2HAmDkXOvWz2/oyzCui4fc8jxbWW6LKswt4V20G', 'el6XUJnPebqT4oQPrewI3A==', NULL, NULL),
-(3, 'employee', 'Fiona', 'Shrek', NULL, '701224@student.inholland.nl', '$2y$12$3S3MFqiiCrSfpMp9pCmBWeJguq3EhrAnwlTtr24c3BsU8f/Z4kAdm', 'xMZpfw1LiC+St2cGSu1i7g==', NULL, NULL);
+(3, 'employee', 'Fiona', 'Shrek', NULL, '701224@student.inholland.nl', '$2y$12$3S3MFqiiCrSfpMp9pCmBWeJguq3EhrAnwlTtr24c3BsU8f/Z4kAdm', 'xMZpfw1LiC+St2cGSu1i7g==', NULL, NULL),
+(5, 'customer', 'Mark', 'Haan', '06 67291092', 'markdeHaan@gmail.com', '$2y$12$ULjXzvGJVngxlOU5Pe0qpOOhCn/D8AbTsVnM92RcDKUkOO.aSIRAm', 'vu3IWR6CUU83V37Zm9vImw==', NULL, NULL);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -303,7 +315,8 @@ ALTER TABLE `song`
 ALTER TABLE `ticket`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`),
-  ADD KEY `session_id` (`session_id`);
+  ADD KEY `session_id` (`session_id`),
+  ADD KEY `fk_ticket_user` (`user_id`);
 
 --
 -- Indexen voor tabel `ticket_order`
@@ -341,10 +354,22 @@ ALTER TABLE `session`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
+-- AUTO_INCREMENT voor een tabel `song`
+--
+ALTER TABLE `song`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT voor een tabel `ticket_order`
+--
+ALTER TABLE `ticket_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
@@ -361,6 +386,19 @@ ALTER TABLE `detail_event`
 --
 ALTER TABLE `session`
   ADD CONSTRAINT `fk_event` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
+
+--
+-- Beperkingen voor tabel `ticket`
+--
+ALTER TABLE `ticket`
+  ADD CONSTRAINT `fk_ticket_order` FOREIGN KEY (`order_id`) REFERENCES `ticket_order` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_ticket_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `ticket_order`
+--
+ALTER TABLE `ticket_order`
+  ADD CONSTRAINT `ticket_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
