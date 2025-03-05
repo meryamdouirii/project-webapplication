@@ -23,11 +23,10 @@
     </section>
 
     <section class="about-artist-section">
-
+    <p></p>
     </section>
-    <pre><?php print_r($detailEvent); ?></pre>
-    <pre><?php print_r($sessionsForDetailEvent); ?></pre>
 
+    <pre><?php print_r($detailEvent); ?></pre>
 
 </main>
 

@@ -2,6 +2,7 @@
 namespace App\Repositories;
 use App\Models\DetailEvent;
 use App\Models\Session;
+use App\Models\Songs;
 use PDO;
 
 class DetailEventRepository extends Repository
@@ -110,6 +111,8 @@ class DetailEventRepository extends Repository
             return null;
         }
 
+        $sessions = $this->getSessionsForDetailEvent($row['id']);
+        $songs = $this->getSongsForDetailEvent($row['id']);
         return new DetailEvent(
             $row['id'],
             $row['event_id'],
@@ -122,7 +125,9 @@ class DetailEventRepository extends Repository
             $row['card_image'],
             $row['card_description'],
             $row['amount_of_stars'],
-            $this->getTagsForDetailEvent($row['id'])
+            $this->getTagsForDetailEvent($row['id']),
+            $sessions,
+            $songs
         );
 
     }
@@ -178,6 +183,36 @@ class DetailEventRepository extends Repository
                 (int)$row['duration_minutes'],
                 (float)$row['price'], // <--- This cast is required!
                 $row['datetime_start']
+            );
+        }
+        return $results;
+    }
+
+    public function getSongsForDetailEvent(int $detailEventId): array
+    {
+        $sql = 'SELECT s.*, d.name AS detailEventName
+                FROM session s
+                JOIN detail_event d ON s.detail_event_id = d.id
+                WHERE s.detail_event_id = :detailEventId';
+        
+        $sql = 'SELECT s.*, d.name AS detailEventName
+        FROM song s
+        JOIN detail_event d ON s.detail_event_id = d.id
+        WHERE s.detail_event_id = :detailEventId';
+        
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue(':detailEventId', $detailEventId, PDO::PARAM_INT);
+        $stmt->execute();
+        $results = [];
+    
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = new Songs(
+                $row['id'],
+                $row['detail_event_id'],
+                $row['name'] ?? "Unknown Name",
+                $row['photo'] ?? "default.jpg",
+                $row['title'] ?? "Unknown Title",
+                $row['description'] ?? "No description available"
             );
         }
         return $results;

@@ -30,7 +30,6 @@ class EventController
 
         $detailEvent = intval($_GET['id']);
         $detailEvent = $this->detailEventService->getById($detailEvent);
-        $sessionsForDetailEvent = $this->detailEventService->getSessionsForDetailEvent($detailEvent->getId());
         
         if (!$detailEvent) {
             header("Location: /event/dance-main");
