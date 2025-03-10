@@ -217,7 +217,20 @@ class DetailEventRepository extends Repository
         }
         return $results;
     }
-    
+    public function updateContent(string $content, string $type, int $eventId): bool
+    {
+        $validColumns = ['banner_image', 'banner_description', 'name', 'description', 'image_description_1', 'image_description_2', 'card_image', 'card_description', 'amount_of_stars']; 
+        if (!in_array($type, $validColumns)) {
+            throw new InvalidArgumentException("Invalid column type: $type");
+        }
+        $sql = "UPDATE detail_event SET $type = :content WHERE id = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([
+            ':content' => $content,
+            ':id' => $eventId
+        ]);
+        return true;
+    }
 
 }
 ?>

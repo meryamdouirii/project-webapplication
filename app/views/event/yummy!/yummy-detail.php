@@ -5,9 +5,13 @@ use App\Models\Session;
 ?>
 <head>
     <title>Yummy! - <?= htmlspecialchars($detailYummyEvent->getName())?></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 </head>
+
 <main class="bg-light-blue container-fluid p-0">
     <section class="hero-section-event text-white text-center event-hero" style="background-image: url('<?= htmlspecialchars($detailYummyEvent->getBannerImage() ?: '/images-logos/default.jpg') ?>');">
+        <button class="btn btn-primary mt-3 position-absolute top-0 start-0 m-3" onclick="openEditor('<?= htmlspecialchars($detailYummyEvent->getBannerImage() ?: '/images-logos/default.jpg') ?>', 'banner_image')"><i class="fas fa-edit"></i> Edit Content</button>
         <div class="overlay event-overlay">
             <div class="container">
                 <div class="row justify-content-end">
@@ -20,7 +24,7 @@ use App\Models\Session;
             </div>
         </div>
     </section>
-
+    
     <section class="bg-light-blue card-list-section pb-5">
         <div class="container" style="margin-top: -40px;">
                 <div class="bg-blue text-white p-3 m-4 position-relative">
@@ -96,13 +100,57 @@ use App\Models\Session;
                         </div>
                     </div>
                     
-                   
-                    
-                    
                 </div>
             </div>
         </div>
     </section>
+    <div class="modal" id="editorModal" tabindex="-1" aria-labelledby="editorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editorModalLabel">Edit Content</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                <input type="hidden" name="updateType" id="updateType" value="">
+                <textarea name="content" id="editor"></textarea>
+                <br>
+                <div id="error-message" style="display: none;" class="alert alert-danger" role="alert"></div>
+                <button type="submit" class="btn btn-success mt-3">Save Content</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+<script>
+    function openEditor(input, type) {
+        const modal = new bootstrap.Modal(document.getElementById('editorModal'));
+        modal.show();
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                ckfinder: {
+                    uploadUrl: '/manageDetailEvent/uploadImage'
+                }
+            })
+            .then(editor => {
+                let $editorContent = input;
+                if (isImageUrl(input)) {
+                    $editorContent = `<img src="${input}" alt="${type}" />`;
+                }
+                editor.setData($editorContent);
+                document.getElementById('updateType').value = type;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+    function isImageUrl(url) {
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg'];
+    const ext = url.split('.').pop().toLowerCase();
+    return imageExtensions.includes(ext);
+    }
+    </script>
 </main>
 
 <?php include __DIR__ . '/../../footer.php'; ?>

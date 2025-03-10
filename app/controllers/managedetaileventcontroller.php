@@ -13,6 +13,9 @@ class ManageDetailEventController
     }
 
     public function manageDetailEvent(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $content = $_POST['content']; 
+        }
         require("../views/management/manage-detailevent.php");
     }
     public function uploadImage()

@@ -33,4 +33,9 @@
             $repository = new \App\Repositories\DetailEventRepository();
             return $repository->getAll();
         }
+        public function updateContent(string $content, string $type, int $eventId): bool
+        {
+            $repository = new \App\Repositories\DetailEventRepository();
+            return $repository->updateContent($content, $type, $eventId);
+        }
     }

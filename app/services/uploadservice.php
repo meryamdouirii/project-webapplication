@@ -21,7 +21,6 @@ class UploadService {
             return;
         }
 
-        // Sanitize and Generate File Name
         $fileName = time() . '_' . preg_replace("/[^a-zA-Z0-9\._-]/", "", basename($_FILES['upload']['name']));
         $uploadPath = $uploadDir . $fileName;
 

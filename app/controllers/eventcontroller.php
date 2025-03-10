@@ -48,16 +48,32 @@ class EventController
             header("Location: /event/yummy-main");
             exit;
         }
-    
         $eventId = intval($_GET['id']);
-        $detailYummyEvent = $this->detailEventService->getById($eventId);
-        $yummySessions = $this->sessionService->getSessionsByDetailEventId($eventId);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $content = $_POST['content'];
+            $type = $_POST['updateType'];
     
-        if (!$detailYummyEvent) {
-            header("Location: /event/yummy-main");
-            exit;
+            preg_match('/<img[^>]+src="([^"]+)"/', $content, $match);
+    
+            if (isset($match[1])) {
+                $srcValue = $match[1];
+    
+                $cleanedSrcValue = preg_replace('/^http:\/\/localhost/', '', $srcValue);
+
+                $content = $cleanedSrcValue;
+            }
+            $this->detailEventService->updateContent($content, $type, $eventId);
+    
         }
-        require("../views/event/yummy!/yummy-detail.php");
+            
+            $detailYummyEvent = $this->detailEventService->getById($eventId);
+            $yummySessions = $this->sessionService->getSessionsByDetailEventId($eventId);
+        
+            if (!$detailYummyEvent) {
+                header("Location: /event/yummy-main");
+                exit;
+            }
+            require("../views/event/yummy!/yummy-detail.php");
     }
     
     
