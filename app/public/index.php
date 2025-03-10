@@ -12,6 +12,7 @@ use \App\Controllers\UserController;
 use \App\Controllers\CustomerController;
 use \App\Controllers\EventController;
 use \App\Controllers\ManageDetailEventController;
+use \App\Controllers\CartController;
 
 require_once("../vendor/autoload.php");
 
@@ -20,6 +21,7 @@ $userController = new UserController();
 $customerController = new CustomerController();
 $eventController = new EventController();
 $manageDetailEventController = new ManageDetailEventController();
+$cartController = new CartController();
 
 
 session_start();
@@ -90,6 +92,12 @@ switch ($url) {
         break;
     case "/Yummy!/detail";
         $eventController->yummyDetail();
+        break;
+    case "/dance/tickets";
+        $eventController->danceTickets();
+        break;
+    case "/addToCart";
+        $cartController->addToCart();
         break;
     default:
         http_response_code(404);

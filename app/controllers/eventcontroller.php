@@ -59,6 +59,11 @@ class EventController
         }
         require("../views/event/yummy!/yummy-detail.php");
     }
+
+    public function danceTickets(){
+        $sessionsByDate = $this->sessionService->getSessionsGroupedByDate();
+        require("../views/customer/dance-tickets.php");
+    }
     
     
 }

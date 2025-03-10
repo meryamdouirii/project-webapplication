@@ -160,7 +160,6 @@
                                     <?php endif; ?>
                                 </tbody>
                             </table>
-                            <p class="all-access">*All-Access pass for <?= ucfirst($day) ?> €125,00</p>
                             <a href="#" class="button schedule-button">GET TICKETS</a>
                         </div>
                     <?php endforeach; ?>
@@ -168,6 +167,7 @@
             </div>
         </section>
 
+        <?php include __DIR__ . '/../../footer.php'; ?>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const tabs = document.querySelectorAll('.tab-button');

@@ -40,7 +40,7 @@ class SessionService
 
     public function getSessionsGroupedByDate(): array
     {
-        $sessions = $this->getSessionsByEventId(1);
+        $sessions = $this->getSessionsByEventId(1); //dance event
         $groupedSessions = [];
 
         foreach ($sessions as $session) {
