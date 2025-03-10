@@ -17,7 +17,12 @@ use App\Models\Session;
                 <div class="row justify-content-end">
                     <div class="col-md-3 d-flex flex-column align-items-center justify-content-center mt-4 text-start bg-blue-transparent p-3 position-relative event-artist-list">
                         <h1 class="event-title">YUMMY!</h1>
-                        <h2 class="mt-5 mb-5 text-center"><?=htmlspecialchars($detailYummyEvent->getBannerDescription())?></h2>
+                        <h2 class="mb-5 text-center">
+                        <button class="btn btn-primary mt-4 position-absolute top-0 end-0 m-3" onclick="openEditor('<?= htmlspecialchars($detailYummyEvent->getBannerDescription() ?: '') ?>', 'banner_description')">
+                            <i class="fas fa-edit"></i> Edit Content
+                        </button>
+                        <?=htmlspecialchars($detailYummyEvent->getBannerDescription())?>
+                        </h2>
                         <a href="#" class="btn btn-lg mt-3 event-ticket-btn button">GET TICKETS</a>
                     </div>
                 </div>
@@ -124,9 +129,22 @@ use App\Models\Session;
         </div>
     </div>
 <script>
+    let editorInstance=null;
     function openEditor(input, type) {
         const modal = new bootstrap.Modal(document.getElementById('editorModal'));
         modal.show();
+        if (editorInstance) {
+
+        editorInstance.destroy()
+                .then(() => {
+                    editorInstance = null; 
+                    initializeEditor(input, type); 
+                });
+        } else {
+            initializeEditor(input, type);
+        }
+    }
+    function initializeEditor(input, type) {
         ClassicEditor
             .create(document.querySelector('#editor'), {
                 ckfinder: {
@@ -140,13 +158,14 @@ use App\Models\Session;
                 }
                 editor.setData($editorContent);
                 document.getElementById('updateType').value = type;
+                editorInstance = editor;
             })
             .catch(error => {
                 console.error(error);
             });
     }
     function isImageUrl(url) {
-    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg'];
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'];
     const ext = url.split('.').pop().toLowerCase();
     return imageExtensions.includes(ext);
     }

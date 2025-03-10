@@ -62,6 +62,9 @@ class EventController
 
                 $content = $cleanedSrcValue;
             }
+            else {
+                $content = strip_tags($content);
+            }
             $this->detailEventService->updateContent($content, $type, $eventId);
     
         }
