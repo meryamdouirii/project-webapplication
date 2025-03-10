@@ -99,6 +99,12 @@ switch ($url) {
     case "/addToCart";
         $cartController->addToCart();
         break;
+    case "/cart";
+        $cartController->viewCart();
+        break;
+    case "/update_cart";
+        $cartController->updateCart();
+        break;
     default:
         http_response_code(404);
 }

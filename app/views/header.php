@@ -31,7 +31,9 @@ $events = $eventRepository->getAll();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <?php foreach ($events as $event): ?>
-                        <li class="nav-item"><a class="nav-link" href="/<?= htmlspecialchars($event->name); ?>"><?= htmlspecialchars($event->name); ?></a></li>
+                        <li class="nav-item"><a class="nav-link"
+                                href="/<?= htmlspecialchars($event->name); ?>"><?= htmlspecialchars($event->name); ?></a>
+                        </li>
                     <?php endforeach; ?>
                     <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
                 </ul>
@@ -41,7 +43,8 @@ $events = $eventRepository->getAll();
                     <?php else: ?>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 My account
                             </a>
                             <ul class="dropdown-menu">
@@ -55,6 +58,13 @@ $events = $eventRepository->getAll();
                             </ul>
                         </li>
                     <?php endif; ?>
+                    <!-- Shopping Cart Icon -->
+                    <li class="nav-item" style="font-size: 1.5rem;">
+                        <a class="nav-link" href="/cart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                    <!--Todo: if shopping cart is empty koop icon else change icon with a red dot-->
                 </ul>
             </div>
         </div>
