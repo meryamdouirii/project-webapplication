@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Skranji:wght@400;700&display=swap');
+
+.empty-cart-container {
+    text-align: center;
+    padding: 50px;
+    background-color: #eef1f7;
+}
+
+.empty-cart-container img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.empty-cart-container h3 {
+    color: #555;
+}
+
+.empty-cart-button:hover {
+    background-color: #0056b3;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    background: #eef1f7;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.cart-details {
+    flex-grow: 1;
+    padding-left: 15px;
+}
+.cart-title {
+    font-weight: bold;
+    font-size: 2rem;
+    color:#eef1f7;
+    font-family: skranji;
+    -webkit-animation: stroke 0.5s infinite alternate;
+    animation: stroke 0.5s infinite alternate;
+    text-shadow: 2px 2px 4px #000000;
+    
+}
+.cart-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+.stock-status {
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+    padding: 3px 10px;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+.cart-actions {
+    text-align: right;
+}
+.cart-actions input {
+    width: 50px;
+    text-align: center;
+}

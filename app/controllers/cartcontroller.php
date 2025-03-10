@@ -11,6 +11,11 @@ class CartController
         $this->sessionService = new \App\Services\SessionService();
     }
 
+    public function viewCart()
+    {
+        require("../views/customer/cart.php");
+    }
+
     public function addToCart()
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -46,6 +51,41 @@ class CartController
             header("Location: /dance/tickets");
             exit();
         }
+    }
+
+    public function updateCart()
+    {       
+        header('Content-Type: application/json');
+        // Read the JSON request
+        $data = json_decode(file_get_contents('php://input'), true);
+        if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+            echo json_encode(['success' => false]);
+            exit;
+        } 
+        if (isset($data['remove']) && $data['remove']) {
+            // Remove item from cart
+            unset($_SESSION['cart'][$data['index']]);
+            $_SESSION['cart'] = array_values($_SESSION['cart']); // Re-index array
+        } else {
+            // Update quantity
+            $index = $data['index'];
+            $quantity = max(1, $data['quantity']); // Ensure quantity is at least 1
+            $_SESSION['cart'][$index]['quantity'] = $quantity;
+        }
+        
+        // Recalculate total price
+        $totalPrice = 0;
+        foreach ($_SESSION['cart'] as $item) {
+            $totalPrice += $item['event_price'] * $item['quantity'];
+        }
+        
+        $response = [
+            'success' => true,
+            'totalPrice' => number_format($totalPrice, 2, ',', '.'),
+            'totalWithTax' => number_format($totalPrice * 1.1, 2, ',', '.')
+        ];
+        
+        echo json_encode($response);
     }
 
 
