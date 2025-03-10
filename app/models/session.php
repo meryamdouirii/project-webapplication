@@ -38,6 +38,9 @@ class Session
         $this->datetime_start = $datetime_start;
     }
 
+    public function getId(): int {
+        return $this->id;
+    }
     public function getTicketLimit(): int {
         return $this->ticket_limit;
     }
