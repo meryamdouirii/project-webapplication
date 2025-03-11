@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 05 mrt 2025 om 20:58
+-- Gegenereerd op: 11 mrt 2025 om 20:31
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.27
 
@@ -152,31 +152,31 @@ CREATE TABLE `session` (
 --
 
 INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location`, `ticket_limit`, `duration_minutes`, `price`, `datetime_start`, `event_id`) VALUES
-(1, 6, 'back2back', '1', 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00', 1),
-(2, 5, 'back2back', '1', 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00', 1),
-(3, 3, 'club', '1', 'Slachthuis', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
-(4, 1, 'club', '1', 'Jopenkerk', 300, 90, 60.00, '2025-07-25 23:00:00', 1),
-(5, 4, 'club', '1', 'XO the Club', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
-(6, 2, 'club', '1', 'Puncher comedy club', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
-(7, 1, 'back2back', '1', 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 1),
-(8, 2, 'back2back', '1', 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 1),
-(9, 4, 'back2back', '1', 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 1),
-(10, 5, 'club', '1', 'Jopenkerk', 300, 90, 60.00, '2025-07-26 22:00:00', 1),
-(11, 3, 'club', '1', 'Lichtfabriek', 1500, 240, 75.00, '2025-07-26 21:00:00', 1),
-(12, 6, 'club', '1', 'Slachthuis', 200, 90, 60.00, '2025-07-26 23:00:00', 1),
-(13, 5, 'back2back', '1', 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 1),
-(14, 3, 'back2back', '1', 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 1),
-(15, 6, 'back2back', '1', 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 1),
-(16, 4, 'club', '1', 'Jopenkerk', 300, 90, 60.00, '2025-07-27 19:00:00', 1),
-(17, 1, 'club', '1', 'XO the Club', 1500, 90, 90.00, '2025-07-27 21:00:00', 1),
-(18, 2, 'club', '1', 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00', 1),
-(19, 7, 'Ratatouille Ticket 24 July 17:00', '1', 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 17:00:00', NULL),
-(20, 7, 'Ratatouille Ticket 25 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 17:00:00', NULL),
-(21, 7, 'Ratatouille Ticket 26 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 17:00:00', NULL),
-(22, 7, 'Ratatouille Ticket 27 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 17:00:00', NULL),
-(23, 7, 'Ratatouille Ticket 27 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 19:00:00', NULL),
-(24, 7, 'Ratatouille Ticket 26 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 19:00:00', NULL),
-(25, 7, 'Ratatouille Ticket 25 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 19:00:00', NULL),
+(1, 6, 'back2back', NULL, 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00', 1),
+(2, 5, 'back2back', NULL, 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00', 1),
+(3, 3, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
+(4, 1, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-25 23:00:00', 1),
+(5, 4, 'club', NULL, 'XO the Club', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
+(6, 2, 'club', NULL, 'Puncher comedy club', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
+(7, 1, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 1),
+(8, 2, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 1),
+(9, 4, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 1),
+(10, 5, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-26 22:00:00', 1),
+(11, 3, 'club', NULL, 'Lichtfabriek', 1500, 240, 75.00, '2025-07-26 21:00:00', 1),
+(12, 6, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-26 23:00:00', 1),
+(13, 5, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 1),
+(14, 3, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 1),
+(15, 6, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 1),
+(16, 4, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-27 19:00:00', 1),
+(17, 1, 'club', NULL, 'XO the Club', 1500, 90, 90.00, '2025-07-27 21:00:00', 1),
+(18, 2, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00', 1),
+(19, 7, 'Ratatouille Ticket 24 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 17:00:00', 2),
+(20, 7, 'Ratatouille Ticket 25 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 17:00:00', 2),
+(21, 7, 'Ratatouille Ticket 26 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 17:00:00', 2),
+(22, 7, 'Ratatouille Ticket 27 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 17:00:00', 2),
+(23, 7, 'Ratatouille Ticket 27 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 19:00:00', 2),
+(24, 7, 'Ratatouille Ticket 26 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 19:00:00', 2),
+(25, 7, 'Ratatouille Ticket 25 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 19:00:00', 2),
 (26, 7, 'Ratatouille Ticket 24 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 19:00:00', NULL),
 (27, 7, 'Ratatouille Ticket 24 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00', NULL),
 (28, 7, 'Ratatouille Ticket 25 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00', NULL),
@@ -262,7 +262,9 @@ INSERT INTO `user` (`id`, `type`, `first_name`, `last_name`, `phone_number`, `em
 (1, 'customer', 'Meryam', 'Douiri', '0643209996', 'Douirimeryam14@gmail.com', '$2y$12$Ur95y1Tws68/beiuhQTeVOGCNTwZ3saGD1nWgKhbnpynUZ4zR407u', 'eDyW6lt0dAA/FoAZTIMcUQ==', NULL, NULL),
 (2, 'administrator', 'Romy', 'Groen', NULL, 'groenromy0@gmail.com', '$2y$12$w6Vh.v5QvPOglb2HAmDkXOvWz2/oyzCui4fc8jxbWW6LKswt4V20G', 'el6XUJnPebqT4oQPrewI3A==', NULL, NULL),
 (3, 'employee', 'Fiona', 'Shrek', NULL, '701224@student.inholland.nl', '$2y$12$3S3MFqiiCrSfpMp9pCmBWeJguq3EhrAnwlTtr24c3BsU8f/Z4kAdm', 'xMZpfw1LiC+St2cGSu1i7g==', NULL, NULL),
-(5, 'customer', 'Mark', 'Haan', '06 67291092', 'markdeHaan@gmail.com', '$2y$12$ULjXzvGJVngxlOU5Pe0qpOOhCn/D8AbTsVnM92RcDKUkOO.aSIRAm', 'vu3IWR6CUU83V37Zm9vImw==', NULL, NULL);
+(5, 'customer', 'Mark', 'Haan', '06 67291092', 'markdeHaan@gmail.com', '$2y$12$ULjXzvGJVngxlOU5Pe0qpOOhCn/D8AbTsVnM92RcDKUkOO.aSIRAm', 'vu3IWR6CUU83V37Zm9vImw==', NULL, NULL),
+(6, 'customer', 'John', 'Doe', '0629102738', 'Johndoe@gmail.com', '$2y$12$fE5TgMI4d8cqRXM96jSH1OU/YmzTMzAnxMimeXxDRRhm4cjQVlUwe', 'FPsX9Fk++YCoW8uXfV7zQg==', NULL, NULL),
+(7, 'customer', 'Bart', 'godijn', '0643209996', 'bartgodijn@gmail.com', '$2y$12$OJbOZYGooaVfPaJ5pxB9M.8A3TyONGQEnoNMoXg2CGgVWF1iVu13.', 'fFqtRsC4MZ+l9bd618KUsQ==', NULL, NULL);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -369,7 +371,7 @@ ALTER TABLE `ticket_order`
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Beperkingen voor geëxporteerde tabellen

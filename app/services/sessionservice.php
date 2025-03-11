@@ -38,9 +38,9 @@ class SessionService
         return $repository->getByEventId($eventId);
     }
 
-    public function getSessionsGroupedByDate(): array
+    public function getSessionsGroupedByDateAndEventId(int $eventId): array
     {
-        $sessions = $this->getSessionsByEventId(1); //dance event
+        $sessions = $this->getSessionsByEventId($eventId); //dance event
         $groupedSessions = [];
 
         foreach ($sessions as $session) {

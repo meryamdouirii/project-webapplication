@@ -8,7 +8,7 @@ include __DIR__ . '/../header.php';?>
         <h3 class="text-center">Login</h3>
         <div id="error-message" style="display: none;" class="alert alert-danger" role="alert">
         </div>
-        <form method="POST" action="">
+        <form method="POST" action="/login">
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input type="text" name="email" id="email" class="form-control" placeholder="Enter you email address" required

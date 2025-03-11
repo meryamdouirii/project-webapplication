@@ -56,37 +56,81 @@ class CartController
     public function updateCart()
     {       
         header('Content-Type: application/json');
-        // Read the JSON request
-        $data = json_decode(file_get_contents('php://input'), true);
+    
+        // Read and decode JSON request
+        $input = file_get_contents('php://input');
+        $data = json_decode($input, true);
+    
+        // Ensure JSON is valid
+        if ($data === null) {
+            echo json_encode(['success' => false, 'message' => 'Invalid JSON received']);
+            exit;
+        }
+    
         if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-            echo json_encode(['success' => false]);
+            echo json_encode(['success' => false, 'message' => 'Cart is empty']);
             exit;
         } 
+    
         if (isset($data['remove']) && $data['remove']) {
-            // Remove item from cart
-            unset($_SESSION['cart'][$data['index']]);
-            $_SESSION['cart'] = array_values($_SESSION['cart']); // Re-index array
+            // Remove item from cart 
+            if (isset($_SESSION['cart'][$data['index']])) {
+                unset($_SESSION['cart'][$data['index']]);
+                $_SESSION['cart'] = array_values($_SESSION['cart']); // Re-index array
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Invalid item index']);
+                exit;
+            }
         } else {
-            // Update quantity
-            $index = $data['index'];
-            $quantity = max(1, $data['quantity']); // Ensure quantity is at least 1
+            // Ensure index and quantity are set
+            if (!isset($data['index']) || !isset($data['quantity'])) {
+                echo json_encode(['success' => false, 'message' => 'Missing index or quantity']);
+                exit;
+            }
+    
+            $index = intval($data['index']);
+            $quantity = max(1, intval($data['quantity'])); // Ensure quantity is at least 1
+    
+            if (!isset($_SESSION['cart'][$index])) {
+                echo json_encode(['success' => false, 'message' => 'Item not found in cart']);
+                exit;
+            }
+    
             $_SESSION['cart'][$index]['quantity'] = $quantity;
         }
-        
+    
         // Recalculate total price
         $totalPrice = 0;
         foreach ($_SESSION['cart'] as $item) {
-            $totalPrice += $item['event_price'] * $item['quantity'];
+            $totalPrice += floatval($item['event_price']) * intval($item['quantity']);
         }
-        
-        $response = [
+    
+        // Ensure only valid JSON is returned
+        echo json_encode([
             'success' => true,
             'totalPrice' => number_format($totalPrice, 2, ',', '.'),
-            'totalWithTax' => number_format($totalPrice * 1.1, 2, ',', '.')
-        ];
+            'items' => $_SESSION['cart']
+        ]);
         
-        echo json_encode($response);
+        exit;
     }
+    
+
+    public function choosePaymentMethod()
+    {
+        if (!isset($_SESSION['user']) || !isset($_SESSION['user']['type_of_user'])) {
+            //als er geen user is of geen type of user dus bv een visitor dan login pagina weergeven
+            require("../views/user/login.php");
+            return;
+        }
+
+        if ($_SESSION['user']['type_of_user'] === 'customer') {
+            require("../views/customer/choose_payment_method.php");
+        } else {
+            echo "You are not supposed to be here";
+        }
+    }
+    
 
 
 

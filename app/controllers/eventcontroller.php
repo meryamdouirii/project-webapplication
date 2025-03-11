@@ -18,7 +18,7 @@ class EventController
     public function danceMain(){
         $detailEvents = $this->detailEventService->getByMainEvent(1);
         $eventDance = $this->EventService->getById(1);
-        $sessionsByDate = $this->sessionService->getSessionsGroupedByDate();
+        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId(1);
         require("../views/event/dance/dance-main.php");
     }
 
@@ -67,8 +67,13 @@ class EventController
     }
 
     public function danceTickets(){
-        $sessionsByDate = $this->sessionService->getSessionsGroupedByDate();
-        require("../views/customer/dance-tickets.php");
+        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId(1);
+        require("../views/customer/tickets.php");
+    }
+
+    public function yummyTickets(){
+        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId(2);
+        require("../views/customer/tickets.php");
     }
     private function handleEditDetailEventForm(){
             $eventId = $_POST['id'];
