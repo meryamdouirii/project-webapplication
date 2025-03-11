@@ -52,6 +52,7 @@ class EventController
             header("Location: /event/yummy-main");
             exit;
         }
+        $eventId = intval($_GET['id']);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->handleEditDetailEventForm();
         }
