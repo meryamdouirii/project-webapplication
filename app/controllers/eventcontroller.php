@@ -39,6 +39,10 @@ class EventController
     }
 
     public function yummyMain(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
+            $this->handleEditDetailEventForm();
+        }
         $detailEvents = $this->detailEventService->getByMainEvent(2);
         require("../views/event/yummy!/yummy-main.php");
     }
@@ -48,27 +52,9 @@ class EventController
             header("Location: /event/yummy-main");
             exit;
         }
-        $eventId = intval($_GET['id']);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $content = $_POST['content'];
-            $type = $_POST['updateType'];
-    
-            preg_match('/<img[^>]+src="([^"]+)"/', $content, $match);
-    
-            if (isset($match[1])) {
-                $srcValue = $match[1];
-    
-                $cleanedSrcValue = preg_replace('/^http:\/\/localhost/', '', $srcValue);
-
-                $content = $cleanedSrcValue;
-            }
-            else {
-                $content = strip_tags($content);
-            }
-            $this->detailEventService->updateContent($content, $type, $eventId);
-    
+            $this->handleEditDetailEventForm();
         }
-            
             $detailYummyEvent = $this->detailEventService->getById($eventId);
             $yummySessions = $this->sessionService->getSessionsByDetailEventId($eventId);
         
@@ -83,6 +69,31 @@ class EventController
         $sessionsByDate = $this->sessionService->getSessionsGroupedByDate();
         require("../views/customer/dance-tickets.php");
     }
+    private function handleEditDetailEventForm(){
+            $eventId = $_POST['id'];
+            $content = $_POST['content'];
+            $type = $_POST['updateType'];
     
+            preg_match('/<img[^>]+src="([^"]+)"/', $content, $match);
+    
+            if (isset($match[1])) {
+                $srcValue = $match[1];
+    
+                $cleanedSrcValue = preg_replace('/^http:\/\/localhost/', '', $srcValue);
+
+                $content = $cleanedSrcValue;
+            }
+            else {
+                $content = strip_tags($content);
+                $content = str_replace('"', '&quot;', $content);
+                $content = str_replace("'", '&apos;', $content);
+            }
+            if($type == 'amount_of_stars'){
+                $amountOfStars = substr_count($content, '★');
+                $content = $amountOfStars;
+            }
+            $this->detailEventService->updateContent($content, $type, $eventId);
+    
+    }
     
 }
