@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 11 mrt 2025 om 20:31
+-- Gegenereerd op: 11 mrt 2025 om 21:21
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.27
 
@@ -153,20 +153,15 @@ CREATE TABLE `session` (
 
 INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location`, `ticket_limit`, `duration_minutes`, `price`, `datetime_start`, `event_id`) VALUES
 (1, 6, 'back2back', NULL, 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00', 1),
-(2, 5, 'back2back', NULL, 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00', 1),
 (3, 3, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
 (4, 1, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-25 23:00:00', 1),
 (5, 4, 'club', NULL, 'XO the Club', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
 (6, 2, 'club', NULL, 'Puncher comedy club', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
 (7, 1, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 1),
-(8, 2, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 1),
-(9, 4, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 1),
 (10, 5, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-26 22:00:00', 1),
 (11, 3, 'club', NULL, 'Lichtfabriek', 1500, 240, 75.00, '2025-07-26 21:00:00', 1),
 (12, 6, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-26 23:00:00', 1),
 (13, 5, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 1),
-(14, 3, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 1),
-(15, 6, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 1),
 (16, 4, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-27 19:00:00', 1),
 (17, 1, 'club', NULL, 'XO the Club', 1500, 90, 90.00, '2025-07-27 21:00:00', 1),
 (18, 2, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00', 1),
@@ -182,6 +177,30 @@ INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location
 (28, 7, 'Ratatouille Ticket 25 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00', NULL),
 (29, 7, 'Ratatouille Ticket 26 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00', NULL),
 (30, 7, 'Ratatouille Ticket 27 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `session_artists`
+--
+
+CREATE TABLE `session_artists` (
+  `id` int(11) NOT NULL,
+  `session_id` int(11) NOT NULL,
+  `detail_event_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `session_artists`
+--
+
+INSERT INTO `session_artists` (`id`, `session_id`, `detail_event_id`) VALUES
+(1, 1, 6),
+(3, 7, 1),
+(6, 13, 5),
+(16, 1, 6),
+(18, 7, 1),
+(21, 13, 5);
 
 -- --------------------------------------------------------
 
@@ -305,6 +324,14 @@ ALTER TABLE `session`
   ADD KEY `fk_event` (`event_id`);
 
 --
+-- Indexen voor tabel `session_artists`
+--
+ALTER TABLE `session_artists`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `session_id` (`session_id`),
+  ADD KEY `detail_event_id` (`detail_event_id`);
+
+--
 -- Indexen voor tabel `song`
 --
 ALTER TABLE `song`
@@ -356,6 +383,12 @@ ALTER TABLE `session`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
+-- AUTO_INCREMENT voor een tabel `session_artists`
+--
+ALTER TABLE `session_artists`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
 -- AUTO_INCREMENT voor een tabel `song`
 --
 ALTER TABLE `song`
@@ -388,6 +421,13 @@ ALTER TABLE `detail_event`
 --
 ALTER TABLE `session`
   ADD CONSTRAINT `fk_event` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
+
+--
+-- Beperkingen voor tabel `session_artists`
+--
+ALTER TABLE `session_artists`
+  ADD CONSTRAINT `session_artists_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `session_artists_ibfk_2` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`) ON DELETE CASCADE;
 
 --
 -- Beperkingen voor tabel `ticket`
