@@ -141,7 +141,8 @@ class DetailEventRepository extends Repository
         $stmt = $this->connection->query($sql);
         $results = [];
 
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        //TODO: geen QUERIES in een loop
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { 
             $results[] = new DetailEvent(
                 $row['id'],
                 $row['event_id'],

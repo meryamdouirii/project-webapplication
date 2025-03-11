@@ -96,6 +96,9 @@ switch ($url) {
     case "/dance/tickets";
         $eventController->danceTickets();
         break;
+    case "/yummy/tickets";
+        $eventController->yummyTickets();
+        break;
     case "/addToCart";
         $cartController->addToCart();
         break;
@@ -104,6 +107,8 @@ switch ($url) {
         break;
     case "/update_cart";
         $cartController->updateCart();
+    case "/choose_payment_method";
+        $cartController->choosePaymentMethod();
         break;
     default:
         http_response_code(404);

@@ -10,7 +10,7 @@ include __DIR__ . '/../header.php';?>
     <h3 class="text-center">Register</h3>
     <div id="error-message" style="display: none;" class="alert alert-danger" role="alert">
         </div>
-        <form method="POST">
+        <form method="POST" action="/register">
             <div class="card p-3 mb-3">
                 <h5 class="card-title">Personal Information</h5>
                 <div class="mb-3 row">

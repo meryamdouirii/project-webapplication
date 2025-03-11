@@ -37,7 +37,8 @@
                                     <div class="col-md-6 cart-details">
                                         <h5><?= $eventName; ?></h5>
                                         <p class="cart-info"><i class="bi bi-clock"></i> <?= $eventTime; ?> -
-                                            <?= gmdate("H:i", $eventDuration * 60); ?></p>
+                                            <?= gmdate("H:i", $eventDuration * 60); ?>
+                                        </p>
                                         <p class="cart-info"><i class="bi bi-geo-alt"></i> <?= $eventLocation; ?></p>
                                         <span class="stock-status">In stock</span>
                                     </div>
@@ -74,13 +75,34 @@
                     <div class="col-md-4">
                         <div class="card p-3">
                             <h4>Order Summary</h4>
-                            <p>Items: <span class="float-end">€<span
-                                        id="totalPrice"><?= number_format($totalPrice, 2, ',', '.'); ?></span></span></p>
+                            <ul class="list-group mb-3">
+                                <?php foreach ($_SESSION['cart'] as $index => $item): ?>
+                                    <li id="summary-item-<?= $index ?>"
+                                        class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="my-0"><?= htmlspecialchars($item['event_name']); ?></h6>
+                                            <small class="text-muted">
+                                                <?= htmlspecialchars($item['event_location']); ?> -
+                                                <?= htmlspecialchars($item['event_time']); ?>
+                                                (<?= gmdate("H:i", $item['event_duration'] * 60); ?>)
+                                            </small>
+                                            <br>
+                                            <small id="summary-quantity-<?= $index ?>" class="text-muted">Quantity:
+                                                <?= intval($item['quantity']); ?></small>
+                                        </div>
+                                        <span id="summary-price-<?= $index ?>"
+                                            class="text-muted">€<?= number_format($item['event_price'] * $item['quantity'], 2, ',', '.'); ?></span>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
                             <hr>
-                            <p><strong>Total: <span class="float-end">€<span
-                                            id="totalWithTax"><?= number_format($totalPrice * 1.1, 2, ',', '.'); ?></span></span></strong>
+                            <p>
+                                <strong>Total: <span class="float-end">€<span id="totalPrice">
+                                            <?= number_format($totalPrice, 2, ',', '.'); ?>
+                                        </span></span>
+                                </strong>
                             </p>
-                            <button class="button w-100">Proceed to Checkout</button>
+                            <a href="/choose_payment_method" class="button w-100">Proceed to Checkout</a>
                         </div>
                     </div>
                 <?php else: ?>
@@ -93,6 +115,7 @@
                         </div>
                     </div>
                 <?php endif; ?>
+
             </div>
         </div>
 
@@ -112,7 +135,9 @@
                         if (data.success) {
                             input.value = newQuantity;
                             document.getElementById('totalPrice').innerText = data.totalPrice;
-                            document.getElementById('totalWithTax').innerText = data.totalWithTax;
+                            // Update quantity and price in the order summary
+                            document.getElementById('summary-quantity-' + index).innerText = "Quantity: " + newQuantity;
+                            document.getElementById('summary-price-' + index).innerText = "€" + (parseFloat(data.items[index].event_price) * newQuantity).toFixed(2).replace('.', ',');
                         }
                     });
             }

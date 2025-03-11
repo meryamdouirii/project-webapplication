@@ -3,9 +3,8 @@
     <link href="/../stylesheets/styleTickets.css" rel="stylesheet">
 </head>
 <?php include __DIR__ . '/../header.php'; ?>
-<!-- <pre> <?php print_r($sessionsByDate) ?></pre> -->
 <main class="bg-light-blue container-fluid p-0">
-
+<!-- <pre> <?php print_r($sessionsByDate) ?></pre> -->
     <div class="bg-blue ticket-title-section" style="padding: 50px 0;">
         <h2 class="ticket-title" style="color: #FF1493;">Dance festival Tickets</h2>
         <p>Join us for three days of amazing electronic music</p>

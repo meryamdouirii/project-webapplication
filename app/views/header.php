@@ -35,7 +35,16 @@ $events = $eventRepository->getAll();
                                 href="/<?= htmlspecialchars($event->name); ?>"><?= htmlspecialchars($event->name); ?></a>
                         </li>
                     <?php endforeach; ?>
-                    <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
+                    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Tickets
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/dance/tickets">Dance tickets</a></li>
+                                <li><a class="dropdown-item" href="/yummy/tickets">Yummy yickets</a></li>
+                            </ul>
+                        </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <?php if (!isset($_SESSION['user'])): ?>
