@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 11 mrt 2025 om 21:21
+-- Gegenereerd op: 16 mrt 2025 om 20:37
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.27
 
@@ -47,12 +47,12 @@ CREATE TABLE `detail_event` (
 
 INSERT INTO `detail_event` (`id`, `event_id`, `banner_description`, `banner_image`, `name`, `description`, `image_description_1`, `image_description_2`, `card_image`, `card_description`, `amount_of_stars`) VALUES
 (1, 1, 'One of the world-class DJs performing at Haarlem Festival is Hardwell!', 'default.jpg', 'Hardwell', 'Hardwell, born Robbert van de Corput, is a globally renowned Dutch DJ, music producer, and remixer. He gained fame for his contributions to electronic dance music (EDM), specifically in the genres of progressive house and big room house. Rising to prominence in the early 2010s, Hardwell quickly established himself as a festival headliner. Known for his dynamic live performances, he was crowned the World\'s No.1 DJ twice in a row (2013, 2014) by DJ Mag\'s Top 100 DJs poll.', 'default.jpg', NULL, 'default.jpg', 'Hardwell is known for his energetic performances. Hardwell hails from Breda, Netherlands, and began DJing at the age of 14.', NULL),
-(2, 1, 'One of the world-class DJs performing at Haarlem Festival is Martin Garrix!', 'default.jpg', 'Martin Garrix', 'Martin Garrix, de jonge superster uit Nederland, heeft zichzelf bewezen als een van de grootste namen in de dance- en elektronische muziekwereld. Met hits zoals \"Animals\" en \"Scared to Be Lonely\" domineert hij zowel de charts als festivals over de hele wereld. Zijn energieke optredens en pakkende producties hebben hem de titel van werelds beste DJ opgeleverd in meerdere DJ Mag Top 100-lijsten.', 'default.jpg', NULL, 'default.jpg', '(Martijn Garritsen): Martin is an animal lover, particularly fond of dogs, and supports various charitable causes. He has had a succesfull career since he was young.', NULL),
+(2, 1, 'One of the world-class DJs performing at Haarlem Festival is Martin Garrix!', 'MartinGarrix.jpg', 'Martin Garrix', 'Martin Garrix, de jonge superster uit Nederland, heeft zichzelf bewezen als een van de grootste namen in de dance- en elektronische muziekwereld. Met hits zoals \"Animals\" en \"Scared to Be Lonely\" domineert hij zowel de charts als festivals over de hele wereld. Zijn energieke optredens en pakkende producties hebben hem de titel van werelds beste DJ opgeleverd in meerdere DJ Mag Top 100-lijsten.', 'MartinGarrixCard.jpg', NULL, 'MartinGarrixCard.jpg', '(Martijn Garritsen): Martin is an animal lover, particularly fond of dogs, and supports various charitable causes. He has had a succesfull career since he was young.', NULL),
 (3, 1, 'One of the world-class DJs performing at Haarlem Festival is Tiesto!', 'default.jpg', 'Tiesto', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Tijs Michiel Verwest): Tiësto, also from Breda, Netherlands, is known for being a trailblazer in electronic music.  ', NULL),
 (4, 1, 'One of the world-class DJs performing at Haarlem Festival is Armin van Buuren!', 'default.jpg', 'Armin van Buuren', 'NULL', 'default.jpg', NULL, 'default.jpg', 'Armin is known for his meticulous work ethic and dedication to his fans. Despite his success, he remains approachable and enjoys connecting with his global audience.  ', NULL),
 (5, 1, 'One of the world-class DJs performing at Haarlem Festival is Afrojack!', 'default.jpg', 'Afrojack', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick van de Wall): Afrojack is not only a DJ but also an entrepreneur, owning his own label, Wall Recordings.  ', NULL),
 (6, 1, 'One of the world-class DJs performing at Haarlem Festival is Nicky Romero!', 'default.jpg', 'Nicky Romero', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick Rotteveel): Nicky is known for his collaborative and friendly nature in the music industry.   ', NULL),
-(7, 2, 'Visit Ratatouille!', NULL, 'Ratatouille', 'Nestled along the scenic Spaarne River at Spaarne 96, 2011 CL Haarlem, Ratatouille Food & Wine offers an exceptional dining experience that harmoniously blends modern culinary techniques with a deep appreciation for fresh, local ingredients. Under the guidance of chef Jozua Jaring, this Michelin-starred restaurant presents meticulously crafted dishes that surprise and delight with their innovative presentations and flavor combinations.\r\nWith its commitment to culinary excellence and warm hospitality, Ratatouille Food & Wine has become a must-visit destination for food enthusiasts in Haarlem. Whether you\'re a local resident or a visitor, the restaurant offers a memorable dining experience that highlights the best of modern cuisine in a welcoming and stylish setting.', NULL, NULL, NULL, 'Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.', 4);
+(7, 2, 'Visit US!!!!!', NULL, 'Ratatouille', 'Nestled along the scenic Spaarne River at Spaarne 96, 2011 CL Haarlem, Ratatouille Food & Wine offers an exceptional dining experience that harmoniously blends modern culinary techniques with a deep appreciation for fresh, local ingredients. Under the guidance of chef Jozua Jaring, this Michelin-starred restaurant presents meticulously crafted dishes that surprise and delight with their innovative presentations and flavor combinations.\r\nWith its commitment to culinary excellence and warm hospitality, Ratatouille Food & Wine has become a must-visit destination for food enthusiasts in Haarlem. Whether you\'re a local resident or a visitor, the restaurant offers a memorable dining experience that highlights the best of modern cuisine in a welcoming and stylish setting.', NULL, NULL, NULL, 'Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.', 0);
 
 -- --------------------------------------------------------
 
@@ -238,9 +238,20 @@ CREATE TABLE `ticket` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `session_id` int(11) NOT NULL,
-  `bar_code` int(11) NOT NULL,
+  `bar_code` int(255) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `ticket`
+--
+
+INSERT INTO `ticket` (`id`, `order_id`, `session_id`, `bar_code`, `user_id`) VALUES
+(1, 4, 3, 68998, 1),
+(2, 5, 3, 69222, 1),
+(3, 5, 20, 61621, 1),
+(4, 8, 1, 58065, 1),
+(5, 8, 1, 23226, 1);
 
 -- --------------------------------------------------------
 
@@ -253,6 +264,16 @@ CREATE TABLE `ticket_order` (
   `user_id` int(11) NOT NULL,
   `order_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `ticket_order`
+--
+
+INSERT INTO `ticket_order` (`id`, `user_id`, `order_date`) VALUES
+(4, 1, '2025-03-16 20:23:45'),
+(5, 1, '2025-03-16 20:26:00'),
+(6, 1, '2025-03-16 20:30:06'),
+(8, 1, '2025-03-16 20:31:20');
 
 -- --------------------------------------------------------
 
@@ -386,7 +407,7 @@ ALTER TABLE `session`
 -- AUTO_INCREMENT voor een tabel `session_artists`
 --
 ALTER TABLE `session_artists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT voor een tabel `song`
@@ -395,10 +416,16 @@ ALTER TABLE `song`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT voor een tabel `ticket`
+--
+ALTER TABLE `ticket`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT voor een tabel `ticket_order`
 --
 ALTER TABLE `ticket_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT voor een tabel `user`
