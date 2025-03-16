@@ -102,7 +102,7 @@
                                         </span></span>
                                 </strong>
                             </p>
-                            <a href="/choose_payment_method" class="button w-100">Proceed to Checkout</a>
+                            <a href="/confirm_order" class="button w-100">Proceed to Checkout</a>
                         </div>
                     </div>
                 <?php else: ?>

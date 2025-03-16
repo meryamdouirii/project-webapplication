@@ -107,8 +107,8 @@ switch ($url) {
         break;
     case "/update_cart";
         $cartController->updateCart();
-    case "/choose_payment_method";
-        $cartController->choosePaymentMethod();
+    case "/confirm_order";
+        $cartController->confirmOrder();
         break;
     default:
         http_response_code(404);

@@ -6,7 +6,7 @@
     
 
     <section class="hero-section-event text-white text-center event-hero"
-        style="background-image: url('/images-logos/default.jpg');">
+        style="background-image: url('/images-logos/martin-garrix.jpg');">
         <div class="overlay event-overlay">
             <div class="container">
                 <div class="row">

@@ -6,9 +6,11 @@ class CartController
 {
 
     private $sessionService;
+    private $orderService;
     function __construct()
     {
         $this->sessionService = new \App\Services\SessionService();
+        $this->orderService = new \App\Services\OrderService();
     }
 
     public function viewCart()
@@ -47,31 +49,30 @@ class CartController
                 $_SESSION["cart"][] = $ticket;
             }
 
-            //add a pop up message to show that the ticket has been added to the cart
             header("Location: /dance/tickets");
             exit();
         }
     }
 
     public function updateCart()
-    {       
+    {
         header('Content-Type: application/json');
-    
+
         // Read and decode JSON request
         $input = file_get_contents('php://input');
         $data = json_decode($input, true);
-    
+
         // Ensure JSON is valid
         if ($data === null) {
             echo json_encode(['success' => false, 'message' => 'Invalid JSON received']);
             exit;
         }
-    
+
         if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
             echo json_encode(['success' => false, 'message' => 'Cart is empty']);
             exit;
-        } 
-    
+        }
+
         if (isset($data['remove']) && $data['remove']) {
             // Remove item from cart 
             if (isset($_SESSION['cart'][$data['index']])) {
@@ -87,51 +88,57 @@ class CartController
                 echo json_encode(['success' => false, 'message' => 'Missing index or quantity']);
                 exit;
             }
-    
+
             $index = intval($data['index']);
             $quantity = max(1, intval($data['quantity'])); // Ensure quantity is at least 1
-    
+
             if (!isset($_SESSION['cart'][$index])) {
                 echo json_encode(['success' => false, 'message' => 'Item not found in cart']);
                 exit;
             }
-    
+
             $_SESSION['cart'][$index]['quantity'] = $quantity;
         }
-    
+
         // Recalculate total price
         $totalPrice = 0;
         foreach ($_SESSION['cart'] as $item) {
             $totalPrice += floatval($item['event_price']) * intval($item['quantity']);
         }
-    
+
         // Ensure only valid JSON is returned
         echo json_encode([
             'success' => true,
             'totalPrice' => number_format($totalPrice, 2, ',', '.'),
             'items' => $_SESSION['cart']
         ]);
-        
+
         exit;
     }
-    
 
-    public function choosePaymentMethod()
+    
+    public function placeOrderInDatabase($tickets){
+        $this->orderService->placeOrder($tickets);
+        
+    }
+
+
+    public function confirmOrder()
     {
         if (!isset($_SESSION['user']) || !isset($_SESSION['user']['type_of_user'])) {
-            //als er geen user is of geen type of user dus bv een visitor dan login pagina weergeven
             require("../views/user/login.php");
             return;
         }
 
+        $tickets = $_SESSION['cart'];
+
+        print_r($tickets); //debugging
         if ($_SESSION['user']['type_of_user'] === 'customer') {
-            require("../views/customer/choose_payment_method.php");
-        } else {
-            echo "You are not supposed to be here";
-        }
+            $this->placeOrderInDatabase($tickets);
+            unset($_SESSION["cart"]);
+            require("../views/customer/confirm_order.php");
+        } 
     }
     
-
-
-
 }
+
