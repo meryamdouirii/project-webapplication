@@ -130,9 +130,15 @@ class CartController
             return;
         }
 
+        //prevent duplicate orders by checking if cart is empty
+        if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+            require("../views/customer/confirm_order.php");
+            return;
+        }
+
         $tickets = $_SESSION['cart'];
 
-        print_r($tickets); //debugging
+        // print_r($tickets); //debugging
         if ($_SESSION['user']['type_of_user'] === 'customer') {
             $this->placeOrderInDatabase($tickets);
             unset($_SESSION["cart"]);
