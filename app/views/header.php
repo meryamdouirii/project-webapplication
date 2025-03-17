@@ -37,15 +37,15 @@ $events = $eventRepository->getAll();
                         </li>
                     <?php endforeach; ?>
                     <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Tickets
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/dance/tickets">Dance tickets</a></li>
-                                <li><a class="dropdown-item" href="/yummy/tickets">Yummy yickets</a></li>
-                            </ul>
-                        </li>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Tickets
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/dance/tickets">Dance tickets</a></li>
+                            <li><a class="dropdown-item" href="/yummy/tickets">Yummy yickets</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <?php if (!isset($_SESSION['user'])): ?>
@@ -59,6 +59,9 @@ $events = $eventRepository->getAll();
                             </a>
                             <ul class="dropdown-menu">
                                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['type_of_user'] === 'customer'): ?>
+                                    <li><a class="dropdown-item" href="/personal_program">Personal program</a></li>
+                                <?php endif; ?>
+                                <?php if (isset($_SESSION['user']) && $_SESSION['user']['type_of_user'] === 'customer'): ?>
                                     <li><a class="dropdown-item" href="/manageAccount">Manage account</a></li>
                                 <?php endif; ?>
                                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['type_of_user'] === 'administrator'): ?>
@@ -69,12 +72,13 @@ $events = $eventRepository->getAll();
                         </li>
                     <?php endif; ?>
                     <!-- Shopping Cart Icon -->
-                    <li class="nav-item" style="font-size: 1.5rem;">
-                        <a class="nav-link" href="/cart">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                    </li>
-                    <!--Todo: if shopping cart is empty koop icon else change icon with a red dot-->
+                    <?php if (!isset($_SESSION['user']) || (isset($_SESSION['user']['type_of_user']) && $_SESSION['user']['type_of_user'] === 'customer')): ?>
+                        <li class="nav-item" style="font-size: 1.5rem;">
+                            <a class="nav-link" href="/cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

@@ -145,6 +145,11 @@ class CartController
             require("../views/customer/confirm_order.php");
         } 
     }
+
+    public function personalProgram()
+    {
+        require("../views/customer/personal_program.php");
+    }
     
 }
 

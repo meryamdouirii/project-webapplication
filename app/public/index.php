@@ -110,6 +110,9 @@ switch ($url) {
     case "/confirm_order";
         $cartController->confirmOrder();
         break;
+    case "/personal_program";
+        $customerController->personalProgram();
+        break;
     default:
         http_response_code(404);
 }
