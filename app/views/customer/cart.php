@@ -102,7 +102,10 @@
                                         </span></span>
                                 </strong>
                             </p>
-                            <a href="/confirm_order" class="button w-100">Proceed to Checkout</a>
+                            <form action="/confirm_order" method="POST">
+                                <button type="submit" class="button w-100">Pay with iDEAL</button>
+                            </form>
+
                         </div>
                     </div>
                 <?php else: ?>

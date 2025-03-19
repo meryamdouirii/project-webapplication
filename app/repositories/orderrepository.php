@@ -58,8 +58,13 @@ class OrderRepository extends Repository
     public function getOrdersByUser($userId): array
     {
         try {
-            // ✅ 1. Fetch all orders placed by the user
-            $sql = "SELECT * FROM ticket_order WHERE user_id = :user_id ORDER BY order_date DESC";
+            // Fetch all orders placed by the user
+            $sql = "SELECT ticket_order.*
+            FROM ticket_order
+            INNER JOIN payment ON ticket_order.id = payment.order_id
+            WHERE ticket_order.user_id = :user_id 
+            AND payment.payment_status = 'paid'
+            ORDER BY ticket_order.order_date DESC ";
             $stmt = $this->connection->prepare($sql);
             $stmt->execute([':user_id' => $userId]);
             $ordersData = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -67,14 +72,14 @@ class OrderRepository extends Repository
             $orders = [];
 
             foreach ($ordersData as $orderData) {
-                // ✅ 2. Fetch tickets with event, session, and artist/restaurant name
+                // Fetch tickets with event, session, and artist/restaurant name
                 $ticketSql = "SELECT t.*, 
                                  s.name AS session_name, 
                                  s.location, 
                                  s.datetime_start, 
                                  s.price AS ticket_price, 
                                  e.name AS event_name,
-                                 de.name AS artist_or_restaurant_name, -- ✅ Fetch artist/restaurant name
+                                 de.name AS artist_or_restaurant_name, 
                                  de.card_image AS event_image
                           FROM ticket t
                           JOIN session s ON t.session_id = s.id
@@ -85,7 +90,7 @@ class OrderRepository extends Repository
                 $ticketStmt->execute([':order_id' => $orderData['id']]);
                 $ticketData = $ticketStmt->fetchAll(PDO::FETCH_ASSOC);
 
-                // ✅ 3. Convert ticket data into Ticket objects
+                // Convert ticket data into Ticket objects
                 $tickets = [];
                 foreach ($ticketData as $ticket) {
                     $tickets[] = new Ticket(
@@ -100,13 +105,13 @@ class OrderRepository extends Repository
                             'datetime_start' => $ticket['datetime_start'],
                             'ticket_price' => $ticket['ticket_price'],
                             'event_name' => $ticket['event_name'],
-                            'artist_or_restaurant_name' => $ticket['artist_or_restaurant_name'], // ✅ Add artist/restaurant
+                            'artist_or_restaurant_name' => $ticket['artist_or_restaurant_name'], 
                             'event_image' => $ticket['event_image']
                         ]
                     );
                 }
 
-                // ✅ 4. Convert order data into an Order object with Ticket objects
+                // Convert order data into an Order object with Ticket objects
                 $orders[] = new Order(
                     id: $orderData['id'],
                     user_id: $orderData['user_id'],
