@@ -7,10 +7,12 @@ class CartController
 
     private $sessionService;
     private $orderService;
+    private $paymentService;
     function __construct()
     {
         $this->sessionService = new \App\Services\SessionService();
         $this->orderService = new \App\Services\OrderService();
+        $this->paymentService = new \App\Services\Paymentservice();
     }
 
     public function viewCart()
@@ -118,13 +120,22 @@ class CartController
 
     
     public function placeOrderInDatabase($tickets){
-        $this->orderService->placeOrder($tickets);
-        
+        $this->orderService->placeOrder($tickets);    
     }
 
+    public function makePayment(){
+        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            $tickets = $_SESSION['cart'];
+            // Geef de tickets mee als parameter naar de payment service
+            $this->paymentService->makePayment($tickets);
+        } else {
+            echo "Cart is empty.";
+        }
+    }
 
     public function confirmOrder()
     {
+        //als er geen user is ingelogd moet je eerst inloggen
         if (!isset($_SESSION['user']) || !isset($_SESSION['user']['type_of_user'])) {
             require("../views/user/login.php");
             return;
@@ -137,30 +148,14 @@ class CartController
         }
 
         $tickets = $_SESSION['cart'];
-
         // print_r($tickets); //debugging
+
+        //als de bestelling wordt gemaakt door een klant plaats de bestelling in de database
         if ($_SESSION['user']['type_of_user'] === 'customer') {
             $this->placeOrderInDatabase($tickets);
             unset($_SESSION["cart"]);
             require("../views/customer/confirm_order.php");
         } 
-    }
-
-    public function personalProgram()
-    {
-        require("../views/customer/personal_program.php");
-    }
-
-    public function succesTest(){
-        require("../views/customer/confirm_order.php");
-    }
-
-    public function testPaymentForm(){
-        require("../views/testpayment/form.php");
-    }
-
-    public function testCheckout(){
-        require("../views/testpayment/checkout.php");
     }
     
 }
