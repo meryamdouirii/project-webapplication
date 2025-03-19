@@ -14,14 +14,12 @@ class EventController
         $this->EventService = new \App\Services\EventService();
         $this->sessionService = new \App\Services\SessionService();
     }
-
     public function danceMain(){
         $detailEvents = $this->detailEventService->getByMainEvent(1);
         $eventDance = $this->EventService->getById(1);
         $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId(1);
         require("../views/event/dance/dance-main.php");
     }
-
     public function danceDetail(){
         if (!isset($_GET['id']) || empty($_GET['id'])) {
             header("Location: /event/dance-main");
@@ -37,7 +35,6 @@ class EventController
         }
         require("../views/event/dance/dance-detail.php");
     }
-
     public function yummyMain(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
@@ -65,12 +62,10 @@ class EventController
             }
             require("../views/event/yummy!/yummy-detail.php");
     }
-
     public function danceTickets(){
         $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId(1);
         require("../views/customer/tickets.php");
     }
-
     public function yummyTickets(){
         $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId(2);
         require("../views/customer/tickets.php");

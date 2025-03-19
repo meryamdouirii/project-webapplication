@@ -16,6 +16,7 @@ class EventRepository extends Repository {
     }
 
     public function getById($id) {
+        
         $stmt = $this->connection->prepare("
             SELECT id, name, description_homepage, banner_description, picture_homepage
             FROM event 
@@ -33,7 +34,7 @@ class EventRepository extends Repository {
         $stmt->setFetchMode(PDO::FETCH_CLASS, '\\App\\Models\\Event');
         $event = $stmt->fetch();
     
-        // Debug de output
+         //Debug de output
         // echo "<pre>";
         // print_r($event);
         // echo "</pre>";

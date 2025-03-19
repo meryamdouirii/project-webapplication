@@ -5,13 +5,13 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 
-$url = parse_url($_SERVER['REQUEST_URI'])['path'];
+$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 use \App\Controllers\HomeController;
 use \App\Controllers\UserController;
 use \App\Controllers\CustomerController;
 use \App\Controllers\EventController;
-use \App\Controllers\ManageDetailEventController;
+use \App\Controllers\ManageEventsController;
 use \App\Controllers\CartController;
 
 require_once("../vendor/autoload.php");
@@ -20,7 +20,7 @@ $homeController = new HomeController();
 $userController = new UserController();
 $customerController = new CustomerController();
 $eventController = new EventController();
-$manageDetailEventController = new ManageDetailEventController();
+$manageEventsController = new ManageEventsController();
 $cartController = new CartController();
 
 
@@ -54,6 +54,18 @@ switch ($url) {
     case "/passwordResetSuccess";
         $userController->passwordResetSuccess();
         break;
+    case "/manage-events";
+    $manageEventsController->index();
+    break;
+    case "/manage-events/event";
+    $manageEventsController->manageEvent();
+        break;
+    case "/manage-events/manage-detailevents";
+    $manageEventsController->manageDetailEvent();
+        break;
+    case "/manage-events/add-detailevent";
+    $manageEventsController->addDetailEvent();
+        break;
     case "/manage-users";
         $userController->index();
         break;
@@ -66,11 +78,8 @@ switch ($url) {
     case "/manage-users/delete";
         $userController->delete();
         break;
-    case "/manageDetailEvent";
-        $manageDetailEventController->manageDetailEvent();
-        break;
     case "/manageDetailEvent/uploadImage";
-        $manageDetailEventController->uploadImage();
+    $manageEventsController->uploadImage();
         break;
     case "/manageAccount";
         $customerController->manageAccount();

@@ -12,7 +12,7 @@
                 <h5 class="fw-bold">Events</h5>
                 <ul class="list-unstyled">
                     <li><a href="#" class="text-white text-decoration-none">Dance</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Yummy</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Yummy!</a></li>
                 </ul>
             </div>
             <div class="col-md-4">

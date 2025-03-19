@@ -66,6 +66,7 @@ $events = $eventRepository->getAll();
                                 <?php endif; ?>
                                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['type_of_user'] === 'administrator'): ?>
                                     <li><a class="dropdown-item" href="/manage-users">Manage users</a></li>
+                                    <li><a class="dropdown-item" href="/manage-events">Manage content</a></li>
                                 <?php endif; ?>
                                 <li><a class="dropdown-item" href="/logout">Log Out</a></li>
                             </ul>
