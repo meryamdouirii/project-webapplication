@@ -107,11 +107,21 @@ switch ($url) {
         break;
     case "/update_cart";
         $cartController->updateCart();
+        break;
     case "/confirm_order";
         $cartController->confirmOrder();
         break;
     case "/personal_program";
         $customerController->personalProgram();
+        break;
+    case "/testPaymentForm";
+        $cartController->testPaymentForm();
+        break;
+    case "/succesTest";
+        $cartController->succesTest();
+        break;
+    case "/checkout";
+        $cartController->testCheckout();
         break;
     default:
         http_response_code(404);

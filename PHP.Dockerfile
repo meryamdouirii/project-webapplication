@@ -1,5 +1,12 @@
 FROM php:fpm
 
-RUN docker-php-ext-install pdo pdo_mysql
+# Install required system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    unzip \
+    git \
+    zip \
+    && docker-php-ext-install pdo pdo_mysql
 
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

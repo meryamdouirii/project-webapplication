@@ -20,7 +20,7 @@ services:
       - ./app:/app
     expose:
       - "9000"  # PHP-FPM listens on this port
-    command: ["php-fpm"]  # ✅ Correct command!
+    command: ["php-fpm"] 
 
   mysql:
     image: mariadb:latest

@@ -150,6 +150,18 @@ class CartController
     {
         require("../views/customer/personal_program.php");
     }
+
+    public function succesTest(){
+        require("../views/customer/confirm_order.php");
+    }
+
+    public function testPaymentForm(){
+        require("../views/testpayment/form.php");
+    }
+
+    public function testCheckout(){
+        require("../views/testpayment/checkout.php");
+    }
     
 }
 
