@@ -119,44 +119,57 @@ class CartController
     }
 
     
-    public function placeOrderInDatabase($tickets){
-        $this->orderService->placeOrder($tickets);    
-    }
+    // public function placeOrderInDatabase($tickets){
+    //     $this->orderService->placeOrder($tickets);    
+    // }
 
-    public function makePayment(){
-        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-            $tickets = $_SESSION['cart'];
-            // Geef de tickets mee als parameter naar de payment service
-            $this->paymentService->makePayment($tickets);
-        } else {
-            echo "Cart is empty.";
-        }
-    }
+    // public function makePayment(){
+    //     if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+    //         $tickets = $_SESSION['cart'];
+    //         // Geef de tickets mee als parameter naar de payment service
+    //         $this->paymentService->makePayment($tickets, $orderId, $totalAmount);
+    //     } else {
+    //         echo "Cart is empty.";
+    //     }
+    // }
 
-    public function confirmOrder()
-    {
-        //als er geen user is ingelogd moet je eerst inloggen
+    public function confirmOrder() {
+        // Indien gebruiker niet is ingelogd, naar login pagina
         if (!isset($_SESSION['user']) || !isset($_SESSION['user']['type_of_user'])) {
             require("../views/user/login.php");
             return;
         }
-
-        //prevent duplicate orders by checking if cart is empty
+        
+        // Indien de cart leeg is, toon een bevestigingspagina (of een foutmelding)
         if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
             require("../views/customer/confirm_order.php");
             return;
         }
-
-        $tickets = $_SESSION['cart'];
-        // print_r($tickets); //debugging
-
-        //als de bestelling wordt gemaakt door een klant plaats de bestelling in de database
-        if ($_SESSION['user']['type_of_user'] === 'customer') {
-            $this->placeOrderInDatabase($tickets);
-            unset($_SESSION["cart"]);
+        
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $tickets = $_SESSION['cart'];
+            if ($_SESSION['user']['type_of_user'] === 'customer') {
+                // Plaats de order in de database en verkrijg het order-ID
+                $orderId = $this->orderService->placeOrder($tickets);
+                
+                // Bereken totaalbedrag in centen (aantal * prijs in centen)
+                $totalAmount = 0;
+                foreach ($tickets as $ticket) {
+                    $totalAmount += intval($ticket['quantity']) * intval(floatval($ticket['event_price']) * 100);
+                }
+                
+                // Maak de pending betaling aan en redirect naar Stripe
+                $this->paymentService->makePayment($tickets, $orderId, $totalAmount);
+                
+                // Maak de winkelwagen leeg (om dubbele orders te voorkomen)
+                unset($_SESSION["cart"]);
+            }
+        } else {
+            // Als het geen POST-request is, tonen we de confirm order pagina (met de "Pay with iDEAL" knop)
             require("../views/customer/confirm_order.php");
-        } 
+        }
     }
+    
     
 }
 

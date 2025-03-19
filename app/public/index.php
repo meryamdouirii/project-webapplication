@@ -13,6 +13,8 @@ use \App\Controllers\CustomerController;
 use \App\Controllers\EventController;
 use \App\Controllers\ManageDetailEventController;
 use \App\Controllers\CartController;
+use \App\Controllers\PaymentController;
+
 
 require_once("../vendor/autoload.php");
 
@@ -22,6 +24,7 @@ $customerController = new CustomerController();
 $eventController = new EventController();
 $manageDetailEventController = new ManageDetailEventController();
 $cartController = new CartController();
+$paymentController = new PaymentController();
 
 
 session_start();
@@ -114,8 +117,8 @@ switch ($url) {
     case "/personal_program";
         $customerController->personalProgram();
         break;
-    case "/make_payment";
-        $cartController->makePayment();
+    case "/succesTest":
+        $paymentController->success();
         break;
     default:
         http_response_code(404);

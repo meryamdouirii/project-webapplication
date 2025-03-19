@@ -59,7 +59,12 @@ class OrderRepository extends Repository
     {
         try {
             // Fetch all orders placed by the user
-            $sql = "SELECT * FROM ticket_order WHERE user_id = :user_id ORDER BY order_date DESC";
+            $sql = "SELECT ticket_order.*
+            FROM ticket_order
+            INNER JOIN payment ON ticket_order.id = payment.order_id
+            WHERE ticket_order.user_id = :user_id 
+            AND payment.payment_status = 'paid'
+            ORDER BY ticket_order.order_date DESC ";
             $stmt = $this->connection->prepare($sql);
             $stmt->execute([':user_id' => $userId]);
             $ordersData = $stmt->fetchAll(PDO::FETCH_ASSOC);

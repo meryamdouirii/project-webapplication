@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 16 mrt 2025 om 20:37
+-- Gegenereerd op: 19 mrt 2025 om 20:01
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.27
 
@@ -131,6 +131,30 @@ INSERT INTO `homepage` (`id`, `name`, `banner_image`, `banner_description`) VALU
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(255) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `payment_status` enum('pending','paid','failed') DEFAULT 'pending',
+  `payment_id` varchar(255) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `payment`
+--
+
+INSERT INTO `payment` (`id`, `order_id`, `payment_status`, `payment_id`, `amount`, `created_at`) VALUES
+(15, 69, 'paid', 'cs_test_a1Wd4h7LYl7ukBQgYvOSRgDkWB05lVlE7BunMcasJYSj4d80DdcFc3bFVj', 7500.00, '2025-03-19 17:52:49'),
+(16, 70, 'pending', 'cs_test_b1vbpTWq4E8P2W7av9GYNuTrfrxHLd2enW0AHEi9YuVCubdP7kOTXZV8qF', 13500.00, '2025-03-19 18:42:36'),
+(17, 71, 'paid', 'cs_test_a16LTNilglXUftGDzwXx7sda5tQHOC44JkLh4Q0vfni7jhurnGhm9bMVGq', 4500.00, '2025-03-19 20:01:07');
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `session`
 --
 
@@ -247,11 +271,10 @@ CREATE TABLE `ticket` (
 --
 
 INSERT INTO `ticket` (`id`, `order_id`, `session_id`, `bar_code`, `user_id`) VALUES
-(1, 4, 3, 68998, 1),
-(2, 5, 3, 69222, 1),
-(3, 5, 20, 61621, 1),
-(4, 8, 1, 58065, 1),
-(5, 8, 1, 23226, 1);
+(68, 69, 1, 81274, 1),
+(69, 70, 3, 76726, 1),
+(70, 70, 1, 64792, 1),
+(71, 71, 20, 30306, 1);
 
 -- --------------------------------------------------------
 
@@ -270,10 +293,9 @@ CREATE TABLE `ticket_order` (
 --
 
 INSERT INTO `ticket_order` (`id`, `user_id`, `order_date`) VALUES
-(4, 1, '2025-03-16 20:23:45'),
-(5, 1, '2025-03-16 20:26:00'),
-(6, 1, '2025-03-16 20:30:06'),
-(8, 1, '2025-03-16 20:31:20');
+(69, 1, '2025-03-19 17:52:43'),
+(70, 1, '2025-03-19 18:42:33'),
+(71, 1, '2025-03-19 20:01:05');
 
 -- --------------------------------------------------------
 
@@ -299,7 +321,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `type`, `first_name`, `last_name`, `phone_number`, `email_address`, `password_hash`, `salt`, `reset_token_hash`, `reset_token_expires_at`) VALUES
-(1, 'customer', 'Meryam', 'Douiri', '0643209996', 'Douirimeryam14@gmail.com', '$2y$12$Ur95y1Tws68/beiuhQTeVOGCNTwZ3saGD1nWgKhbnpynUZ4zR407u', 'eDyW6lt0dAA/FoAZTIMcUQ==', NULL, NULL),
+(1, 'customer', 'Meryam', 'Douiri', '0643209996', 'Douirimeryam14@gmail.com', '$2y$12$wq97BWrTh4Y03rymy99tge1VZqENcqYcEhbP9bD0xDhbp67UR0R3W', 'lkYXwmY0gvZXbk5AGD7kNg==', '250c6b04c99c3af94edc41b1376c80c0faa7d2638ed511ad20503fb04831b43c', '2025-03-18 22:04:56'),
 (2, 'administrator', 'Romy', 'Groen', NULL, 'groenromy0@gmail.com', '$2y$12$w6Vh.v5QvPOglb2HAmDkXOvWz2/oyzCui4fc8jxbWW6LKswt4V20G', 'el6XUJnPebqT4oQPrewI3A==', NULL, NULL),
 (3, 'employee', 'Fiona', 'Shrek', NULL, '701224@student.inholland.nl', '$2y$12$3S3MFqiiCrSfpMp9pCmBWeJguq3EhrAnwlTtr24c3BsU8f/Z4kAdm', 'xMZpfw1LiC+St2cGSu1i7g==', NULL, NULL),
 (5, 'customer', 'Mark', 'Haan', '06 67291092', 'markdeHaan@gmail.com', '$2y$12$ULjXzvGJVngxlOU5Pe0qpOOhCn/D8AbTsVnM92RcDKUkOO.aSIRAm', 'vu3IWR6CUU83V37Zm9vImw==', NULL, NULL),
@@ -335,6 +357,14 @@ ALTER TABLE `event`
 --
 ALTER TABLE `homepage`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexen voor tabel `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `payment_id` (`payment_id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Indexen voor tabel `session`
@@ -398,6 +428,12 @@ ALTER TABLE `detail_event_card_tag`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT voor een tabel `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
 -- AUTO_INCREMENT voor een tabel `session`
 --
 ALTER TABLE `session`
@@ -419,13 +455,13 @@ ALTER TABLE `song`
 -- AUTO_INCREMENT voor een tabel `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT voor een tabel `ticket_order`
 --
 ALTER TABLE `ticket_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT voor een tabel `user`
@@ -442,6 +478,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `detail_event`
   ADD CONSTRAINT `detail_event_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `payment`
+--
+ALTER TABLE `payment`
+  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `ticket_order` (`id`) ON DELETE CASCADE;
 
 --
 -- Beperkingen voor tabel `session`
