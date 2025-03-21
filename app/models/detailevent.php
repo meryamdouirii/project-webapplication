@@ -4,7 +4,7 @@ namespace App\Models;
 class DetailEvent
 {
 
-    private int $id;
+    private ?int $id;
     private int $event_id;
     private ?string $banner_description;
     private ?string $banner_image;
@@ -22,7 +22,7 @@ class DetailEvent
     private ?array $songs = [];
 
     public function __construct(
-        int $id,
+        ?int $id,
         int $event_id,
         ?string $banner_description,
         ?string $banner_image,
@@ -52,6 +52,7 @@ class DetailEvent
         $this->sessions = $sessions;
         $this->songs = $songs;
     }
+    
 
     public function getSongs(): array
     {

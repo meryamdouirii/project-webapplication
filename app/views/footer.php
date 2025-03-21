@@ -1,3 +1,4 @@
+</body>
 <footer class="footer py-4">
     <div class="container">
         <div class="row text-center">

@@ -16,7 +16,7 @@ $events = $eventRepository->getAll();
     <link rel="icon" type="image/png" sizes="32x32" href="images-logos/logo.png">
     <link href="/../stylesheets/styleDetailPage.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 </head>
 
 <body>
