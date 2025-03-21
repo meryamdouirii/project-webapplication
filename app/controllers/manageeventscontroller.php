@@ -67,7 +67,7 @@ class ManageEventsController
             $image_description_2 = $this->extractImagePath($_POST['image_description_2']) ?? null;
             $card_image = $this->extractImagePath($_POST['card_image']) ?? null;
             $card_description = $this->purifier->purify($_POST['card_description']) ?? null;
-            $amount_of_stars = intval($_POST['amount_of_stars']) ?? 0;
+            $amount_of_stars = isset($_POST['amount_of_stars']) ? intval($_POST['amount_of_stars']) : 0;
             $tags = json_decode($_POST['tags'], true) ?? null;
             $sessions = []; 
             $songs = []; 
