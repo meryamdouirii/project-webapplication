@@ -55,6 +55,7 @@ class ManageEventsController
             }
             $main_event_id = $_GET['main_event_id']; 
             $picked_event = $this->eventService->getById($main_event_id);
+            require("../views/management/events/add-detailevent.php");
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id=null;
@@ -92,8 +93,9 @@ class ManageEventsController
         
             // Proceed with calling your service method
             $this->detailEventService->add($detailEvent);
+            $this->index();
         }
-        require("../views/management/events/add-detailevent.php");
+
     }
     function extractImagePath($html) {
         // Regular expression to match the src URL
