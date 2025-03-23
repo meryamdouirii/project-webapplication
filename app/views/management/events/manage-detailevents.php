@@ -18,7 +18,8 @@ use App\Services\UploadService;?>
                 <?php foreach ($detailEvents as $detail): ?>
                     <div class="col-md-4 mb-4">
                         <a href="/manage-events/edit-detailevent?detailevent_id=<?= urlencode($detail->getId()); ?>" class="card h-100 d-flex flex-column">
-                            <img src="/images-logos/<?= htmlspecialchars($detail->getCardImage() ?? 'default.jpg'); ?>"
+
+                            <img src="<?= htmlspecialchars($detail->getCardImage() ?? '/images-logos/default.jpg'); ?>"
                                 alt="<?= htmlspecialchars($detail->getName()); ?>" class="card-img-top img-fluid">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><?= htmlspecialchars($detail->getName()); ?></h5>
