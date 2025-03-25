@@ -13,7 +13,9 @@ class ManageEventsController
     private $purifier;
     function __construct()
     {
-        $this->purifier = new HTMLPurifier(HTMLPurifier_Config::createDefault());
+        $config = HTMLPurifier_Config::createDefault();
+        $config->set('Cache.DefinitionImpl', null);
+        $this->purifier = new HTMLPurifier($config);
         $this->uploadService = new \App\Services\UploadService();
         $this->eventService = new \App\Services\EventService();
         $this->detailEventService = new \App\Services\DetailEventService();
