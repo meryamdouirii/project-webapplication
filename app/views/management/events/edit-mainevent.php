@@ -5,7 +5,7 @@
 use App\Services\UploadService;?>
 <main class="container" style="margin-top:5%; margin-bottom:5%;">     
     <div class="d-flex justify-content-start mb-2">
-        <a href="/manage-events/manage-detailevents?event_id=<?=htmlspecialchars($picked_event->id)?>" class="button">Go Back</a>
+        <a href="/manage-events/event?event_id=<?=htmlspecialchars($picked_event->id)?>" class="button">Go Back</a>
     </div>
     <div class="d-flex justify-content-center align-items-center">  
         <div class="card p-4 my-5" style="width: 60%;">
