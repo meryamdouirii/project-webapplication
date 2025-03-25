@@ -10,4 +10,8 @@ class EventService {
         $repository = new \App\Repositories\EventRepository();
         return $repository->getById($id);
     }
+    public function update($event){
+        $repository = new \App\Repositories\EventRepository();
+        return $repository->update($event);
+    }
 }

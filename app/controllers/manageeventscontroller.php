@@ -49,6 +49,38 @@ class ManageEventsController
         }
         require("../views/management/events/manage-detailevents.php");
     }
+    public function editMainEvent(){
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if (!isset($_GET['event_id']) || empty($_GET['event_id'])) {
+                $this->index();
+                exit;
+            }
+            $event_id = $_GET['event_id']; 
+            $picked_event = $this->eventService->getById($event_id);
+            require("../views/management/events/edit-mainevent.php");
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){  
+            $id = intval($_POST['event_id']); 
+            $name = $_POST['name'];
+            $banner_description = $this->purifier->purify($_POST['banner_description']) ?? null;
+            $description = $this->purifier->purify($_POST['description_homepage']) ?? null;
+            $image = $this->extractImagePath($_POST['banner_image']) ?? null;
+
+            $mainEvent = new \App\Models\Event();
+            $mainEvent->id = $id;
+            $mainEvent->name = $name;
+            $mainEvent->banner_description = $banner_description;
+            $mainEvent->description_homepage = $description;
+            $mainEvent->picture_homepage = $image;
+
+            if ($this->eventService->update($mainEvent)) {
+                $_SESSION['success_message'] = "Main event has been updated successfully!";
+            } else {
+                $_SESSION['error_message'] = "Failed to update Main event.";
+            }
+            $this->index();
+        }
+    }
     public function addDetailEvent(){
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (!isset($_GET['main_event_id']) || empty($_GET['main_event_id'])) {

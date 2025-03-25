@@ -78,7 +78,7 @@ $cardImageUrl = getImageUrl($detail_event->getCardImage());?>
 </main>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Text areas that allow full text editing
+        
         const textareas = ["banner_description", "description", "card_description"];
 
         textareas.forEach(id => {

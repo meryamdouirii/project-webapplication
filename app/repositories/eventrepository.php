@@ -42,6 +42,22 @@ class EventRepository extends Repository {
     
         return $event;
     }
+    public function update($event) {
+        $stmt = $this->connection->prepare("
+            UPDATE event 
+            SET name = :name, 
+                description_homepage = :description_homepage, 
+                banner_description = :banner_description, 
+                picture_homepage = :picture_homepage 
+            WHERE id = :id
+        ");
     
-
+        $stmt->bindValue(':id', $event->id, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $event->name, PDO::PARAM_STR);
+        $stmt->bindValue(':description_homepage', $event->description_homepage, PDO::PARAM_STR);
+        $stmt->bindValue(':banner_description', $event->banner_description, PDO::PARAM_STR);
+        $stmt->bindValue(':picture_homepage', $event->picture_homepage, PDO::PARAM_STR);
+    
+        return $stmt->execute();
+    }
 }
