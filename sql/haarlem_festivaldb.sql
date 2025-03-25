@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 25 mrt 2025 om 12:44
+-- Gegenereerd op: 25 mrt 2025 om 14:45
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.28
 
@@ -52,7 +52,7 @@ INSERT INTO `detail_event` (`id`, `event_id`, `banner_description`, `banner_imag
 (4, 1, 'One of the world-class DJs performing at Haarlem Festival is Armin van Buuren!', 'default.jpg', 'Armin van Buuren', 'NULL', 'default.jpg', NULL, 'default.jpg', 'Armin is known for his meticulous work ethic and dedication to his fans. Despite his success, he remains approachable and enjoys connecting with his global audience.  ', NULL),
 (5, 1, 'One of the world-class DJs performing at Haarlem Festival is Afrojack!', 'default.jpg', 'Afrojack', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick van de Wall): Afrojack is not only a DJ but also an entrepreneur, owning his own label, Wall Recordings.  ', NULL),
 (6, 1, 'One of the world-class DJs performing at Haarlem Festival is Nicky Romero!', 'default.jpg', 'Nicky Romero', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick Rotteveel): Nicky is known for his collaborative and friendly nature in the music industry.   ', NULL),
-(7, 2, 'Visit US!!!!!', NULL, 'Ratatouille', 'Nestled along the scenic Spaarne River at Spaarne 96, 2011 CL Haarlem, Ratatouille Food & Wine offers an exceptional dining experience that harmoniously blends modern culinary techniques with a deep appreciation for fresh, local ingredients. Under the guidance of chef Jozua Jaring, this Michelin-starred restaurant presents meticulously crafted dishes that surprise and delight with their innovative presentations and flavor combinations.\r\nWith its commitment to culinary excellence and warm hospitality, Ratatouille Food & Wine has become a must-visit destination for food enthusiasts in Haarlem. Whether you\'re a local resident or a visitor, the restaurant offers a memorable dining experience that highlights the best of modern cuisine in a welcoming and stylish setting.', NULL, NULL, NULL, 'Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.', 4);
+(7, 2, '<p><strong>Visit US!!!!!</strong></p>', '/images-logos/uploads/1742910583_c3108c2d430d443fa32af7798be03899.webp', 'Ratatouille', '<p>Nestled along the scenic Spaarne River at Spaarne 96, 2011 CL Haarlem, Ratatouille Food &amp; Wine offers an exceptional dining experience that harmoniously blends modern culinary techniques with a deep appreciation for fresh, local ingredients. Under the guidance of chef Jozua Jaring, this Michelin-starred restaurant presents meticulously crafted dishes that surprise and delight with their innovative presentations and flavor combinations. With its commitment to culinary excellence and warm hospitality, Ratatouille Food &amp; Wine has become a must-visit destination for food enthusiasts in Haarlem. Whether you\'re a local resident or a visitor, the restaurant offers a memorable dining experience that highlights the best of modern cuisine in a welcoming and stylish setting.</p>', NULL, NULL, NULL, '<p>Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.</p>', 4);
 
 -- --------------------------------------------------------
 
@@ -82,9 +82,9 @@ INSERT INTO `detail_event_card_tag` (`id`, `detail_event_id`, `tag`) VALUES
 (9, 5, 'House'),
 (10, 6, 'House'),
 (11, 6, 'Electro'),
-(12, 7, 'French'),
-(13, 7, 'European'),
-(14, 7, 'Fish & Seafood');
+(21, 7, 'French'),
+(22, 7, 'European'),
+(23, 7, 'Fish & Seafood');
 
 -- --------------------------------------------------------
 
@@ -105,8 +105,8 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id`, `name`, `description_homepage`, `banner_description`, `picture_homepage`) VALUES
-(1, 'Dance', 'Top DJs make an appearance for unforgettable nights.', 'Top DJ\'s performing in DANCE festival!', 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?'),
-(2, 'Yummy!', 'A culinary journey through Haarlem\'s finest dining', 'Visit the best restaurants in Haarlem!', 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500');
+(1, 'Dance', 'Top DJs make an appearance for unforgettable nights.', 'Top DJ\'s performing in DANCE festival!', '/images-logos/uploads/photo-1516450360452-9312f5e86fc7.jfif'),
+(2, 'Yummy!', '<p>A culinary journey through Haarlem\'s finest dining</p>', '<p>Visit the best restaurants in Haarlem!</p>', '/images-logos/uploads/1742913778_photo-1414235077428-338989a2e8c0.jfif');
 
 -- --------------------------------------------------------
 
@@ -425,7 +425,7 @@ ALTER TABLE `detail_event`
 -- AUTO_INCREMENT voor een tabel `detail_event_card_tag`
 --
 ALTER TABLE `detail_event_card_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT voor een tabel `payment`
