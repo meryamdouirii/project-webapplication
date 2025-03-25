@@ -151,6 +151,7 @@ class ManageEventsController
             } else {
                 $_SESSION['error_message'] = "Failed to update Detail event.";
             }
+            $this->index();
         }
     }
     function deleteDetailEvent(){
@@ -160,11 +161,15 @@ class ManageEventsController
                 exit;
             }
             $detailevent_id = $_GET['detailevent_id']; 
-            if ($this->detailEventService->delete($detailevent_id)) {
+            try {
+                $this->detailEventService->delete($detailevent_id);
                 $_SESSION['success_message'] = "Detail event has been deleted successfully!";
-            } else {
-                $_SESSION['error_message'] = "You cannot delete this event.";
+                $this->index();
+            } catch (\Exception $e) {
+                $_SESSION['error_message'] = "You cannot delete this event, because there are still sessions linked to it.";
+                $this->index();
             }
+              
             
         }
         $this->index();
