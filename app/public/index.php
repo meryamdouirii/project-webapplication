@@ -69,6 +69,15 @@ switch ($url) {
     case "/manage-events/add-detailevent";
     $manageEventsController->addDetailEvent();
         break;
+    case "/manage-events/edit-detailevent";
+    $manageEventsController->editDetailEvent();
+        break;
+    case "/manage-events/delete-detailevent";
+    $manageEventsController->deleteDetailEvent();
+        break; 
+    case "/manage-events/edit-mainevent";
+    $manageEventsController->editMainEvent();
+        break; 
     case "/manage-users";
         $userController->index();
         break;

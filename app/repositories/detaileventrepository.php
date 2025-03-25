@@ -218,20 +218,90 @@ class DetailEventRepository extends Repository
         }
         return $results;
     }
-    public function updateContent(string $content, string $type, int $eventId): bool
+    public function delete(int $detailEventId): bool
     {
-        $validColumns = ['banner_image', 'banner_description', 'name', 'description', 'image_description_1', 'image_description_2', 'card_image', 'card_description', 'amount_of_stars'];
-        if (!in_array($type, $validColumns)) {
-            throw new InvalidArgumentException("Invalid column type: $type");
+        try {
+            $this->connection->beginTransaction();
+
+            // Delete the tags related to the detail event
+            $deleteTagSql = "DELETE FROM detail_event_card_tag WHERE detail_event_id = :detail_event_id";
+            $deleteTagStmt = $this->connection->prepare($deleteTagSql);
+            $deleteTagStmt->execute([':detail_event_id' => $detailEventId]);
+
+            // Now delete the detail event record
+            $deleteSql = "DELETE FROM detail_event WHERE id = :id";
+            $deleteStmt = $this->connection->prepare($deleteSql);
+            $deleteStmt->execute([':id' => $detailEventId]);
+
+            $this->connection->commit();
+            return true;
+
+        } catch (Exception $e) {
+            $this->connection->rollBack();
+            error_log("Error deleting DetailEvent: " . $e->getMessage());
+            return false;
         }
-        $sql = "UPDATE detail_event SET $type = :content WHERE id = :id";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute([
-            ':content' => $content,
-            ':id' => $eventId
-        ]);
-        return true;
     }
+    public function update(DetailEvent $detailEvent): bool
+    {
+        try {
+            $this->connection->beginTransaction();
+
+            $sql = 'UPDATE detail_event SET 
+                    event_id = :event_id, 
+                    banner_description = :banner_description, 
+                    banner_image = :banner_image, 
+                    name = :name, 
+                    description = :description, 
+                    image_description_1 = :image_description_1, 
+                    image_description_2 = :image_description_2, 
+                    card_image = :card_image, 
+                    card_description = :card_description, 
+                    amount_of_stars = :amount_of_stars
+                    WHERE id = :id';
+
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([
+                ':id' => $detailEvent->getId(),
+                ':event_id' => $detailEvent->getEventId(),
+                ':banner_description' => $detailEvent->getBannerDescription(),
+                ':banner_image' => $detailEvent->getBannerImage(),
+                ':name' => $detailEvent->getName(),
+                ':description' => $detailEvent->getDescription(),
+                ':image_description_1' => $detailEvent->getImageDescription1(),
+                ':image_description_2' => $detailEvent->getImageDescription2(),
+                ':card_image' => $detailEvent->getCardImage(),
+                ':card_description' => $detailEvent->getCardDescription(),
+                ':amount_of_stars' => $detailEvent->getAmountOfStars(),
+            ]);
+
+            // Update tags by first deleting old ones
+            $deleteTagSql = "DELETE FROM detail_event_card_tag WHERE detail_event_id = :detail_event_id";
+            $deleteTagStmt = $this->connection->prepare($deleteTagSql);
+            $deleteTagStmt->execute([':detail_event_id' => $detailEvent->getId()]);
+
+            // Insert new tags
+            if (!empty($detailEvent->getTags())) {
+                $tagSql = "INSERT INTO detail_event_card_tag (detail_event_id, tag) VALUES (:detail_event_id, :tag)";
+                $tagStmt = $this->connection->prepare($tagSql);
+                foreach ($detailEvent->getTags() as $tag) {
+                    $tagStmt->execute([
+                        ':detail_event_id' => $detailEvent->getId(),
+                        ':tag' => $tag
+                    ]);
+                }
+            }
+
+            $this->connection->commit();
+            return true;
+
+        } catch (Exception $e) {
+            $this->connection->rollBack();
+            error_log("Error updating DetailEvent: " . $e->getMessage());
+            return false;
+        }
+    }
+
 
 }
 ?>

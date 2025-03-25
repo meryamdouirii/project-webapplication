@@ -9,7 +9,7 @@
         <div class="container mt-5">	
             <div class="row justify-content-center">
                     <div class="col-md-3">
-                        <a href="#" class="card">
+                        <a href="/manage-events/edit-mainevent?event_id=<?= urlencode($picked_event->id); ?>" class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Main page</h5>
                             </div>

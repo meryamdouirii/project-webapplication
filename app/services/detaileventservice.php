@@ -33,9 +33,14 @@
             $repository = new \App\Repositories\DetailEventRepository();
             return $repository->getAll();
         }
-        public function updateContent(string $content, string $type, int $eventId): bool
+        public function update(DetailEvent $detailEvent): bool
         {
             $repository = new \App\Repositories\DetailEventRepository();
-            return $repository->updateContent($content, $type, $eventId);
+            return $repository->update($detailEvent);
+        }
+        public function delete(int $id): bool
+        {
+            $repository = new \App\Repositories\DetailEventRepository();
+            return $repository->delete($id);
         }
     }
