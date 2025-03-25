@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 19 mrt 2025 om 20:01
+-- Gegenereerd op: 25 mrt 2025 om 12:44
 -- Serverversie: 11.7.2-MariaDB-ubu2404
--- PHP-versie: 8.2.27
+-- PHP-versie: 8.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -489,7 +489,8 @@ ALTER TABLE `payment`
 -- Beperkingen voor tabel `session`
 --
 ALTER TABLE `session`
-  ADD CONSTRAINT `fk_event` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`);
+  ADD CONSTRAINT `fk_event` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`),
+  ADD CONSTRAINT `session_ibfk_1` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
 
 --
 -- Beperkingen voor tabel `session_artists`
@@ -503,7 +504,8 @@ ALTER TABLE `session_artists`
 --
 ALTER TABLE `ticket`
   ADD CONSTRAINT `fk_ticket_order` FOREIGN KEY (`order_id`) REFERENCES `ticket_order` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_ticket_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_ticket_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`);
 
 --
 -- Beperkingen voor tabel `ticket_order`
