@@ -186,6 +186,13 @@ class ManageEventsController
             $this->index();
         }
     }
+    function manageSessions(){
+        require("../views/management/events/manage-sessions.php");
+    }
+    function editSessions(){
+        $detailevent_id = $_GET['event_id'];
+        require("../views/management/events/edit-sessions.php");
+    }
     function deleteDetailEvent(){
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (!isset($_GET['detailevent_id']) || empty($_GET['detailevent_id'])) {

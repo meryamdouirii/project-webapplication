@@ -40,7 +40,7 @@ class SessionService
 
     public function getSessionsGroupedByDateAndEventId(int $eventId): array
     {
-        $sessions = $this->getSessionsByEventId($eventId); //dance event
+        $sessions = $this->getSessionsByEventId($eventId); 
         $groupedSessions = [];
 
         foreach ($sessions as $session) {

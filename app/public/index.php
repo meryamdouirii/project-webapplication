@@ -77,7 +77,13 @@ switch ($url) {
         break; 
     case "/manage-events/edit-mainevent";
     $manageEventsController->editMainEvent();
-        break; 
+        break;
+    case "/manage-events/manage-sessions";
+    $manageEventsController->manageSessions();
+        break;
+    case "/manage-events/edit-sessions"; 
+    $manageEventsController->editSessions();
+        break;
     case "/manage-users";
         $userController->index();
         break;

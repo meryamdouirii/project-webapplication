@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 25 mrt 2025 om 14:45
+-- Gegenereerd op: 02 apr 2025 om 09:10
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.28
 
@@ -196,11 +196,11 @@ INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location
 (23, 7, 'Ratatouille Ticket 27 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 19:00:00', 2),
 (24, 7, 'Ratatouille Ticket 26 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 19:00:00', 2),
 (25, 7, 'Ratatouille Ticket 25 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 19:00:00', 2),
-(26, 7, 'Ratatouille Ticket 24 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 19:00:00', NULL),
-(27, 7, 'Ratatouille Ticket 24 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00', NULL),
-(28, 7, 'Ratatouille Ticket 25 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00', NULL),
-(29, 7, 'Ratatouille Ticket 26 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00', NULL),
-(30, 7, 'Ratatouille Ticket 27 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00', NULL);
+(26, 7, 'Ratatouille Ticket 24 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 19:00:00', 2),
+(27, 7, 'Ratatouille Ticket 24 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00', 2),
+(28, 7, 'Ratatouille Ticket 25 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00', 2),
+(29, 7, 'Ratatouille Ticket 26 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00', 2),
+(30, 7, 'Ratatouille Ticket 27 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00', 2);
 
 -- --------------------------------------------------------
 
