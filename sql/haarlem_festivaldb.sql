@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 02 apr 2025 om 15:06
+-- Gegenereerd op: 02 apr 2025 om 17:48
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.28
 
@@ -167,39 +167,40 @@ CREATE TABLE `session` (
   `ticket_limit` int(11) NOT NULL,
   `duration_minutes` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `datetime_start` datetime NOT NULL
+  `datetime_start` datetime NOT NULL,
+  `sold_tickets` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `session`
 --
 
-INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location`, `ticket_limit`, `duration_minutes`, `price`, `datetime_start`) VALUES
-(1, 6, 'back2back', NULL, 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00'),
-(3, 3, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-25 22:00:00'),
-(4, 1, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-25 23:00:00'),
-(5, 4, 'club', NULL, 'XO the Club', 200, 90, 60.00, '2025-07-25 22:00:00'),
-(6, 2, 'club', NULL, 'Puncher comedy club', 200, 90, 60.00, '2025-07-25 22:00:00'),
-(7, 1, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00'),
-(10, 5, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-26 22:00:00'),
-(11, 3, 'club', NULL, 'Lichtfabriek', 1500, 240, 75.00, '2025-07-26 21:00:00'),
-(12, 6, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-26 23:00:00'),
-(13, 5, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00'),
-(16, 4, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-27 19:00:00'),
-(17, 1, 'club', NULL, 'XO the Club', 1500, 90, 90.00, '2025-07-27 21:00:00'),
-(18, 2, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00'),
-(19, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 17:00:00'),
-(20, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 17:00:00'),
-(21, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 17:00:00'),
-(22, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 17:00:00'),
-(23, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 19:00:00'),
-(24, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 19:00:00'),
-(25, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 19:00:00'),
-(26, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 19:00:00'),
-(27, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00'),
-(28, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00'),
-(29, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00'),
-(30, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00');
+INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location`, `ticket_limit`, `duration_minutes`, `price`, `datetime_start`, `sold_tickets`) VALUES
+(1, 6, 'back2back', NULL, 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00', 0),
+(3, 3, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-25 22:00:00', 0),
+(4, 1, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-25 23:00:00', 0),
+(5, 4, 'club', NULL, 'XO the Club', 200, 90, 60.00, '2025-07-25 22:00:00', 0),
+(6, 2, 'club', NULL, 'Puncher comedy club', 200, 90, 60.00, '2025-07-25 22:00:00', 0),
+(7, 1, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 0),
+(10, 5, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-26 22:00:00', 0),
+(11, 3, 'club', NULL, 'Lichtfabriek', 1500, 240, 75.00, '2025-07-26 21:00:00', 0),
+(12, 6, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-26 23:00:00', 0),
+(13, 5, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 0),
+(16, 4, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-27 19:00:00', 0),
+(17, 1, 'club', NULL, 'XO the Club', 1500, 90, 90.00, '2025-07-27 21:00:00', 0),
+(18, 2, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00', 0),
+(19, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 17:00:00', 0),
+(20, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 17:00:00', 0),
+(21, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 17:00:00', 0),
+(22, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 17:00:00', 0),
+(23, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 19:00:00', 0),
+(24, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 19:00:00', 0),
+(25, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 19:00:00', 0),
+(26, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 19:00:00', 0),
+(27, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00', 0),
+(28, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00', 0),
+(29, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00', 0),
+(30, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00', 0);
 
 -- --------------------------------------------------------
 
