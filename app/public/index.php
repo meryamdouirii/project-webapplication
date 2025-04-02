@@ -81,6 +81,9 @@ switch ($url) {
     case "/manage-sessions";
     $manageEventsController->manageSessions();
         break;
+    case "/manage-sessions/delete-session";
+    $manageEventsController->deleteSession();
+    break;
     case "/manage-sessions/add-session";
     $manageEventsController->addSession();
         break;

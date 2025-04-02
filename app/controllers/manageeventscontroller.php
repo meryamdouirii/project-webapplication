@@ -199,6 +199,7 @@ class ManageEventsController
         }
         require("../views/management/events/manage-sessions.php");
     }
+
     function editSession(){
         $session_id = $_GET['session_id'] ?? null;
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -301,6 +302,18 @@ class ManageEventsController
             
         }
 
+    }
+    function deleteSession(){
+        if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+            if(!isset($_GET['session_id']) || empty($_GET['session_id'])){
+                $this->index();
+                exit;
+            }
+            $session_id = $_GET['session_id'];
+            try {
+                $this->sessionService->delete($session_id);
+            }
+        }
     }
     function deleteDetailEvent(){
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
