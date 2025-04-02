@@ -312,7 +312,13 @@ class ManageEventsController
             $session_id = $_GET['session_id'];
             try {
                 $this->sessionService->delete($session_id);
+                $_SESSION['success_message'] = "Session has been deleted successfully!";
+                $this->index();
+            } catch (\Exception $e) {
+                $_SESSION['error_message'] = "You cannot delete this session, because there are already sold tickets.";
+                $this->index();
             }
+            
         }
     }
     function deleteDetailEvent(){
