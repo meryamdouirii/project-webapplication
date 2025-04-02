@@ -43,7 +43,7 @@ $events = $eventRepository->getAll();
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/dance/tickets">Dance tickets</a></li>
-                            <li><a class="dropdown-item" href="/yummy/tickets">Yummy yickets</a></li>
+                            <li><a class="dropdown-item" href="/yummy/tickets">Yummy tickets</a></li>
                         </ul>
                     </li>
                 </ul>

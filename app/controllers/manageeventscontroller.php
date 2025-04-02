@@ -4,13 +4,14 @@ namespace App\controllers;
 
 use HTMLPurifier;
 use HTMLPurifier_Config;
-
+use App\Models\Session;
 class ManageEventsController 
 {
     private $uploadService;
     private $detailEventService;
     private $eventService;
     private $purifier;
+    private $sessionService;
     function __construct()
     {
         $config = HTMLPurifier_Config::createDefault();
@@ -19,6 +20,7 @@ class ManageEventsController
         $this->uploadService = new \App\Services\UploadService();
         $this->eventService = new \App\Services\EventService();
         $this->detailEventService = new \App\Services\DetailEventService();
+        $this->sessionService = new \App\Services\SessionService();
     }
     public function index(){
         require("../views/management/events/index.php");
@@ -160,7 +162,6 @@ class ManageEventsController
             $sessions = []; 
             $songs = []; 
         
-            // Now create the object using the constructor
             $detailEvent = new \App\Models\DetailEvent( 
                 $id,
                 $event_id, 
@@ -187,11 +188,119 @@ class ManageEventsController
         }
     }
     function manageSessions(){
+        $detailevent_id = $_GET['detailevent_id'] ?? null;
+        if ($detailevent_id) {
+            $detail_event = $this->detailEventService->getById($detailevent_id);
+            $sessions = $this->sessionService->getSessionsByDetailEventId($detailevent_id);
+        } else {
+            $_SESSION['error_message'] = "No detail event ID provided.";
+            $this->index();
+            exit;
+        }
         require("../views/management/events/manage-sessions.php");
     }
-    function editSessions(){
-        $detailevent_id = $_GET['event_id'];
-        require("../views/management/events/edit-sessions.php");
+    function editSession(){
+        $session_id = $_GET['session_id'] ?? null;
+        if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+            if ($session_id) {
+                $session = $this->sessionService->getById($session_id);
+                require("../views/management/events/edit-session.php");
+            } else {
+                $_SESSION['error_message'] = "No session ID provided.";
+                $this->index();
+                exit;
+            }
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $session_id = isset($_POST['session_id']) ? (int) $_POST['session_id'] : null;
+            $detailevent_id = isset($_POST['detailevent_id']) ? (int) $_POST['detailevent_id'] : null;
+            $name = isset($_POST['name']) ? htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8') : '';
+            $description = isset($_POST['description']) ? htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8') : null;
+            $location = isset($_POST['location']) ? htmlspecialchars($_POST['location'], ENT_QUOTES, 'UTF-8') : null;
+            $price = isset($_POST['price']) ? (float) $_POST['price'] : 0.0;
+            $ticket_limit = isset($_POST['ticket_limit']) ? (int) $_POST['ticket_limit'] : 0;
+            $date_start = isset($_POST['date_start']) ? $_POST['date_start'] : '';
+            $time_start = isset($_POST['time_start']) ? $_POST['time_start'] : '';
+            $duration_minutes = isset($_POST['duration_minutes']) ? (int) $_POST['duration_minutes'] : 0;
+    
+            $datetime_start = $date_start . ' ' . $time_start;
+
+            $session = new Session(
+                $session_id, 
+                $detailevent_id,
+                $name,
+                null,
+                $description,
+                $location,
+                $ticket_limit,
+                $duration_minutes,
+                $price,
+                $datetime_start,
+                0
+            );
+            try {
+                $this->sessionService->update($session);
+                $_SESSION['success_message'] = "Session has been updated!";
+                $this->index();
+            } catch (\Exception $e) {
+                $_SESSION['error_message'] = "Something went wrong while adding the session.";
+                $this->index();
+            }
+        }
+        
+    }
+    function addSession(){
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $detailevent_id = $_GET['detailevent_id'] ?? null;
+            if ($detailevent_id) {
+                require("../views/management/events/add-session.php");
+            } else {
+                $_SESSION['error_message'] = "No detail event ID provided.";
+                $this->index();
+                exit;
+            }
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Sanitize input
+            $detailevent_id = isset($_POST['detailevent_id']) ? (int) $_POST['detailevent_id'] : null;
+            $name = isset($_POST['name']) ? htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8') : '';
+            $description = isset($_POST['description']) ? htmlspecialchars($_POST['description'], ENT_QUOTES, 'UTF-8') : null;
+            $location = isset($_POST['location']) ? htmlspecialchars($_POST['location'], ENT_QUOTES, 'UTF-8') : null;
+            $price = isset($_POST['price']) ? (float) $_POST['price'] : 0.0;
+            $ticket_limit = isset($_POST['ticket_limit']) ? (int) $_POST['ticket_limit'] : 0;
+            $date_start = isset($_POST['date_start']) ? $_POST['date_start'] : '';
+            $time_start = isset($_POST['time_start']) ? $_POST['time_start'] : '';
+            $duration_minutes = isset($_POST['duration_minutes']) ? (int) $_POST['duration_minutes'] : 0;
+    
+            // Format datetime
+            $datetime_start = $date_start . ' ' . $time_start;
+    
+
+            $session = new Session(
+                0, 
+                $detailevent_id,
+                $name,
+                null,
+                $description,
+                $location,
+                $ticket_limit,
+                $duration_minutes,
+                $price,
+                $datetime_start,
+                0
+            );
+            try {
+                $this->sessionService->insert($session);
+                $_SESSION['success_message'] = "Session has been added!";
+                $this->index();
+            } catch (\Exception $e) {
+                $_SESSION['error_message'] = "Something went wrong while adding the session.";
+                $this->index();
+            }
+            
+        }
+
     }
     function deleteDetailEvent(){
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {

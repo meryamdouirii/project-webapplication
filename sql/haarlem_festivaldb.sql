@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 02 apr 2025 om 09:10
+-- Gegenereerd op: 02 apr 2025 om 15:06
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.28
 
@@ -52,7 +52,7 @@ INSERT INTO `detail_event` (`id`, `event_id`, `banner_description`, `banner_imag
 (4, 1, 'One of the world-class DJs performing at Haarlem Festival is Armin van Buuren!', 'default.jpg', 'Armin van Buuren', 'NULL', 'default.jpg', NULL, 'default.jpg', 'Armin is known for his meticulous work ethic and dedication to his fans. Despite his success, he remains approachable and enjoys connecting with his global audience.  ', NULL),
 (5, 1, 'One of the world-class DJs performing at Haarlem Festival is Afrojack!', 'default.jpg', 'Afrojack', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick van de Wall): Afrojack is not only a DJ but also an entrepreneur, owning his own label, Wall Recordings.  ', NULL),
 (6, 1, 'One of the world-class DJs performing at Haarlem Festival is Nicky Romero!', 'default.jpg', 'Nicky Romero', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick Rotteveel): Nicky is known for his collaborative and friendly nature in the music industry.   ', NULL),
-(7, 2, '<p><strong>Visit US!!!!!</strong></p>', '/images-logos/uploads/1742910583_c3108c2d430d443fa32af7798be03899.webp', 'Ratatouille', '<p>Nestled along the scenic Spaarne River at Spaarne 96, 2011 CL Haarlem, Ratatouille Food &amp; Wine offers an exceptional dining experience that harmoniously blends modern culinary techniques with a deep appreciation for fresh, local ingredients. Under the guidance of chef Jozua Jaring, this Michelin-starred restaurant presents meticulously crafted dishes that surprise and delight with their innovative presentations and flavor combinations. With its commitment to culinary excellence and warm hospitality, Ratatouille Food &amp; Wine has become a must-visit destination for food enthusiasts in Haarlem. Whether you\'re a local resident or a visitor, the restaurant offers a memorable dining experience that highlights the best of modern cuisine in a welcoming and stylish setting.</p>', NULL, NULL, NULL, '<p>Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.</p>', 4);
+(7, 2, '<p><strong>Visit US!!!!!</strong></p>', '/images-logos/uploads/1742910583_c3108c2d430d443fa32af7798be03899.webp', 'Ratatouille', '<p>Nestled along the scenic Spaarne River at Spaarne 96, 2011 CL Haarlem, Ratatouille Food &amp; Wine offers an exce<strong>ptional dining experience that harmoniously blends modern culinary techniques with a deep appreciation for fresh, local ingredients. Under the guidance of chef Jozua Jaring, this Michelin-starred restaurant presents meticulously crafted dishes that surprise and delight with their innovative presentations and flavor combinations. With its commitment to culinary excellence and warm hospitalit</strong>y, Ratatouille Food &amp; Wine has become a must-visit destination for food enthusiasts in Haarlem. Whether you\'re a local resident or a visitor, the restaurant offers a memorable dining experience that highlights the best of modern cuisine in a welcoming and stylish setting.</p>', NULL, NULL, NULL, '<p>Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.</p>', 4);
 
 -- --------------------------------------------------------
 
@@ -82,9 +82,9 @@ INSERT INTO `detail_event_card_tag` (`id`, `detail_event_id`, `tag`) VALUES
 (9, 5, 'House'),
 (10, 6, 'House'),
 (11, 6, 'Electro'),
-(21, 7, 'French'),
-(22, 7, 'European'),
-(23, 7, 'Fish & Seafood');
+(24, 7, 'French'),
+(25, 7, 'European'),
+(26, 7, 'Fish & Seafood');
 
 -- --------------------------------------------------------
 
@@ -167,40 +167,39 @@ CREATE TABLE `session` (
   `ticket_limit` int(11) NOT NULL,
   `duration_minutes` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `datetime_start` datetime NOT NULL,
-  `event_id` int(11) DEFAULT NULL
+  `datetime_start` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `session`
 --
 
-INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location`, `ticket_limit`, `duration_minutes`, `price`, `datetime_start`, `event_id`) VALUES
-(1, 6, 'back2back', NULL, 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00', 1),
-(3, 3, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
-(4, 1, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-25 23:00:00', 1),
-(5, 4, 'club', NULL, 'XO the Club', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
-(6, 2, 'club', NULL, 'Puncher comedy club', 200, 90, 60.00, '2025-07-25 22:00:00', 1),
-(7, 1, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 1),
-(10, 5, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-26 22:00:00', 1),
-(11, 3, 'club', NULL, 'Lichtfabriek', 1500, 240, 75.00, '2025-07-26 21:00:00', 1),
-(12, 6, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-26 23:00:00', 1),
-(13, 5, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 1),
-(16, 4, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-27 19:00:00', 1),
-(17, 1, 'club', NULL, 'XO the Club', 1500, 90, 90.00, '2025-07-27 21:00:00', 1),
-(18, 2, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00', 1),
-(19, 7, 'Ratatouille Ticket 24 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 17:00:00', 2),
-(20, 7, 'Ratatouille Ticket 25 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 17:00:00', 2),
-(21, 7, 'Ratatouille Ticket 26 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 17:00:00', 2),
-(22, 7, 'Ratatouille Ticket 27 July 17:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 17:00:00', 2),
-(23, 7, 'Ratatouille Ticket 27 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 19:00:00', 2),
-(24, 7, 'Ratatouille Ticket 26 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 19:00:00', 2),
-(25, 7, 'Ratatouille Ticket 25 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 19:00:00', 2),
-(26, 7, 'Ratatouille Ticket 24 July 19:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 19:00:00', 2),
-(27, 7, 'Ratatouille Ticket 24 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00', 2),
-(28, 7, 'Ratatouille Ticket 25 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00', 2),
-(29, 7, 'Ratatouille Ticket 26 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00', 2),
-(30, 7, 'Ratatouille Ticket 27 July 21:00', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00', 2);
+INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location`, `ticket_limit`, `duration_minutes`, `price`, `datetime_start`) VALUES
+(1, 6, 'back2back', NULL, 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00'),
+(3, 3, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-25 22:00:00'),
+(4, 1, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-25 23:00:00'),
+(5, 4, 'club', NULL, 'XO the Club', 200, 90, 60.00, '2025-07-25 22:00:00'),
+(6, 2, 'club', NULL, 'Puncher comedy club', 200, 90, 60.00, '2025-07-25 22:00:00'),
+(7, 1, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00'),
+(10, 5, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-26 22:00:00'),
+(11, 3, 'club', NULL, 'Lichtfabriek', 1500, 240, 75.00, '2025-07-26 21:00:00'),
+(12, 6, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-26 23:00:00'),
+(13, 5, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00'),
+(16, 4, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-27 19:00:00'),
+(17, 1, 'club', NULL, 'XO the Club', 1500, 90, 90.00, '2025-07-27 21:00:00'),
+(18, 2, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00'),
+(19, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 17:00:00'),
+(20, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 17:00:00'),
+(21, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 17:00:00'),
+(22, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 17:00:00'),
+(23, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 19:00:00'),
+(24, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 19:00:00'),
+(25, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 19:00:00'),
+(26, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 19:00:00'),
+(27, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00'),
+(28, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00'),
+(29, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00'),
+(30, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00');
 
 -- --------------------------------------------------------
 
@@ -371,8 +370,7 @@ ALTER TABLE `payment`
 --
 ALTER TABLE `session`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `detail_event_id` (`detail_event_id`),
-  ADD KEY `fk_event` (`event_id`);
+  ADD KEY `detail_event_id` (`detail_event_id`);
 
 --
 -- Indexen voor tabel `session_artists`
@@ -425,7 +423,7 @@ ALTER TABLE `detail_event`
 -- AUTO_INCREMENT voor een tabel `detail_event_card_tag`
 --
 ALTER TABLE `detail_event_card_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT voor een tabel `payment`
@@ -489,7 +487,6 @@ ALTER TABLE `payment`
 -- Beperkingen voor tabel `session`
 --
 ALTER TABLE `session`
-  ADD CONSTRAINT `fk_event` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`),
   ADD CONSTRAINT `session_ibfk_1` FOREIGN KEY (`detail_event_id`) REFERENCES `detail_event` (`id`);
 
 --

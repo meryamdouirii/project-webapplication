@@ -78,11 +78,14 @@ switch ($url) {
     case "/manage-events/edit-mainevent";
     $manageEventsController->editMainEvent();
         break;
-    case "/manage-events/manage-sessions";
+    case "/manage-sessions";
     $manageEventsController->manageSessions();
         break;
-    case "/manage-events/edit-sessions"; 
-    $manageEventsController->editSessions();
+    case "/manage-sessions/add-session";
+    $manageEventsController->addSession();
+        break;
+    case "/manage-sessions/edit-session"; 
+    $manageEventsController->editSession();
         break;
     case "/manage-users";
         $userController->index();

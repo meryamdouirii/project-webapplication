@@ -17,17 +17,20 @@ use App\Services\UploadService;?>
             <div class="row mb-4">
                 <?php foreach ($detailEvents as $detail): ?>
                     <div class="col-md-4 mb-4">
-                        <a href="/manage-events/edit-detailevent?detailevent_id=<?= urlencode($detail->getId()); ?>" class="card h-100 d-flex flex-column">
-
-                            <img src="<?= htmlspecialchars($detail->getCardImage() ?? '/images-logos/default.jpg'); ?>"
-                                alt="<?= htmlspecialchars($detail->getName()); ?>" class="card-img-top img-fluid">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title"><?= htmlspecialchars($detail->getName()); ?></h5>
-                            </div>
-                        </a>
+                        <div class="card h-100 d-flex flex-column">
+                            <a href="/manage-events/edit-detailevent?detailevent_id=<?= urlencode($detail->getId()); ?>" class="card h-100 d-flex flex-column">
+                                <img src="<?= htmlspecialchars($detail->getCardImage() ?? '/images-logos/default.jpg'); ?>"
+                                    alt="<?= htmlspecialchars($detail->getName()); ?>" class="card-img-top img-fluid">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title"><?= htmlspecialchars($detail->getName()); ?></h5>
+                                </div>
+                            </a>
+                                <a href="/manage-sessions?detailevent_id=<?= urlencode($detail->getId()); ?>" class="card-footer card h-100 d-flex flex-column bg-light text-center p-2">Manage Sessions</a>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
+
         </div>
     </div>
 </main>

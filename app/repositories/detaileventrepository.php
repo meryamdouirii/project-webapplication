@@ -48,7 +48,7 @@ class DetailEventRepository extends Repository
             $this->connection->commit();
             return true;
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->connection->rollBack();
             error_log("Error adding DetailEvent: " . $e->getMessage());
             return false;
@@ -183,7 +183,8 @@ class DetailEventRepository extends Repository
                 (int) $row['ticket_limit'],
                 (int) $row['duration_minutes'],
                 (float) $row['price'], // <--- This cast is required!
-                $row['datetime_start']
+                $row['datetime_start'],
+                $row['sold_tickets']
             );
         }
         return $results;
@@ -236,7 +237,7 @@ class DetailEventRepository extends Repository
             $this->connection->commit();
             return true;
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->connection->rollBack();
             error_log("Error deleting DetailEvent: " . $e->getMessage());
             return false;
@@ -295,7 +296,7 @@ class DetailEventRepository extends Repository
             $this->connection->commit();
             return true;
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->connection->rollBack();
             error_log("Error updating DetailEvent: " . $e->getMessage());
             return false;

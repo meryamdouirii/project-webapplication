@@ -23,15 +23,6 @@
                     </a>
                 </div>
             </div>
-            <div class="row justify-content-center mb-4">
-                <div class="col-md-3">
-                    <a href="/manage-events/manage-sessions?event_id=<?= urlencode($picked_event->id); ?>" class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Manage event sessions</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
         </div>
 
     </section>

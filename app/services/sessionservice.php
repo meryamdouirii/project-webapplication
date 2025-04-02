@@ -32,12 +32,6 @@ class SessionService
         return $repository->getSessionsByDetailEventId($eventId);
     }
 
-    public function getByEventId(int $eventId): ?Session
-    {
-        $repository = new SessionRepository();
-        return $repository->getByEventId($eventId);
-    }
-
     public function getSessionsGroupedByDateAndEventId(int $eventId): array
     {
         $sessions = $this->getSessionsByEventId($eventId); 
@@ -50,4 +44,20 @@ class SessionService
 
         return $groupedSessions;
     }
+    public function delete(int $session_id) :bool
+    {
+        $repository = new SessionRepository();
+        return $repository->delete($session_id);
+    }
+    public function insert(Session $session): bool
+    {
+        $repository = new SessionRepository();
+        return $repository->insert($session);
+    }
+    public function update(Session $session): bool
+    {
+        $repository = new SessionRepository();
+        return $repository->update($session);
+    }
+
 }
