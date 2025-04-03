@@ -183,8 +183,7 @@ class DetailEventRepository extends Repository
                 (int) $row['ticket_limit'],
                 (int) $row['duration_minutes'],
                 (float) $row['price'], // <--- This cast is required!
-                $row['datetime_start'],
-                $row['sold_tickets']
+                $row['datetime_start']
             );
         }
         return $results;
