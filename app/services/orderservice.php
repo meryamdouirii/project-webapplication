@@ -3,11 +3,11 @@ namespace App\Services;
 
 class OrderService
 {
-    // public function getAll()
-    // {
-    //     $repository = new \App\Repositories\OrderRepository();
-    //     return $repository->getAll();
-    // }
+    public function getAll() : array
+    {
+         $repository = new \App\Repositories\OrderRepository();
+         return $repository->getAll();
+    }
     // public function getById($id)
     // {
     //     $repository = new \App\Repositories\OrderRepository();

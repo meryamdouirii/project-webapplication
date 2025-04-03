@@ -14,6 +14,7 @@ use \App\Controllers\EventController;
 use \App\Controllers\ManageEventsController;
 use \App\Controllers\CartController;
 use \App\Controllers\PaymentController;
+use \App\Controllers\OrderController;
 
 
 require_once("../vendor/autoload.php");
@@ -25,6 +26,7 @@ $eventController = new EventController();
 $manageEventsController = new ManageEventsController();
 $cartController = new CartController();
 $paymentController = new PaymentController();
+$orderController= new OrderController();
 
 
 session_start();
@@ -149,6 +151,9 @@ switch ($url) {
         break;
     case "/succesTest":
         $paymentController->success();
+        break;
+    case "/view-orders":
+        $orderController->index();
         break;
     default:
         http_response_code(404);

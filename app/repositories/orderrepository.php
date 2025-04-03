@@ -7,10 +7,76 @@ use PDOException;
 
 class OrderRepository extends Repository
 {
-    public function getAll()
+    public function getAll() : array
     {
+        try {
+            // SQL query to fetch all orders with payment status and ticket details
+            $sql = "SELECT 
+                        ticket_order.*, 
+                        payment.payment_status, 
+                        t.id AS ticket_id,
+                        s.name AS session_name,
+                        s.datetime_start,
+                        s.price AS ticket_price,
+                        u.email_address 
+                    FROM ticket_order
+                    LEFT JOIN payment ON ticket_order.id = payment.order_id
+                    LEFT JOIN ticket t ON ticket_order.id = t.order_id
+                    LEFT JOIN session s ON t.session_id = s.id
+                    LEFT JOIN detail_event de ON s.detail_event_id = de.id
+                    LEFT JOIN event e ON de.event_id = e.id
+                    LEFT JOIN user u ON ticket_order.user_id = u.id  
+                    ORDER BY ticket_order.order_date DESC
+                ";
 
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+
+            $ordersData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $orders = [];
+            $currentOrderId = null;
+            $currentOrderData = null; // Initialize this as null
+
+            foreach ($ordersData as $row) {
+                // Check if it's a new order based on the order id
+                if ($currentOrderId !== $row['id']) {
+                    // If it's a new order and we have an existing order, add it to the orders array
+                    if ($currentOrderData !== null) {
+                        $orders[] = $currentOrderData;
+                    }
+
+                    // Start a new order
+                    $currentOrderId = $row['id'];
+                    $currentOrderData = new Order();
+                    $currentOrderData->setId($row['id']);
+                    $currentOrderData->setUserEmail($row['email_address']);
+                    $currentOrderData->setOrderDate($row['order_date']);
+                    $currentOrderData->setPaymentStatus($row['payment_status']);
+                    $currentOrderData->setTickets([]); // Initialize tickets as an empty array
+                }
+
+                // Add ticket details to the current order
+                $currentOrderData->addTicket([
+                    'ticket_id' => $row['ticket_id'],
+                    'session_name' => $row['session_name'],
+                    'datetime_start' => $row['datetime_start'],
+                    'ticket_price' => $row['ticket_price']
+                ]);
+            }
+
+            // Add the last order to the list after the loop ends
+            if ($currentOrderData !== null) {
+                $orders[] = $currentOrderData;
+            }
+
+            return $orders;
+        } catch (PDOException $e) {
+            die("Database error: " . $e->getMessage());
+        }
     }
+
+
 
     public function getById($id)
     {
@@ -109,15 +175,14 @@ class OrderRepository extends Repository
                         ]
                     );
                 }
+                $order = new Order();
+                $order->setId($orderData['id']);
+                $order->setUserId($orderData['user_id']);
+                $order->setOrderDate($orderData['order_date']);
+                $order->setUser($_SESSION['user']);
+                $order->setTickets($tickets);
 
-                // Convert order data into an Order object with Ticket objects
-                $orders[] = new Order(
-                    id: $orderData['id'],
-                    user_id: $orderData['user_id'],
-                    order_date: $orderData['order_date'],
-                    user: $_SESSION['user'],
-                    tickets: $tickets
-                );
+                $orders[] = $order;
             }
 
             return $orders;
