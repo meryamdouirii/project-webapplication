@@ -9,19 +9,16 @@ class Ticket
 
     private int $session_id;
 
-    private ?string $bar_code;
-
-    private int $user_id;
+    private string $bar_code;
 
     private $session;
 
 
-    public function __construct(int $id, int $order_id, int $session_id, int $user_id, string $bar_code, $session)
+    public function __construct(int $id, int $order_id, int $session_id, string $bar_code, $session)
     {
         $this->id = $id;
         $this->order_id = $order_id;
         $this->session_id = $session_id;
-        $this->user_id = $user_id;
         $this->bar_code = $bar_code;
         $this->session = $session;
     }
@@ -39,11 +36,6 @@ class Ticket
     public function getSessionId(): int
     {
         return $this->session_id;
-    }
-
-    public function getUserId(): int
-    {
-        return $this->user_id;
     }
 
     public function getbarCode(): string

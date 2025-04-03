@@ -13,7 +13,7 @@ class Session
     private int $duration_minutes;
     private float $price;
     private string $datetime_start;
-    private int $sold_tickets;
+
 
     public function __construct(
         int $id,
@@ -25,8 +25,7 @@ class Session
         int $ticket_limit,
         int $duration_minutes,
         float $price,
-        string $datetime_start,
-        int $sold_tickets
+        string $datetime_start
     ) {
         $this->id = $id;
         $this->detail_event_id = $detail_event_id;
@@ -38,18 +37,9 @@ class Session
         $this->duration_minutes = $duration_minutes;
         $this->price = $price;
         $this->datetime_start = $datetime_start;
-        $this->sold_tickets = $sold_tickets;
+
     }
-    public function addToSoldTickets(int $num): bool{
-        $total = $this->sold_tickets + $num;
-        if ($total <= $this->ticket_limit){
-        $this->sold_tickets = $total;
-        return true;
-        }
-        else return false;
-        
-    }
-    public function getSoldTickets(): int {return $this->sold_tickets;}
+    
     public function getDetailEventId(): int { return $this->detail_event_id; }
     public function getDescription(): ?string { return $this->description; }
     public function getId(): int {

@@ -97,7 +97,6 @@ class OrderRepository extends Repository
                         id: $ticket['id'],
                         order_id: $ticket['order_id'],
                         session_id: $ticket['session_id'],
-                        user_id: $ticket['user_id'],
                         bar_code: $ticket['bar_code'],
                         session: [
                             'session_name' => $ticket['session_name'],

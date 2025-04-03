@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 02 apr 2025 om 17:48
+-- Gegenereerd op: 03 apr 2025 om 10:22
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.28
 
@@ -150,7 +150,11 @@ CREATE TABLE `payment` (
 INSERT INTO `payment` (`id`, `order_id`, `payment_status`, `payment_id`, `amount`, `created_at`) VALUES
 (15, 69, 'paid', 'cs_test_a1Wd4h7LYl7ukBQgYvOSRgDkWB05lVlE7BunMcasJYSj4d80DdcFc3bFVj', 7500.00, '2025-03-19 17:52:49'),
 (16, 70, 'pending', 'cs_test_b1vbpTWq4E8P2W7av9GYNuTrfrxHLd2enW0AHEi9YuVCubdP7kOTXZV8qF', 13500.00, '2025-03-19 18:42:36'),
-(17, 71, 'paid', 'cs_test_a16LTNilglXUftGDzwXx7sda5tQHOC44JkLh4Q0vfni7jhurnGhm9bMVGq', 4500.00, '2025-03-19 20:01:07');
+(17, 71, 'paid', 'cs_test_a16LTNilglXUftGDzwXx7sda5tQHOC44JkLh4Q0vfni7jhurnGhm9bMVGq', 4500.00, '2025-03-19 20:01:07'),
+(18, 72, 'paid', 'cs_test_a1eJfZnpn3pSY2WTkTql83WQOqeVJmuj1CTdKuwI6LiM6NmnhjZ5EbeycX', 6000.00, '2025-04-03 10:03:35'),
+(19, 73, 'pending', 'cs_test_a1HwhnzaLBUP8a5w2dqx2RkyfqP8ExxRZH8x9tdLYn1tCfIa1J8cQJKd9I', 4500.00, '2025-04-03 10:05:19'),
+(20, 74, 'pending', 'cs_test_b18CgJuotV4TCc9kNrmjejSXAvLsYlxHMug6kSEhB2FEOKER0f4dkuG1ey', 9000.00, '2025-04-03 10:06:09'),
+(21, 75, 'paid', 'cs_test_a1KLc1bcboNc61FbX13sBW50oqYx3QbOYj4sZtQg5KH00KsKITR4TvCvc7', 9000.00, '2025-04-03 10:17:01');
 
 -- --------------------------------------------------------
 
@@ -167,40 +171,38 @@ CREATE TABLE `session` (
   `ticket_limit` int(11) NOT NULL,
   `duration_minutes` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `datetime_start` datetime NOT NULL,
-  `sold_tickets` int(11) NOT NULL
+  `datetime_start` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `session`
 --
 
-INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location`, `ticket_limit`, `duration_minutes`, `price`, `datetime_start`, `sold_tickets`) VALUES
-(1, 6, 'back2back', NULL, 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00', 0),
-(3, 3, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-25 22:00:00', 0),
-(4, 1, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-25 23:00:00', 0),
-(5, 4, 'club', NULL, 'XO the Club', 200, 90, 60.00, '2025-07-25 22:00:00', 0),
-(6, 2, 'club', NULL, 'Puncher comedy club', 200, 90, 60.00, '2025-07-25 22:00:00', 0),
-(7, 1, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00', 0),
-(10, 5, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-26 22:00:00', 0),
-(11, 3, 'club', NULL, 'Lichtfabriek', 1500, 240, 75.00, '2025-07-26 21:00:00', 0),
-(12, 6, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-26 23:00:00', 0),
-(13, 5, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00', 0),
-(16, 4, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-27 19:00:00', 0),
-(17, 1, 'club', NULL, 'XO the Club', 1500, 90, 90.00, '2025-07-27 21:00:00', 0),
-(18, 2, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00', 0),
-(19, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 17:00:00', 0),
-(20, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 17:00:00', 0),
-(21, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 17:00:00', 0),
-(22, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 17:00:00', 0),
-(23, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 19:00:00', 0),
-(24, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 19:00:00', 0),
-(25, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 19:00:00', 0),
-(26, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 19:00:00', 0),
-(27, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00', 0),
-(28, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00', 0),
-(29, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00', 0),
-(30, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00', 0);
+INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location`, `ticket_limit`, `duration_minutes`, `price`, `datetime_start`) VALUES
+(1, 6, 'back2back', NULL, 'Lichtfabriek', 1500, 360, 75.00, '2025-07-25 20:00:00'),
+(3, 3, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-25 22:00:00'),
+(4, 1, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-25 23:00:00'),
+(5, 4, 'club', NULL, 'XO the Club', 200, 90, 60.00, '2025-07-25 22:00:00'),
+(6, 2, 'club', NULL, 'Puncher comedy club', 200, 90, 60.00, '2025-07-25 22:00:00'),
+(7, 1, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-26 14:00:00'),
+(10, 5, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-26 22:00:00'),
+(11, 3, 'club', NULL, 'Lichtfabriek', 1500, 240, 75.00, '2025-07-26 21:00:00'),
+(12, 6, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-26 23:00:00'),
+(13, 5, 'back2back', NULL, 'Caprera Openluchtheater', 2000, 540, 110.00, '2025-07-27 14:00:00'),
+(16, 4, 'club', NULL, 'Jopenkerk', 300, 90, 60.00, '2025-07-27 19:00:00'),
+(17, 1, 'club', NULL, 'XO the Club', 1500, 90, 90.00, '2025-07-27 21:00:00'),
+(18, 2, 'club', NULL, 'Slachthuis', 200, 90, 60.00, '2025-07-27 18:00:00'),
+(20, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 17:00:00'),
+(21, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 17:00:00'),
+(22, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 17:00:00'),
+(23, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 19:00:00'),
+(24, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 19:00:00'),
+(25, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 19:00:00'),
+(26, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 19:00:00'),
+(27, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00'),
+(28, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00'),
+(29, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00'),
+(30, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00');
 
 -- --------------------------------------------------------
 
@@ -274,7 +276,13 @@ INSERT INTO `ticket` (`id`, `order_id`, `session_id`, `bar_code`, `user_id`) VAL
 (68, 69, 1, 81274, 1),
 (69, 70, 3, 76726, 1),
 (70, 70, 1, 64792, 1),
-(71, 71, 20, 30306, 1);
+(71, 71, 20, 30306, 1),
+(72, 72, 4, 13031, 1),
+(73, 73, 25, 11482, 1),
+(74, 74, 25, 10414, 1),
+(75, 74, 30, 92410, 1),
+(76, 75, 25, 22807, 1),
+(77, 75, 25, 42302, 1);
 
 -- --------------------------------------------------------
 
@@ -295,7 +303,11 @@ CREATE TABLE `ticket_order` (
 INSERT INTO `ticket_order` (`id`, `user_id`, `order_date`) VALUES
 (69, 1, '2025-03-19 17:52:43'),
 (70, 1, '2025-03-19 18:42:33'),
-(71, 1, '2025-03-19 20:01:05');
+(71, 1, '2025-03-19 20:01:05'),
+(72, 1, '2025-04-03 10:03:30'),
+(73, 1, '2025-04-03 10:05:18'),
+(74, 1, '2025-04-03 10:06:08'),
+(75, 1, '2025-04-03 10:16:59');
 
 -- --------------------------------------------------------
 
@@ -430,7 +442,7 @@ ALTER TABLE `detail_event_card_tag`
 -- AUTO_INCREMENT voor een tabel `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT voor een tabel `session`
@@ -454,13 +466,13 @@ ALTER TABLE `song`
 -- AUTO_INCREMENT voor een tabel `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT voor een tabel `ticket_order`
 --
 ALTER TABLE `ticket_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT voor een tabel `user`
