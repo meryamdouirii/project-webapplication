@@ -329,17 +329,20 @@ class ManageEventsController
             }
             $detailevent_id = $_GET['detailevent_id']; 
             try {
-                $this->detailEventService->delete($detailevent_id);
-                $_SESSION['success_message'] = "Detail event has been deleted successfully!";
+                if($this->detailEventService->delete($detailevent_id)){                 
+                    $_SESSION['success_message'] = "Detail event has been deleted successfully!";
+                    $this->index();
+                }
+                else {
+                    $_SESSION['error_message'] = "You cannot delete this event, because there are still sessions linked to it.";
                 $this->index();
+                }
             } catch (\Exception $e) {
-                $_SESSION['error_message'] = "You cannot delete this event, because there are still sessions linked to it.";
+                $_SESSION['error_message'] = "Something went wrong while deleting the detailevent";
                 $this->index();
-            }
-              
-            
+            }   
         }
-        $this->index();
+
     }
             
     function extractImagePath($html) {

@@ -38,7 +38,7 @@ class HomeController
             $email = htmlspecialchars($_POST['email']);
             $password = htmlspecialchars($_POST['password']);
             $user = $this->userService->getByEmail($email);
-            $salt = $user->salt;
+            
             if ($user !== null && password_verify($password . $user->salt, $user->hashed_password)) {
                 $_SESSION['user'] = [
                     'id' => $user->id,

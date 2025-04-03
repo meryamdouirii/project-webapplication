@@ -6,7 +6,7 @@ class Order implements \JsonSerializable {
     private ?int $user_id;
     private ?string $order_date;
     private ?string $user_email;
-    private ?User $user;
+    private $user;
     private ?array $tickets = [];
     private ?string $payment_status;
 
