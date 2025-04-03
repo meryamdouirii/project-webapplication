@@ -32,8 +32,7 @@ class SessionRepository extends Repository
             $row['ticket_limit'],
             $row['duration_minutes'],
             (float)$row['price'],
-            $row['datetime_start'],
-            $row['sold_tickets']
+            $row['datetime_start']
         );
     }
 
@@ -58,8 +57,7 @@ class SessionRepository extends Repository
                 $row['ticket_limit'],
                 $row['duration_minutes'],
                 (float)$row['price'],
-                $row['datetime_start'],
-                $row['sold_tickets']
+                $row['datetime_start']
             );
         }
 
@@ -89,8 +87,7 @@ class SessionRepository extends Repository
                 $row['ticket_limit'],
                 $row['duration_minutes'],
                 (float)$row['price'],
-                $row['datetime_start'],
-                $row['sold_tickets']
+                $row['datetime_start']
             );
         }
 
@@ -119,8 +116,7 @@ class SessionRepository extends Repository
                 $row['ticket_limit'],
                 $row['duration_minutes'],
                 (float)$row['price'],
-                $row['datetime_start'],
-                $row['sold_tickets']
+                $row['datetime_start']
             );
         }
 
@@ -140,8 +136,7 @@ class SessionRepository extends Repository
             ':ticket_limit' => $session->getTicketLimit(),
             ':duration_minutes' => $session->getDurationMinutes(),
             ':price' => $session->getPrice(),
-            ':datetime_start' => $session->getDateTimeStart(),
-            ':sold_tickets' => $session->getSoldTickets()
+            ':datetime_start' => $session->getDateTimeStart()
         ]);
     }
     public function update(Session $session): bool
@@ -161,17 +156,6 @@ class SessionRepository extends Repository
             ':duration_minutes' => $session->getDurationMinutes(),
             ':price' => $session->getPrice(),
             ':datetime_start' => $session->getDateTimeStart()
-        ]);
-    }
-    public function updateSoldTickets(Session $session): bool
-    {
-        $sql = 'UPDATE session 
-                SET sold_tickets = :sold_tickets
-                WHERE id = :id';
-        
-        $stmt = $this->connection->prepare($sql);
-        return $stmt->execute([
-            ':sold_tickets' => $session->getSoldTickets()
         ]);
     }
     public function delete(int $id): bool
