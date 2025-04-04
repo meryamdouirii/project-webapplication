@@ -14,7 +14,6 @@
     "require": {
         "phpmailer/phpmailer": "^6.9",
         "stripe/stripe-php": "^16.6",
-        "ezyang/htmlpurifier": "^4.16",
-        "dompdf/dompdf": "^3.1"
+        "ezyang/htmlpurifier": "^4.16"
     }
 }
