@@ -5,7 +5,6 @@
 include __DIR__ . '/../header.php';?>
 <main class="container d-flex justify-content-center align-items-center vh-100">     
 <div class="container mt-5">
-    <?= var_dump($_SESSION['user'] )?>
         <?php if (isset($_SESSION['error_message'])): ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php echo $_SESSION['error_message']; ?>

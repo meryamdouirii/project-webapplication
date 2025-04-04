@@ -57,6 +57,16 @@ class TicketRepository extends Repository {
 
         return null; // Return null if no ticket found
     }
+    public function countTicketsBySessionId(int $sessionId): int {
+        $stmt = $this->connection->prepare("SELECT COUNT(*) FROM ticket WHERE session_id = :session_id");
+        $stmt->bindParam(':session_id', $sessionId, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        // Fetch the result
+        $count = $stmt->fetchColumn(); // Fetch the first column of the result (the count)
+        
+        return (int) $count; // Ensure the result is returned as an integer
+    }
     public function getByOrderId(int $orderId): array {
         $stmt = $this->connection->prepare("SELECT id, order_id, session_id, bar_code FROM ticket WHERE order_id = :order_id");
         $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);

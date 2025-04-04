@@ -27,5 +27,9 @@ class TicketService
         $repository = new TicketRepository();
         return $repository->insert($ticket);
     }
+    public function countTicketsBySessionId(int $sessionId): int {
+        $repository = new TicketRepository();
+        return $repository->countTicketsBySessionId($sessionId);
+    }
 
 }

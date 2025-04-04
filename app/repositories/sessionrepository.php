@@ -126,8 +126,8 @@ class SessionRepository extends Repository
     }
     public function insert(Session $session): bool
     {
-        $sql = 'INSERT INTO session (detail_event_id, name, description, location, ticket_limit, duration_minutes, price, datetime_start, sold_tickets)
-                VALUES (:detail_event_id, :name, :description, :location, :ticket_limit, :duration_minutes, :price, :datetime_start, :sold_tickets)';
+        $sql = 'INSERT INTO session (detail_event_id, name, description, location, ticket_limit, duration_minutes, price, datetime_start)
+                VALUES (:detail_event_id, :name, :description, :location, :ticket_limit, :duration_minutes, :price, :datetime_start)';
         
         $stmt = $this->connection->prepare($sql);
         return $stmt->execute([

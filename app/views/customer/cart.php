@@ -13,6 +13,12 @@
 
     <main class="bg-light-blue container-fluid p-4">
         <div class="container">
+        <?php if (isset($_SESSION['error_message'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php echo $_SESSION['error_message']; ?>
+            </div>
+        <?php endif; ?>
+        <?php unset($_SESSION['error_message']);?>
             <h2 class="cart-title text-center mb-4">Shopping Cart</h2>
             <div class="row">
                 <div class="col-md-8">
@@ -40,7 +46,6 @@
                                             <?= gmdate("H:i", $eventDuration * 60); ?>
                                         </p>
                                         <p class="cart-info"><i class="bi bi-geo-alt"></i> <?= $eventLocation; ?></p>
-                                        <span class="stock-status">In stock</span>
                                     </div>
                                     <div class="col-md-4 cart-actions text-end">
                                         <p class="fw-bold">€<?= number_format($eventPrice, 2, ',', '.'); ?></p>
