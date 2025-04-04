@@ -113,11 +113,11 @@ class UserController
             }
     
             $id = $_GET['id'];
-            if (!isset($_SESSION['user']) || empty($_SESSION['user']->id)) {
+            if (!isset($_SESSION['user']) || empty($_SESSION['user']['id'])) {
                 
                 $this->showDeleteError("Unauthorized access.");
             }
-            if ($id == $_SESSION['user']->id) {
+            if ($id == $_SESSION['user']['id']) {
                
                 $this->showDeleteError("You cannot delete your own account.");
             

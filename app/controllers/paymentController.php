@@ -1,6 +1,11 @@
 <?php
 namespace App\Controllers;
 use App\Repositories\PaymentRepository;
+use App\Services\PdfService;
+use App\Services\EmailService;
+use App\Services\TicketService;
+use App\Services\UserService;
+use App\Models\User;
 
 class PaymentController {
     public function success() {
@@ -21,6 +26,9 @@ class PaymentController {
                 // Update het betalingsrecord in de database naar "paid"
                 $paymentRepository = new \App\Repositories\PaymentRepository();
                 $paymentRepository->updatePaymentStatus($session_id, "paid");
+
+                $this->sendTickets($order_id);
+
                 // Toon een successpagina
                 require("../views/customer/confirm_order.php");
             } else {
@@ -29,5 +37,34 @@ class PaymentController {
         } catch (\Stripe\Exception\ApiErrorException $e) {
             echo "Error retrieving session: " . $e->getMessage();
         }
+    }
+    private function sendTickets($order_id){
+        // Stuur tickets per email naar customer
+        $pdfService = new PdfService();
+        $emailService = new EmailService();
+        $ticketService = new TicketService();
+        $userService = new UserService();
+
+        $tickets = $ticketService->getByOrderId($order_id);
+        $user = $userService->getByOrderId($order_id);
+
+        $attachments = [];
+        foreach ($tickets as $ticket) {
+
+            $pdf = $pdfService->generateTicket($ticket, $ticket->getSession(), $user);
+            $attachments[] = [
+                'filename' => 'ticket_' . $ticket->getId() . '.pdf',
+                'content' => $pdf,
+                'type' => 'application/pdf'
+            ];
+        }
+        $emailService = new EmailService();
+
+        $emailService->sendEmailWithAttachments(
+            $user->getEmail(),
+            "Your tickets for Haarlem The Festival!",
+            "<p>Hi {$user->getFirstName()},<br>Here are your tickets in the attachment!</p>",
+            $attachments 
+        );
     }
 }

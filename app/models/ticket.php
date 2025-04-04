@@ -11,7 +11,7 @@ class Ticket
 
     private string $bar_code;
 
-    private $session;
+    private ?Session $session;
 
 
     public function __construct(int $id, int $order_id, int $session_id, string $bar_code, $session)
@@ -46,6 +46,10 @@ class Ticket
     public function getSession()
     {
         return $this->session;
+    }
+    public function setSession($session): void
+    {
+        $this->session = $session;
     }
    
 

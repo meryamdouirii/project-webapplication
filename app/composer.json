@@ -12,8 +12,9 @@
         }
     },
     "require": {
-        "phpmailer/phpmailer": "^6.9",
-        "stripe/stripe-php": "^16.6",
-        "ezyang/htmlpurifier": "^4.16"
-    }
+    "phpmailer/phpmailer": "^6.9",
+    "stripe/stripe-php": "^16.6",
+    "ezyang/htmlpurifier": "^4.16",
+    "dompdf/dompdf": "^2.0",
+    "picqer/php-barcode-generator": "^3.2"}
 }
