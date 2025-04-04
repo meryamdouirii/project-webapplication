@@ -1,0 +1,218 @@
+.tickets-section {
+    padding: 4rem 0;
+    min-height: 100vh;
+}
+
+.section-title {
+    color: #FF1493;
+    font-size: 3.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-family: 'Skranji', sans-serif;
+}
+
+.ticket-title {
+    font-size: 3rem;
+    text-align: center;
+    font-family: 'Skranji', sans-serif;
+}
+
+.ticket-title-section {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    font-family: 'Skranji', sans-serif;
+}
+
+.tickets-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.tab-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+
+.tab-button.active {
+    background-color: #FFD700;
+    color: #17295B;
+}
+
+.day-sessions {
+    display: none;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.day-sessions.active {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 1.5rem;
+}
+
+.session-card {
+    background-color: #17295B;
+    border-radius: 15px;
+    padding: 1.5rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.session-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.session-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #FFD700, #FF1493);
+}
+
+.artist-info {
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.artist-name {
+    font-size: 1.6rem;
+    margin: 0 0 0.8rem 0;
+    color: #FFD700;
+}
+
+.session-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.detail-item {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.session-type {
+    background-color: #FFD700;
+    color: #17295B;
+    padding: 0.3rem 1rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.price {
+    font-size: 2rem;
+    color: #FFD700;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.tickets-left {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+}
+
+.session-info {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.session-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.price-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ticket-controls {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quantity-selector {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+.quantity-btn {
+    background: none;
+    border: none;
+    color: #FFD700;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 50%;
+}
+
+.quantity-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.quantity-input {
+    background: none;
+    border: none;
+    color: white;
+    width: 40px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.add-to-cart-btn {
+    background-color: #FFD700;
+    color: #17295B;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.add-to-cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-btn i {
+    font-size: 1.1rem;
+}

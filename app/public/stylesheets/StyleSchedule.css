@@ -1,0 +1,135 @@
+.schedule-section {
+    padding: 4rem 0;
+    color: white;
+    text-align: center;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-family: 'Skranji', sans-serif;
+    color: #FF1493;
+    font-size: 3.5rem;
+    transform: rotate(-2deg);
+}
+
+.schedule-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.tab-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tab-button.active {
+    background-color: #FFD700;
+    color: #17295B;
+}
+
+.schedule-card {
+    background-color: #17295B;
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 1000px;
+    margin: 0 auto;
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.schedule-card.active {
+    display: block;
+}
+
+.schedule-day {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.schedule-table {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 1.2rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.schedule-table th {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #a0a0a0;
+    font-weight: normal;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.schedule-table td {
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.schedule-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.schedule-table td:nth-child(4) {
+    color: #FFD700;
+    font-weight: bold;
+}
+
+.all-access {
+    color: white;
+    font-size: 1.1rem;
+    margin: 2rem 0;
+}
+
+.schedule-button {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #FFD700;
+    color: black;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.schedule-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

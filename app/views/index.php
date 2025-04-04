@@ -22,7 +22,7 @@
             <div class="row justify-content-center">
                 <?php foreach ($events as $event): ?>
                     <div class="col-md-5">
-                        <a href="#" class="card">
+                        <a href="<?= htmlspecialchars($event->name); ?>" class="card">
                             <img src="<?= htmlspecialchars($event->picture_homepage ?? 'default.jpg'); ?>"
                                 alt="<?= htmlspecialchars($event->name); ?>">
                             <div class="card-body">
@@ -73,7 +73,7 @@
     </section>
 
     <section class="bg-blue py-5">
-        <h2 class="skiranjiHeader"> Vistit us here!</h2>
+        <h2 class="skiranjiHeader"> Locations</h2>
         <div class="map-responsive">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d77928.45010574868!2d4.560478375396664!3d52.383763152454236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5ef6c60e1e9fb%3A0x8ae15680b8a17e39!2sHaarlem!5e0!3m2!1snl!2snl!4v1739461139708!5m2!1snl!2snl"
