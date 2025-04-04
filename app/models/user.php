@@ -19,6 +19,30 @@ class User implements JsonSerializable {
     public ?DateTime $reset_token_expires_at;
 
 
+    public function __construct(
+        int $id,
+        UserType $type_of_user,
+        ?string $first_name,
+        ?string $last_name,
+        ?string $phone_number,
+        string $email,
+        string $hashed_password,
+        string $salt,
+        ?string $reset_token_hash = null,
+        ?DateTime $reset_token_expires_at = null
+    ) {
+        $this->id = $id;
+        $this->type_of_user = $type_of_user;
+        $this->first_name = $first_name;
+        $this->last_name = $last_name;
+        $this->phone_number = $phone_number;
+        $this->email = $email;
+        $this->hashed_password = $hashed_password;
+        $this->salt = $salt;
+        $this->reset_token_hash = $reset_token_hash;
+        $this->reset_token_expires_at = $reset_token_expires_at;
+    }
+
     /**
      * Get the value of id
      * @return int

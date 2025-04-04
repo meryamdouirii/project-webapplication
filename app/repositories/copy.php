@@ -5,11 +5,22 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\Enums\UserType;
 use App\Models\Session;
+
 use PDO;
 use PDOException;
 
 class OrderRepository extends Repository
 {
+    public function getAll()
+    {
+
+    }
+
+    public function getById($id)
+    {
+
+    }
+
 
     public function placeOrder($order)
     {
@@ -48,92 +59,22 @@ class OrderRepository extends Repository
         }
     }
 
-    public function getOrdersByUser($userId): array
-    {
-        try {
-            // Fetch all orders placed by the user
-            $sql = "SELECT ticket_order.*
-            FROM ticket_order
-            INNER JOIN payment ON ticket_order.id = payment.order_id
-            WHERE ticket_order.user_id = :user_id 
-            AND payment.payment_status = 'paid'
-            ORDER BY ticket_order.order_date DESC ";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->execute([':user_id' => $userId]);
-            $ordersData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            $orders = [];
-
-            foreach ($ordersData as $orderData) {
-                // Fetch tickets with event, session, and artist/restaurant name
-                $ticketSql = "SELECT t.*, 
-                                 s.name AS session_name, 
-                                 s.location, 
-                                 s.datetime_start, 
-                                 s.price AS ticket_price, 
-                                 e.name AS event_name,
-                                 de.name AS artist_or_restaurant_name, 
-                                 de.card_image AS event_image
-                          FROM ticket t
-                          JOIN session s ON t.session_id = s.id
-                          JOIN detail_event de ON s.detail_event_id = de.id
-                          JOIN event e ON de.event_id = e.id
-                          WHERE t.order_id = :order_id";
-                $ticketStmt = $this->connection->prepare($ticketSql);
-                $ticketStmt->execute([':order_id' => $orderData['id']]);
-                $ticketData = $ticketStmt->fetchAll(PDO::FETCH_ASSOC);
-
-                // Convert ticket data into Ticket objects
-                $tickets = [];
-                foreach ($ticketData as $ticket) {
-                    $tickets[] = new Ticket(
-                        id: $ticket['id'],
-                        order_id: $ticket['order_id'],
-                        session_id: $ticket['session_id'],
-                        bar_code: $ticket['bar_code'],
-                        session: [
-                            'session_name' => $ticket['session_name'],
-                            'location' => $ticket['location'],
-                            'datetime_start' => $ticket['datetime_start'],
-                            'ticket_price' => $ticket['ticket_price'],
-                            'event_name' => $ticket['event_name'],
-                            'artist_or_restaurant_name' => $ticket['artist_or_restaurant_name'],
-                            'event_image' => $ticket['event_image']
-                        ]
-                    );
-                }
-                $order = new Order();
-                $order->setId($orderData['id']);
-                $order->setUserId($orderData['user_id']);
-                $order->setOrderDate($orderData['order_date']);
-                $order->setUser($_SESSION['user']);
-                $order->setTickets($tickets);
-
-                $orders[] = $order;
-            }
-
-            return $orders;
-        } catch (PDOException $e) {
-            die("Database error: " . $e->getMessage());
-        }
-    }
-
-
     public function getOrderData(int $orderId): ?array
     {
         try {
-            // 1. Get Order with User info
+            // 1. Get Order with User
             $order = $this->getOrderWithUser($orderId);
-            if (!$order) return null;
+            if (!$order)
+                return null;
 
-            //2. Get Tickets for the Order
+            // 2. Get Tickets with full hierarchy
             $tickets = $this->getTicketsForOrder($orderId);
             $order = new Order(
                 $order->getId(),
                 $order->getUserId(),
                 $order->getOrderDate(),
                 $order->getUser(),
-                $tickets 
+                $tickets // Pass tickets through constructor
             );
 
             // 3. Get Payment info
@@ -153,17 +94,17 @@ class OrderRepository extends Repository
     private function getOrderWithUser(int $orderId): ?Order
     {
         $stmt = $this->connection->prepare("
-            SELECT t_order.*, u.* 
-            FROM ticket_order t_order
-            JOIN user u ON t_order.user_id = u.id
-            WHERE t_order.id = :order_id
-        ");
+        SELECT to.*, u.* 
+        FROM ticket_order to
+        JOIN user u ON to.user_id = u.id
+        WHERE to.id = :order_id
+    ");
         $stmt->execute([':order_id' => $orderId]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
         if (!$data)
             return null;
-    
+
         return new Order(
             (int) $data['id'],
             (int) $data['user_id'],
@@ -242,6 +183,12 @@ class OrderRepository extends Repository
             (int) $data['sold_tickets']
         );
     }
+
+
+
+
+
+
 
 
 
