@@ -43,7 +43,7 @@ class Ticket
         return $this->bar_code;
     }
 
-    public function getSession()
+    public function getSession(): Session
     {
         return $this->session;
     }

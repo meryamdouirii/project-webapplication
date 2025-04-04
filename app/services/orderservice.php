@@ -8,11 +8,7 @@ class OrderService
          $repository = new \App\Repositories\OrderRepository();
          return $repository->getAll();
     }
-    // public function getById($id)
-    // {
-    //     $repository = new \App\Repositories\OrderRepository();
-    //     return $repository->getById($id);
-    // }
+    
     public function placeOrder($order)
     {
         $repository = new \App\Repositories\OrderRepository();
@@ -23,6 +19,5 @@ class OrderService
         $orderRepository = new \App\Repositories\OrderRepository();
         return $orderRepository->getOrdersByUser($userId);
     }
-
 
 }
