@@ -387,8 +387,7 @@ class OrderRepository extends Repository
             (int) $data['ticket_limit'],
             (int) $data['duration_minutes'],
             (float) $data['price'],
-            $data['datetime_start'],
-            (int) $data['sold_tickets']
+            $data['datetime_start']
         );
     }
 

@@ -18,7 +18,16 @@ class UserRepository extends Repository {
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $users = array_map(function ($row) {
-            $user = new User();
+            $user = new User(
+                (int)$row['id'],
+                UserType::from($row['type']),
+                $row['first_name'],
+                $row['last_name'],
+                $row['phone_number'],
+                $row['email_address'],
+                $row['password_hash'],
+                $row['salt']
+            );
             $user->id = (int)$row['id'];
             $user->hashed_password = $row['password_hash'];
             $user->email = $row['email_address'];
@@ -48,15 +57,16 @@ class UserRepository extends Repository {
             return null;
         }
     
-        $user = new User();
-        $user->id = (int)$row['id'];
-        $user->hashed_password = $row['password_hash'];
-        $user->email = $row['email_address'];
-        $user->salt = $row['salt'];
-        $user->type_of_user = UserType::from($row['type']); 
-        $user->first_name = $row['first_name'];
-        $user->last_name = $row['last_name'];
-        $user->phone_number = $row['phone_number'];
+        $user = new User(
+            (int)$row['id'],
+            UserType::from($row['type']),
+            $row['first_name'],
+            $row['last_name'],
+            $row['phone_number'],
+            $row['email_address'],
+            $row['password_hash'],
+            $row['salt']
+        );
     
         return $user;
     }
@@ -71,15 +81,18 @@ class UserRepository extends Repository {
             return null; // User not found
         }
 
-        $user = new User();
-        $user->id = (int)$row['id'];
-        $user->hashed_password = $row['password_hash'];
-        $user->email = $row['email_address'];
-        $user->salt = $row['salt'];
-        $user->type_of_user = UserType::from($row['type']); // Convert string to enum
-        $user->first_name = $row['first_name']; 
-        $user->last_name = $row['last_name'];
-        $user->phone_number = $row['phone_number'];
+       
+        $user = new User(
+            (int)$row['id'],
+            UserType::from($row['type']),
+            $row['first_name'],
+            $row['last_name'],
+            $row['phone_number'],
+            $row['email_address'],
+            $row['password_hash'],
+            $row['salt']
+        );
+        
         return $user;
     }
     public function getById($id) {
@@ -92,15 +105,18 @@ class UserRepository extends Repository {
             return null; // User not found
         }
 
-        $user = new User();
-        $user->id = (int)$row['id'];
-        $user->hashed_password = $row['password_hash'];
-        $user->email = $row['email_address'];
-        $user->salt = $row['salt'];
-        $user->type_of_user = UserType::from($row['type']); // Convert string to enum
-        $user->first_name = $row['first_name']; 
-        $user->last_name = $row['last_name'];
-        $user->phone_number = $row['phone_number'];
+
+        $user = new User(
+            (int)$row['id'],
+            UserType::from($row['type']),
+            $row['first_name'],
+            $row['last_name'],
+            $row['phone_number'],
+            $row['email_address'],
+            $row['password_hash'],
+            $row['salt']
+        );
+       
         return $user;
     }
     public function insert($user) {
@@ -168,11 +184,19 @@ class UserRepository extends Repository {
             return null; // No matching user found
         }
     
-        $user = new User();
-        $user->id = (int)$row['id'];
-        $user->email = $row['email_address'];
-        $user->reset_token_hash = $row['reset_token_hash'];
-        $user->reset_token_expires_at = new DateTime($row['reset_token_expires_at']); // Convert string to DateTime
+        $user = new User(
+            (int)$row['id'],
+            UserType::from($row['type']),
+            $row['first_name'],
+            $row['last_name'],
+            $row['phone_number'],
+            $row['email_address'],
+            $row['password_hash'],
+            $row['salt'],
+            $row['reset_token_hash'],
+            new DateTime($row['reset_token_expires_at'])
+        );
+       
     
         return $user;
     }

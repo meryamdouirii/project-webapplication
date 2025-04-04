@@ -85,14 +85,17 @@ class HomeController
             $first_name = !empty($_POST['first_name']) ? htmlspecialchars($_POST['first_name']) : null;
             $last_name = !empty($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : null;
             $phone_number = !empty($_POST['phone_number']) ? htmlspecialchars($_POST['phone_number']) : null;
-            $user = new \App\Models\User();
-            $user->email = $email;
-            $user->hashed_password = $password;
-            $user->type_of_user = $type_of_user;
-            $user->first_name = $first_name;
-            $user->last_name = $last_name;
-            $user->phone_number = $phone_number;
-            $user->salt= $salt;
+            $user = new \App\Models\User(
+                0, // ID is auto-incremented in the database
+                $type_of_user,
+                $first_name,
+                $last_name,
+                $phone_number,
+                $email,
+                $password,
+                $salt
+            );
+
 
             $this->userService->insert($user);
 

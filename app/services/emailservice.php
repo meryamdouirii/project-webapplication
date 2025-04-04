@@ -71,7 +71,6 @@ class EmailService {
         $mail->Subject = $subject;
         $mail->Body    = $body;
 
-        // ➕ Voeg de bijlagen toe
         foreach ($attachments as $attachment) {
             $mail->addStringAttachment(
                 $attachment['content'],
