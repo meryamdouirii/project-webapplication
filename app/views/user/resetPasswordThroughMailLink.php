@@ -18,7 +18,7 @@ include __DIR__ . '/../header.php';
             </div>
             <div class="mb-3">
                 <label for="confirm_password" class="form-label">Confirm Password</label>
-                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm your passworddd" required>
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm your password" required>
             </div>
             <button type="submit" class="button">Reset Password</button>
             <?php if (isset($_SESSION['error'])): ?>

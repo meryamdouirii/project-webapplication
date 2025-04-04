@@ -60,16 +60,16 @@
                     <?php foreach ($detailEvents as $event): ?>
                         <div class="col-md-4">
                             <div class="card-artist">
-                                <img src="/images-logos/<?php echo htmlspecialchars($event->getCardImage()); ?>"
-                                    alt="<?php echo htmlspecialchars($event->getName()); ?>">
+                                <img src="/images-logos/<?php echo $event->getCardImage(); ?>"
+                                    alt="<?php echo $event->getName(); ?>">
                                 <div class="card-content">
                                     <div class="genre-tags">
                                         <?php foreach ($event->getTags() as $tag): ?>
-                                            <span class="genre-tag"><?php echo htmlspecialchars($tag); ?></span>
+                                            <span class="genre-tag"><?php echo $tag; ?></span>
                                         <?php endforeach; ?>
                                     </div>
-                                    <h3 class="artist-name"><?php echo htmlspecialchars($event->getName()); ?></h3>
-                                    <p class="artist-description"><?php echo htmlspecialchars($event->getCardDescription()); ?></p>
+                                    <h3 class="artist-name"><?php echo $event->getName(); ?></h3>
+                                    <p class="artist-description"><?php echo $event->getCardDescription(); ?></p>
 
                                     <!-- Dynamically display session details -->
                                     <?php foreach ($event->getSessions() as $session): ?>
@@ -79,7 +79,7 @@
                                                     <?php echo $session->getDate(); ?>
                                                 </div>
                                                 <div class="event-location">
-                                                    <?php echo htmlspecialchars($session->getLocation()); ?>
+                                                    <?php echo $session->getLocation(); ?>
                                                 </div>
                                             </div>
                                             <div class="event-details-right">
@@ -110,7 +110,7 @@
         </section>
 
         <!-- <pre><?php print_r($detailEvents); ?></pre> -->
-        <!-- <pre><?php echo htmlspecialchars($eventDance->name); ?></pre> --> 
+        <!-- <pre><?php echo $eventDance->name; ?></pre> --> 
 
 
         <?php
@@ -146,8 +146,8 @@
                                     <?php if (!empty($sessionsByDate[$date])): ?>
                                         <?php foreach ($sessionsByDate[$date] as $session): ?>
                                             <tr>
-                                                <td><?= htmlspecialchars($session->getDetailEventName()); ?></td>
-                                                <td><?= htmlspecialchars($session->getLocation()); ?></td>
+                                                <td><?= $session->getDetailEventName(); ?></td>
+                                                <td><?= $session->getLocation(); ?></td>
                                                 <td><?= $session->getStartTime(); ?> - <?= $session->getEndTime(); ?></td>
                                                 <td>€ <?= number_format($session->getPrice(), 2, ',', '.'); ?></td>
                                                 <td><?= $session->getTicketsAvailable(); ?></td>
