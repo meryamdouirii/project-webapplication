@@ -18,11 +18,11 @@ class OrderService
         $repository = new \App\Repositories\OrderRepository();
         return $repository->placeOrder($order);
     }
-    public function getUserOrders($userId)
-    {
-        $orderRepository = new \App\Repositories\OrderRepository();
-        return $orderRepository->getOrdersByUser($userId);
-    }
+    // public function getUserOrders($userId)
+    // {
+    //     $orderRepository = new \App\Repositories\OrderRepository();
+    //     return $orderRepository->getOrdersByUser($userId);
+    // }
 
 
 }
