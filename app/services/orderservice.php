@@ -23,6 +23,11 @@ class OrderService
         $orderRepository = new \App\Repositories\OrderRepository();
         return $orderRepository->getOrdersByUser($userId);
     }
+    // public function getOrderData($orderId)
+    // {
+    //     $orderRepository = new \App\Repositories\OrderRepository();
+    //     return $orderRepository->getOrderData($orderId);
+    // }
 
 
 }
