@@ -5,7 +5,7 @@
 $detail_event;
 ?>
 <main>
-    <a class="button my-4 mx-5" href="/manage-events/manage-detailevents?detailevent_id=<?php echo $detail_event->getId() ?>">Go Back</a>
+    <a class="button my-4 mx-5" href="manage-events/manage-detailevents?event_id=<?php echo $detail_event->getEventId() ?>">Go Back</a>
     <div class="d-flex justify-content-center align-items-center">  
         <div class="card p-4 my-5" style="width: 60%;">
                 <h2 class="mb-4">Session Management</h2>
