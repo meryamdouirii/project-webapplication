@@ -3,10 +3,10 @@
 </head>
 <?php include __DIR__ . '/../../header.php'; ?>
 <main class="bg-light-blue container-fluid p-0">
-    
+
 
     <section class="hero-section-event text-white text-center event-hero"
-        style="background-image: url('<?=$detailEvent->getBannerImage()?>');">
+        style="background-image: url('<?= $detailEvent->getBannerImage() ?>');">
         <div class="overlay event-overlay">
             <div class="container">
                 <div class="row">
@@ -22,7 +22,7 @@
         </div>
     </section>
 
-    <div class="container-xl py-5"> 
+    <div class="container-xl py-5">
 
         <section class="about-artist-section my-5 px-5">
             <h2 class="section-title">About <?= $detailEvent->getName() ?></h2>
@@ -32,7 +32,7 @@
                         <p class="artist-description"><?= $detailEvent->getDescription() ?></p>
                     </div>
                     <div class="col-md-4">
-                        <img src="/images-logos/<?= $detailEvent->getImageDescription1() ?>"
+                        <img src="<?= $detailEvent->getImageDescription1() ?: '/images-logos/default.jpg' ?>"
                             alt="<?= $detailEvent->getName() ?>" class="img-fluid artist-image">
                     </div>
                 </div>
@@ -64,8 +64,7 @@
             <div class="songs-container">
                 <?php foreach ($detailEvent->getSongs() as $song): ?>
                     <div class="song-card">
-                        <img src="/images-logos/<?= $song->getPhoto() ?>"
-                            alt="<?= $song->getTitle() ?>" class="song-image">
+                        <img src="<?= $song->getPhoto() ?: '/images-logos/default.jpg' ?>" class="song-image">
                         <div class="song-content">
                             <h3 class="song-title"><?= $song->getTitle() ?></h3>
                             <p class="song-description"><?= $song->getDescription() ?></p>

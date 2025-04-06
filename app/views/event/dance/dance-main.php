@@ -60,8 +60,7 @@
                     <?php foreach ($detailEvents as $event): ?>
                         <div class="col-md-4">
                             <div class="card-artist">
-                                <img src="/images-logos/<?php echo $event->getCardImage(); ?>"
-                                    alt="<?php echo $event->getName(); ?>">
+                            <img src="<?php echo $event->getCardImage() ?: '/images-logos/default.jpg'; ?>" alt="<?php echo $event->getName(); ?>">
                                 <div class="card-content">
                                     <div class="genre-tags">
                                         <?php foreach ($event->getTags() as $tag): ?>

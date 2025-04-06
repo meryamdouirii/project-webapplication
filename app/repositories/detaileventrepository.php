@@ -207,14 +207,15 @@ class DetailEventRepository extends Repository
         $results = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $results[] = new Songs(
-                $row['id'],
-                $row['detail_event_id'],
-                $row['name'] ?? "Unknown Name",
-                $row['photo'] ?? "default.jpg",
-                $row['title'] ?? "Unknown Title",
-                $row['description'] ?? "No description available"
-            );
+            $song = new Songs();
+            $song->setId($row['id'] ?? 0);
+            $song->setDetailEventId($row['detail_event_id'] ?? 0);
+            $song->setDetailEventName($row['name'] ?? "Unknown Name");
+            $song->setPhoto($row['photo'] ?? "");
+            $song->setTitle($row['title'] ?? "Unknown Title");
+            $song->setDescription($row['description'] ?? "No description available");
+            
+            $results[] = $song;
         }
         return $results;
     }

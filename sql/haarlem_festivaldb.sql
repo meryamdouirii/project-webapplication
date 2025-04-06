@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 06 apr 2025 om 10:15
+-- Gegenereerd op: 06 apr 2025 om 12:07
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.28
 
@@ -46,12 +46,12 @@ CREATE TABLE `detail_event` (
 --
 
 INSERT INTO `detail_event` (`id`, `event_id`, `banner_description`, `banner_image`, `name`, `description`, `image_description_1`, `image_description_2`, `card_image`, `card_description`, `amount_of_stars`) VALUES
-(1, 1, 'One of the world-class DJs performing at Haarlem Festival is Hardwell!', 'default.jpg', 'Hardwell', 'Hardwell, born Robbert van de Corput, is a globally renowned Dutch DJ, music producer, and remixer. He gained fame for his contributions to electronic dance music (EDM), specifically in the genres of progressive house and big room house. Rising to prominence in the early 2010s, Hardwell quickly established himself as a festival headliner. Known for his dynamic live performances, he was crowned the World\'s No.1 DJ twice in a row (2013, 2014) by DJ Mag\'s Top 100 DJs poll.', 'default.jpg', NULL, 'default.jpg', 'Hardwell is known for his energetic performances. Hardwell hails from Breda, Netherlands, and began DJing at the age of 14.', NULL),
-(2, 1, 'One of the world-class DJs performing at Haarlem Festival is Martin Garrix!', 'MartinGarrix.jpg', 'Martin Garrix', 'Martin Garrix, de jonge superster uit Nederland, heeft zichzelf bewezen als een van de grootste namen in de dance- en elektronische muziekwereld. Met hits zoals \"Animals\" en \"Scared to Be Lonely\" domineert hij zowel de charts als festivals over de hele wereld. Zijn energieke optredens en pakkende producties hebben hem de titel van werelds beste DJ opgeleverd in meerdere DJ Mag Top 100-lijsten.', 'MartinGarrixCard.jpg', NULL, 'MartinGarrixCard.jpg', '(Martijn Garritsen): Martin is an animal lover, particularly fond of dogs, and supports various charitable causes. He has had a succesfull career since he was young.', NULL),
-(3, 1, 'One of the world-class DJs performing at Haarlem Festival is Tiesto!', 'default.jpg', 'Tiesto', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Tijs Michiel Verwest): Tiësto, also from Breda, Netherlands, is known for being a trailblazer in electronic music.  ', NULL),
-(4, 1, 'One of the world-class DJs performing at Haarlem Festival is Armin van Buuren!', 'default.jpg', 'Armin van Buuren', 'NULL', 'default.jpg', NULL, 'default.jpg', 'Armin is known for his meticulous work ethic and dedication to his fans. Despite his success, he remains approachable and enjoys connecting with his global audience.  ', NULL),
-(5, 1, 'One of the world-class DJs performing at Haarlem Festival is Afrojack!', 'default.jpg', 'Afrojack', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick van de Wall): Afrojack is not only a DJ but also an entrepreneur, owning his own label, Wall Recordings.  ', NULL),
-(6, 1, 'One of the world-class DJs performing at Haarlem Festival is Nicky Romero!', 'default.jpg', 'Nicky Romero', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick Rotteveel): Nicky is known for his collaborative and friendly nature in the music industry.   ', NULL),
+(1, 1, '<p>One of the world-class DJs performing at Haarlem Festival is Hardwell!</p>', '/images-logos/uploads/1743939681_Hardwell.jpg', 'Hardwell', 'Hardwell, born Robbert van de Corput, is a globally renowned Dutch DJ, music producer, and remixer. He gained fame for his contributions to electronic dance music (EDM), specifically in the genres of progressive house and big room house. Rising to prominence in the early 2010s, Hardwell quickly established himself as a festival headliner. Known for his dynamic live performances, he was crowned the World\'s No.1 DJ twice in a row (2013, 2014) by DJ Mag\'s Top 100 DJs poll.', NULL, NULL, '/images-logos/uploads/1743939802_Hardwell.jpg', 'Hardwell is known for his energetic performances. Hardwell hails from Breda, Netherlands, and began DJing at the age of 14.</p>', 0),
+(2, 1, '<p>One of the world-class DJs performing at Haarlem Festival is Martin Garrix!</p>', '/images-logos/uploads/1743940133_DJ-Martin-GarrixKopie.jpg', 'Martin Garrix', '<p>Martin Garrix, de jonge superster uit Nederland, heeft zichzelf bewezen als een van de grootste namen in de dance- en elektronische muziekwereld. Met hits zoals \"Animals\" en \"Scared to Be Lonely\" domineert hij zowel de charts als festivals over de hele wereld. Zijn energieke optredens en pakkende producties hebben hem de titel van werelds beste DJ opgeleverd in meerdere DJ Mag Top 100-lijsten.</p>', '/images-logos/uploads/1743940103_martingarixxjpg.jpg', '/images-logos/uploads/1743939982_martinchair.jpg', '/images-logos/uploads/1743940048_DJ-Martin-GarrixKopie.jpg', '(Martijn Garritsen): Martin is an animal lover, particularly fond of dogs, and supports various charitable causes. He has had a succesfull career since he was young.</p>', 0),
+(3, 1, '<p>One of the world-class DJs performing at Haarlem Festival is Tiesto!</p>', '/images-logos/uploads/1743940442_zo-sleept-dj-tiesto-zijn-miljoenen-binnen.jpeg', 'Tiesto', '<p>Add some information about tiesto </p>', '/images-logos/uploads/1743940321_tietsoCrop.jpg', '/images-logos/uploads/1743940274_tietsoCrop.jpg', '/images-logos/uploads/1743940326_tietsoCrop.jpg', '<p>(Tijs Michiel Verwest): Tiësto, also from Breda, Netherlands, is known for being a trailblazer in electronic music.</p>', 0),
+(4, 1, '<p>One of the world-class DJs performing at Haarlem Festival is Armin van Buuren!</p>', '/images-logos/uploads/1743940888_ArminVanBuuren.jpg', 'Armin van Buuren', '<p>there is no information available for armin </p>', '/images-logos/uploads/1743940893_ArminVanBuuren.jpg', '/images-logos/uploads/1743940873_ArminVanBuuren.jpg', '/images-logos/uploads/1743940917_ArminVanBuuren.jpg', '<p>Armin is known for his meticulous work ethic and dedication to his fans. Despite his success, he remains approachable and enjoys connecting with his global audience.</p>', 0),
+(5, 1, '<p>One of the world-class DJs performing at Haarlem Festival is Afrojack!</p>', '/images-logos/uploads/1743941044_AFROJACKcopie.jpg', 'Afrojack', '<p>NULL</p>', '/images-logos/uploads/1743941024_AFROJACKcopie.jpg', '/images-logos/uploads/1743941002_AFROJACKcopie.jpg', '/images-logos/uploads/1743941028_AFROJACKcopie.jpg', '<p>(Nick van de Wall): Afrojack is not only a DJ but also an entrepreneur, owning his own label, Wall Recordings.</p>', 0),
+(6, 1, '<p>One of the world-class DJs performing at Haarlem Festival is Nicky Romero!</p>', '/images-logos/uploads/1743941167_NickyRomerocopy.jpg', 'Nicky Romero', '<p>NULL</p>', '/images-logos/uploads/1743941173_NickyRomerocopy.jpg', '/images-logos/uploads/1743941141_NickyRomerocopy.jpg', '/images-logos/uploads/1743941179_NickyRomerocopy.jpg', '<p>(Nick Rotteveel): Nicky is known for his collaborative and friendly nature in the music industry.</p>', 0),
 (7, 2, '<p><strong>Visit US!!!!!</strong></p>', '/images-logos/uploads/1743933809_HetgezelschapbijRatatouille_.jfif', 'Ratatouille', '<p>Nestled along the scenic Spaarne River at Spaarne 96, 2011 CL Haarlem, Ratatouille Food &amp; Wine offers an exce<strong>ptional dining experience that harmoniously blends modern culinary techniques with a deep appreciation for fresh, local ingredients. Under the guidance of chef Jozua Jaring, this Michelin-starred restaurant presents meticulously crafted dishes that surprise and delight with their innovative presentations and flavor combinations. With its commitment to culinary excellence and warm hospitalit</strong>y, Ratatouille Food &amp; Wine has become a must-visit destination for food enthusiasts in Haarlem. Whether you\'re a local resident or a visitor, the restaurant offers a memorable dining experience that highlights the best of modern cuisine in a welcoming and stylish setting.</p>', '/images-logos/uploads/1743933816_large_61047dad35.jpg', '/images-logos/uploads/1743933829_rataouille1_0_4.png', '/images-logos/uploads/1743933837_c3108c2d430d443fa32af7798be03899.webp', '<p>Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.</p>', 4),
 (8, 2, '<p>Cozy vibes and fine food in the heart of the city.</p>', '/images-logos/uploads/1743933930_dvb-roemer-3.jpg', 'Café de Roemer', '<p>Café de Roemer is a charming spot that serves classic dishes with a modern twist. The warm and inviting interior makes it perfect for lunch or casual drinks. Their chefs work with seasonal, locally sourced ingredients. The wine list is thoughtfully curated to pair perfectly with the menu.</p>', '/images-logos/uploads/1743933936_image-asset1.jpeg', '/images-logos/uploads/1743933942_image-asset.jpeg', '/images-logos/uploads/1743933946_image-asset2.jpeg', '<p>A cozy café offering modern classics and a fine wine selection.</p>', 4),
 (9, 2, '<p>Fine dining in a beautiful historic setting.</p>', '/images-logos/uploads/1743934018_BistroML3.jpg', 'Restaurant ML', '<p>Housed in a stunning heritage building, Restaurant ML offers a premium gastronomic experience. The seasonal menu is full of surprising flavors and creative presentation. Guests enjoy top-tier service and perfectly paired wines. A must-visit for lovers of high-end cuisine.</p>', '/images-logos/uploads/1743934024_restaurant-moustique.jpg', '/images-logos/uploads/1743934031_ml-gerecht.jpg', '/images-logos/uploads/1743934035_crunchy_sushi.jpg', '<p>High-end gastronomy served in a historic ambiance.</p>', 4),
@@ -77,17 +77,6 @@ CREATE TABLE `detail_event_card_tag` (
 --
 
 INSERT INTO `detail_event_card_tag` (`id`, `detail_event_id`, `tag`) VALUES
-(1, 2, 'Trance'),
-(2, 2, 'Techno'),
-(3, 1, 'Dance'),
-(4, 1, 'House'),
-(5, 3, 'Trance'),
-(6, 3, 'Techno'),
-(7, 4, 'Trance'),
-(8, 4, 'Techno'),
-(9, 5, 'House'),
-(10, 6, 'House'),
-(11, 6, 'Electro'),
 (48, 7, 'French'),
 (49, 7, 'European'),
 (50, 7, 'Fish & Seafood'),
@@ -106,7 +95,19 @@ INSERT INTO `detail_event_card_tag` (`id`, `detail_event_id`, `tag`) VALUES
 (63, 12, 'Modern'),
 (64, 13, 'Dutch'),
 (65, 13, 'Fish & Seafood'),
-(66, 13, 'European');
+(66, 13, 'European'),
+(73, 1, 'Dance'),
+(74, 1, 'House'),
+(83, 2, 'Trance'),
+(84, 2, 'Techno'),
+(91, 3, 'Trance'),
+(92, 3, 'Techno'),
+(96, 4, 'Trance'),
+(97, 4, 'Techno'),
+(98, 4, 'house'),
+(101, 5, 'House'),
+(104, 6, 'House'),
+(105, 6, 'Electro');
 
 -- --------------------------------------------------------
 
@@ -337,12 +338,12 @@ CREATE TABLE `song` (
 --
 
 INSERT INTO `song` (`id`, `detail_event_id`, `photo`, `title`, `description`) VALUES
-(1, 1, 'default.jpg', 'Spaceman', 'Spaceman is one of Hardwell\'s most iconic tracks and a breakthrough hit. Released in 2012, this song became a staple at festivals worldwide. With its soaring synth melodies, explosive drops, and an unmistakable uplifting energy, \"Spaceman\" showcases Hardwell’s mastery of big room house. '),
-(2, 1, 'default.jpg', 'Appolo', 'Apollo features the angelic vocals of Amba Shepherd combined with Hardwell’s signature big-room style. The track balances heartfelt lyrics and a soaring melodic drop, which made it an instant favorite among fans. The emotional build-up and euphoric energy made \"Apollo\" a timeless anthem in Hardwell\'s discography and EDM history. '),
-(3, 1, 'default.jpg', 'Zero 76', 'Zero 76 is a collaborative effort between Hardwell and Tiësto, released in 2011. The track title pays homage to their hometown Breda, Netherlands, whose area code is 076. Combining the sounds of two Dutch powerhouses, this track offers punchy beats, a driving rhythm, and an electrifying drop.'),
-(4, 2, 'default.jpg', 'Animals', 'Martin Garrix\'s doorbraaknummer dat de wereld in één klap kennis liet maken met zijn unieke sound. Met zijn hypnotiserende beats en energie werd Animals een festivalanthem en een mijlpaal in de elektronische muziek.'),
-(5, 2, 'default.jpg', 'Scared to Be Lonely (met Dua Lipa)', 'Een emotionele samenwerking tussen Martin Garrix en Dua Lipa. Dit nummer combineert krachtige vocals met een diepgaande melodie, wat het tot een favoriet maakt bij zowel dance- als popliefhebbers.'),
-(6, 2, 'default.jpg', 'In the Name of Love (met Bebe Rexha)', 'Een perfecte mix van elektronische beats en pop, In the Name of Love benadrukt Martin Garrix\'s veelzijdigheid als producer. Samen met Bebe Rexha creëerde hij een nummer dat zowel gevoelig als energiek is');
+(1, 1, NULL, 'Spaceman', 'Spaceman is one of Hardwell\'s most iconic tracks and a breakthrough hit. Released in 2012, this song became a staple at festivals worldwide. With its soaring synth melodies, explosive drops, and an unmistakable uplifting energy, \"Spaceman\" showcases Hardwell’s mastery of big room house. '),
+(2, 1, NULL, 'Appolo', 'Apollo features the angelic vocals of Amba Shepherd combined with Hardwell’s signature big-room style. The track balances heartfelt lyrics and a soaring melodic drop, which made it an instant favorite among fans. The emotional build-up and euphoric energy made \"Apollo\" a timeless anthem in Hardwell\'s discography and EDM history. '),
+(3, 1, NULL, 'Zero 76', 'Zero 76 is a collaborative effort between Hardwell and Tiësto, released in 2011. The track title pays homage to their hometown Breda, Netherlands, whose area code is 076. Combining the sounds of two Dutch powerhouses, this track offers punchy beats, a driving rhythm, and an electrifying drop.'),
+(4, 2, NULL, 'Animals', 'Martin Garrix\'s doorbraaknummer dat de wereld in één klap kennis liet maken met zijn unieke sound. Met zijn hypnotiserende beats en energie werd Animals een festivalanthem en een mijlpaal in de elektronische muziek.'),
+(5, 2, NULL, 'Scared to Be Lonely (met Dua Lipa)', 'Een emotionele samenwerking tussen Martin Garrix en Dua Lipa. Dit nummer combineert krachtige vocals met een diepgaande melodie, wat het tot een favoriet maakt bij zowel dance- als popliefhebbers.'),
+(6, 2, NULL, 'In the Name of Love (met Bebe Rexha)', 'Een perfecte mix van elektronische beats en pop, In the Name of Love benadrukt Martin Garrix\'s veelzijdigheid als producer. Samen met Bebe Rexha creëerde hij een nummer dat zowel gevoelig als energiek is');
 
 -- --------------------------------------------------------
 
@@ -526,7 +527,7 @@ ALTER TABLE `detail_event`
 -- AUTO_INCREMENT voor een tabel `detail_event_card_tag`
 --
 ALTER TABLE `detail_event_card_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT voor een tabel `payment`
