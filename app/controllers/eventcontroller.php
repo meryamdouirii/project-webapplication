@@ -59,19 +59,17 @@ class EventController
             }
             require("../views/event/yummy!/yummy-detail.php");
     }
+    
     public function danceTickets(){
+
         $eventId = 1;
-        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId($eventId);
-        
-        
+        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId($eventId);   
         require("../views/customer/tickets.php");
     }
+
     public function yummyTickets(){
         $eventId = 2;
-        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId($eventId);
-
-
-        
+        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId($eventId); 
         require("../views/customer/tickets.php");
     }
   
