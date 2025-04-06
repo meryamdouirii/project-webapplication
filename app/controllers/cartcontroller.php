@@ -53,7 +53,12 @@ class CartController
                 $_SESSION["cart"][] = $ticket;
             }
 
-            header("Location: /dance/tickets");
+            if ($_POST["event_id"] == 1) {
+                header("Location: /dance/tickets");
+            } else if ($_POST["event_id"] == 2) {
+                header("Location: /yummy/tickets");
+            }
+            
             exit();
         }
     }

@@ -36,6 +36,8 @@ $events = $eventRepository->getAll();
                                 href="/<?= htmlspecialchars($event->name); ?>"><?= htmlspecialchars($event->name); ?></a>
                         </li>
                     <?php endforeach; ?>
+                        
+                   <?php if (!(isset($_SESSION['user']) && $_SESSION['user']['type_of_user'] === 'administrator')): ?> 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -46,7 +48,9 @@ $events = $eventRepository->getAll();
                             <li><a class="dropdown-item" href="/yummy/tickets">Yummy tickets</a></li>
                         </ul>
                     </li>
+                    <?php endif; ?>
                 </ul>
+              
                 <ul class="navbar-nav ms-auto">
                     <?php if (!isset($_SESSION['user'])): ?>
                         <li class="nav-item me-5 pt-1"><a class="button" href="/login">Log In</a></li>

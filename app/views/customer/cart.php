@@ -38,7 +38,7 @@
                                 ?>
                                 <div class="cart-item row align-items-center">
                                     <div class="col-md-2">
-                                        <img src="/images/event-placeholder.jpg" alt="Event Image">
+                                        <img src="/images-logos/ticketImage.jpg" alt="Event Image">
                                     </div>
                                     <div class="col-md-6 cart-details">
                                         <h5><?= $eventName; ?></h5>
@@ -108,7 +108,7 @@
                                 </strong>
                             </p>
                             <form action="/confirm_order" method="POST">
-                                <button type="submit" class="button w-100">Pay with iDEAL</button>
+                                <button type="submit" class="button w-100">Pay</button>
                             </form>
 
                         </div>
