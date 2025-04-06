@@ -24,7 +24,7 @@
                                 <li>Afrojack</li>
                                 <li>Nicky Romero</li>
                             </ul>
-                            <a href="#" class="btn btn-lg mt-3 event-ticket-btn button">GET TICKETS</a>
+                            <a href="/dance/tickets" class="btn btn-lg mt-3 event-ticket-btn button">GET TICKETS</a>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,8 @@
                                         <?php endforeach; ?>
                                     </div>
                                     <h3 class="artist-name"><?php echo $event->getName(); ?></h3>
-                                    <p class="artist-description"><?php echo $event->getCardDescription(); ?></p>
+                                    <!-- <p class="artist-description"><?php echo $event->getCardDescription(); ?></p> -->
+                                    <div class="artist-description"><?php echo $event->getCardDescription(); ?></div>
 
                                     <!-- Dynamically display session details -->
                                     <?php foreach ($event->getSessions() as $session): ?>
@@ -99,7 +100,7 @@
 
                                 <div class="action-buttons">
                                     <a href="/Dance/detail?id=<?= $event->getId(); ?>" class="button">INFO & SHOWS</a>
-                                    <a href="#" class="button">GET TICKETS</a>
+                                    <a href="/dance/tickets" class="button">GET TICKETS</a>
                                 </div>
                             </div>
                         </div>
@@ -159,7 +160,7 @@
                                     <?php endif; ?>
                                 </tbody>
                             </table>
-                            <a href="#" class="button schedule-button">GET TICKETS</a>
+                            <a href="/dance/tickets" class="button schedule-button">GET TICKETS</a>
                         </div>
                     <?php endforeach; ?>
                 </div>

@@ -12,10 +12,10 @@
                 <div class="row">
                     <div class="col-md-3 text-start bg-blue-transparent p-3 position-relative event-artist-list">
                         <h1 class="event-title"><?php echo $detailEvent->getName(); ?></h1>
-                        <ul class="list-unstyled my-3">
+                        <ul class="list-unstyled my-2">
                             <p><?php echo $detailEvent->getBannerDescription(); ?></p>
                         </ul>
-                        <a href="#" class="btn btn-lg mt-3 event-ticket-btn button">GET TICKETS</a>
+                        <a href="/dance/tickets" class="btn btn-lg mt-3 event-ticket-btn button">GET TICKETS</a>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
 
     <div class="container-xl py-5">
 
-        <section class="about-artist-section my-5 px-5">
+        <section class="about-artist-section my-2 px-5">
             <h2 class="section-title">About <?= $detailEvent->getName() ?></h2>
             <div class="artist-content">
                 <div class="row">
