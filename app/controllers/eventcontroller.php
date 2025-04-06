@@ -37,7 +37,7 @@ class EventController
         require("../views/event/dance/dance-detail.php");
     }
     public function yummyMain(){
-        
+        $mainEvent = $this->EventService->getById(2);
         $detailEvents = $this->detailEventService->getByMainEvent(2);
 
         require("../views/event/yummy!/yummy-main.php");

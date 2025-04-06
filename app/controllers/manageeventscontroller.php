@@ -127,7 +127,7 @@ class ManageEventsController
                 $songs
             );
             if ($this->detailEventService->add($detailEvent)) {
-                $_SESSION['success_message'] = "Detail event has been addedsuccessfully!";
+                $_SESSION['success_message'] = "Detail event has been added successfully!";
             } else {
                 $_SESSION['error_message'] = "Failed to add Detail event.";
             }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 03 apr 2025 om 10:22
+-- Gegenereerd op: 06 apr 2025 om 10:15
 -- Serverversie: 11.7.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.28
 
@@ -52,7 +52,13 @@ INSERT INTO `detail_event` (`id`, `event_id`, `banner_description`, `banner_imag
 (4, 1, 'One of the world-class DJs performing at Haarlem Festival is Armin van Buuren!', 'default.jpg', 'Armin van Buuren', 'NULL', 'default.jpg', NULL, 'default.jpg', 'Armin is known for his meticulous work ethic and dedication to his fans. Despite his success, he remains approachable and enjoys connecting with his global audience.  ', NULL),
 (5, 1, 'One of the world-class DJs performing at Haarlem Festival is Afrojack!', 'default.jpg', 'Afrojack', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick van de Wall): Afrojack is not only a DJ but also an entrepreneur, owning his own label, Wall Recordings.  ', NULL),
 (6, 1, 'One of the world-class DJs performing at Haarlem Festival is Nicky Romero!', 'default.jpg', 'Nicky Romero', 'NULL', 'default.jpg', NULL, 'default.jpg', '(Nick Rotteveel): Nicky is known for his collaborative and friendly nature in the music industry.   ', NULL),
-(7, 2, '<p><strong>Visit US!!!!!</strong></p>', '/images-logos/uploads/1742910583_c3108c2d430d443fa32af7798be03899.webp', 'Ratatouille', '<p>Nestled along the scenic Spaarne River at Spaarne 96, 2011 CL Haarlem, Ratatouille Food &amp; Wine offers an exce<strong>ptional dining experience that harmoniously blends modern culinary techniques with a deep appreciation for fresh, local ingredients. Under the guidance of chef Jozua Jaring, this Michelin-starred restaurant presents meticulously crafted dishes that surprise and delight with their innovative presentations and flavor combinations. With its commitment to culinary excellence and warm hospitalit</strong>y, Ratatouille Food &amp; Wine has become a must-visit destination for food enthusiasts in Haarlem. Whether you\'re a local resident or a visitor, the restaurant offers a memorable dining experience that highlights the best of modern cuisine in a welcoming and stylish setting.</p>', NULL, NULL, NULL, '<p>Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.</p>', 4);
+(7, 2, '<p><strong>Visit US!!!!!</strong></p>', '/images-logos/uploads/1743933809_HetgezelschapbijRatatouille_.jfif', 'Ratatouille', '<p>Nestled along the scenic Spaarne River at Spaarne 96, 2011 CL Haarlem, Ratatouille Food &amp; Wine offers an exce<strong>ptional dining experience that harmoniously blends modern culinary techniques with a deep appreciation for fresh, local ingredients. Under the guidance of chef Jozua Jaring, this Michelin-starred restaurant presents meticulously crafted dishes that surprise and delight with their innovative presentations and flavor combinations. With its commitment to culinary excellence and warm hospitalit</strong>y, Ratatouille Food &amp; Wine has become a must-visit destination for food enthusiasts in Haarlem. Whether you\'re a local resident or a visitor, the restaurant offers a memorable dining experience that highlights the best of modern cuisine in a welcoming and stylish setting.</p>', '/images-logos/uploads/1743933816_large_61047dad35.jpg', '/images-logos/uploads/1743933829_rataouille1_0_4.png', '/images-logos/uploads/1743933837_c3108c2d430d443fa32af7798be03899.webp', '<p>Ratatouille is specialised in French cuisine. However you can also visit them for fish, seafood and other European dishes! It is located at Spaarne 96 in Haarlem.</p>', 4),
+(8, 2, '<p>Cozy vibes and fine food in the heart of the city.</p>', '/images-logos/uploads/1743933930_dvb-roemer-3.jpg', 'Café de Roemer', '<p>Café de Roemer is a charming spot that serves classic dishes with a modern twist. The warm and inviting interior makes it perfect for lunch or casual drinks. Their chefs work with seasonal, locally sourced ingredients. The wine list is thoughtfully curated to pair perfectly with the menu.</p>', '/images-logos/uploads/1743933936_image-asset1.jpeg', '/images-logos/uploads/1743933942_image-asset.jpeg', '/images-logos/uploads/1743933946_image-asset2.jpeg', '<p>A cozy café offering modern classics and a fine wine selection.</p>', 4),
+(9, 2, '<p>Fine dining in a beautiful historic setting.</p>', '/images-logos/uploads/1743934018_BistroML3.jpg', 'Restaurant ML', '<p>Housed in a stunning heritage building, Restaurant ML offers a premium gastronomic experience. The seasonal menu is full of surprising flavors and creative presentation. Guests enjoy top-tier service and perfectly paired wines. A must-visit for lovers of high-end cuisine.</p>', '/images-logos/uploads/1743934024_restaurant-moustique.jpg', '/images-logos/uploads/1743934031_ml-gerecht.jpg', '/images-logos/uploads/1743934035_crunchy_sushi.jpg', '<p>High-end gastronomy served in a historic ambiance.</p>', 4),
+(10, 2, '<p>Fresh, modern, and full of flavor.</p>', '/images-logos/uploads/1743934121_og-image.png', 'Restaurant Fris', '<p>Restaurant Fris is known for its light and contemporary dishes made with local, sustainable ingredients. The kitchen focuses on clean flavors and beautiful presentation. The atmosphere is relaxed and stylish, making it great for both casual and special occasions. A true hidden gem for food lovers.</p>', '/images-logos/uploads/1743934129_0d4d07defb.jpeg', '/images-logos/uploads/1743934152_tussengerecht.jpg', '/images-logos/uploads/1743934197_1586946823.jpg', '<p>Modern and fresh cuisine with a sustainable touch.</p>', 3),
+(11, 2, '<p>Where dining meets entertainment.</p>', '/images-logos/uploads/1743934253_download1.jpg', 'New Vegas', '<p>New Vegas blends upscale dining with a touch of Las Vegas flair. Enjoy premium steaks, fresh seafood, and signature cocktails in a vibrant setting. Themed nights and live entertainment add to the experience. It’s the perfect spot for a fun night out with friends.</p>', '/images-logos/uploads/1743934260_download3.jpg', '/images-logos/uploads/1743934264_download2.jpg', '/images-logos/uploads/1743934280_download.jpg', '<p>Upscale dining with a fun, Vegas-style vibe.</p>', 3),
+(12, 2, '<p>A local classic since 1879.</p>', '/images-logos/uploads/1743934403_DSC00722kopie-1024x576.jpg', 'Grand Cafe Brinkmann', '<p>Grand Cafe Brinkman is a timeless café with rich history and character. Located on a lively square, it\'s ideal for coffee, lunch, or casual drinks. The interior has a nostalgic charm, while the menu stays classic and crowd-pleasing. Friendly service and a laid-back vibe keep guests coming back.</p>', '/images-logos/uploads/1743934371_photo0jpg.jpg', '/images-logos/uploads/1743934392_DSC00441-kleiner-1024x576.jpg', '/images-logos/uploads/1743934407_DSC06530.JPG', '<p>A historic café with charm and a classic menu.</p>', 3),
+(13, 2, '<p>French bistro vibes with a modern twist.</p>', '/images-logos/uploads/1743934488_overall-terras.jpg', 'Urban Frenchy Bistro Toujours', '<p>Toujours brings the charm of Paris to the city with a playful, creative menu. The interior is trendy and photo-friendly, blending classic bistro style with urban flair. Dishes are inspired by French tradition but given a bold, modern upgrade. Perfect for stylish dining with friends or date night.</p>', '/images-logos/uploads/1743934497_food.jpg', '/images-logos/uploads/1743934507_restaurant-toujours-haarlem-7.jpg', '/images-logos/uploads/1743934517_20181125-210657-largejpg.jpg', '<p>Trendy French bistro with creative flair and urban style.</p>', 3);
 
 -- --------------------------------------------------------
 
@@ -82,9 +88,25 @@ INSERT INTO `detail_event_card_tag` (`id`, `detail_event_id`, `tag`) VALUES
 (9, 5, 'House'),
 (10, 6, 'House'),
 (11, 6, 'Electro'),
-(24, 7, 'French'),
-(25, 7, 'European'),
-(26, 7, 'Fish & Seafood');
+(48, 7, 'French'),
+(49, 7, 'European'),
+(50, 7, 'Fish & Seafood'),
+(51, 8, 'Dutch'),
+(52, 8, 'Fish & Seafood'),
+(53, 8, 'European'),
+(54, 9, 'Dutch'),
+(55, 9, 'Fish & Seafood'),
+(56, 9, 'European'),
+(57, 10, 'Dutch'),
+(58, 10, 'French'),
+(59, 10, 'European'),
+(60, 11, 'Vegan'),
+(61, 12, 'Dutch'),
+(62, 12, 'European'),
+(63, 12, 'Modern'),
+(64, 13, 'Dutch'),
+(65, 13, 'Fish & Seafood'),
+(66, 13, 'European');
 
 -- --------------------------------------------------------
 
@@ -96,7 +118,7 @@ CREATE TABLE `event` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `description_homepage` varchar(2000) DEFAULT NULL,
-  `banner_description` varchar(50) DEFAULT NULL,
+  `banner_description` varchar(200) DEFAULT NULL,
   `picture_homepage` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
@@ -106,7 +128,7 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`id`, `name`, `description_homepage`, `banner_description`, `picture_homepage`) VALUES
 (1, 'Dance', 'Top DJs make an appearance for unforgettable nights.', 'Top DJ\'s performing in DANCE festival!', '/images-logos/uploads/photo-1516450360452-9312f5e86fc7.jfif'),
-(2, 'Yummy!', '<p>A culinary journey through Haarlem\'s finest dining</p>', '<p>Visit the best restaurants in Haarlem!</p>', '/images-logos/uploads/1742913778_photo-1414235077428-338989a2e8c0.jfif');
+(2, 'Yummy!', '<p><i>A culinary journey through Haarlem\'s finest dining</i></p>', '<p><strong>Visit the best restaurants in Haarlem!</strong></p>', '/images-logos/uploads/1742913778_photo-1414235077428-338989a2e8c0.jfif');
 
 -- --------------------------------------------------------
 
@@ -202,7 +224,75 @@ INSERT INTO `session` (`id`, `detail_event_id`, `name`, `description`, `location
 (27, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-24 21:00:00'),
 (28, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-25 21:00:00'),
 (29, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-26 21:00:00'),
-(30, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00');
+(30, 7, 'Ratatouille', NULL, 'Spaarne 96, 2011 CL Haarlem, Nederland', 52, 120, 45.00, '2025-07-27 21:00:00'),
+(31, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-24 18:00:00'),
+(32, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-24 19:30:00'),
+(33, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-24 21:00:00'),
+(34, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-25 21:00:00'),
+(35, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-25 18:00:00'),
+(36, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-25 19:30:00'),
+(37, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-26 21:00:00'),
+(38, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-26 18:00:00'),
+(39, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-26 19:30:00'),
+(40, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-27 21:00:00'),
+(41, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-27 18:00:00'),
+(42, 8, 'Café de Roemer', NULL, 'Botermarkt 17, 2011 XL Haarlem', 35, 90, 45.00, '2025-07-27 19:30:00'),
+(43, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-24 17:30:00'),
+(44, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-24 19:00:00'),
+(45, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-24 20:30:00'),
+(46, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-25 17:30:00'),
+(47, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-25 20:30:00'),
+(48, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-25 19:00:00'),
+(49, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-26 17:30:00'),
+(50, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-26 20:30:00'),
+(51, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-26 19:00:00'),
+(52, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-27 17:30:00'),
+(53, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-27 20:30:00'),
+(54, 13, 'Urban Frenchy Bistro Toujours', NULL, 'Oude Groenmarkt 10-12, 2011 HL Haarlem, Nederland', 48, 90, 35.00, '2025-07-27 19:00:00'),
+(55, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-24 16:30:00'),
+(56, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-24 18:00:00'),
+(57, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-24 19:30:00'),
+(58, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-25 16:30:00'),
+(59, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-25 18:00:00'),
+(60, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-25 19:30:00'),
+(61, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-26 16:30:00'),
+(62, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-26 18:00:00'),
+(63, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-26 19:30:00'),
+(64, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-27 16:30:00'),
+(65, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-27 18:00:00'),
+(66, 12, 'Grand Cafe Brinkman', NULL, 'Grote Markt 13, 2011 RC Haarlem, Nederland', 100, 90, 35.00, '2025-07-27 19:30:00'),
+(67, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-24 17:00:00'),
+(68, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-24 18:30:00'),
+(69, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-24 20:00:00'),
+(70, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-25 18:30:00'),
+(71, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-25 20:00:00'),
+(72, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-25 17:00:00'),
+(73, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-26 18:30:00'),
+(74, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-26 20:00:00'),
+(75, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-26 17:00:00'),
+(76, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-27 18:30:00'),
+(77, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-27 20:00:00'),
+(78, 11, 'New Vegas', NULL, 'Koningstraat 5, 2011 TB Haarlem', 36, 90, 35.00, '2025-07-27 17:00:00'),
+(79, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-24 17:30:00'),
+(80, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-24 20:30:00'),
+(81, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-24 19:00:00'),
+(82, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-25 20:30:00'),
+(83, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-25 19:00:00'),
+(84, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-25 17:30:00'),
+(85, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-26 20:30:00'),
+(86, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-26 19:00:00'),
+(87, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-26 17:30:00'),
+(88, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-27 20:30:00'),
+(89, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-27 19:00:00'),
+(90, 10, 'Restaurant Fris', NULL, 'Twijnderslaan 7, 2012 BG Haarlem, Nederland', 45, 90, 45.00, '2025-07-27 17:30:00'),
+(91, 9, 'Restaurant ML', NULL, 'Kleine Houtstraat 70, 2011 DR Haarlem, Nederland', 60, 120, 45.00, '2025-07-24 17:00:00'),
+(92, 9, 'Restaurant ML', NULL, 'Kleine Houtstraat 70, 2011 DR Haarlem, Nederland', 60, 120, 45.00, '2025-07-24 19:00:00'),
+(93, 9, 'Restaurant ML', NULL, 'Kleine Houtstraat 70, 2011 DR Haarlem, Nederland', 60, 120, 45.00, '2025-07-27 19:00:00'),
+(94, 9, 'Restaurant ML', NULL, 'Kleine Houtstraat 70, 2011 DR Haarlem, Nederland', 60, 120, 45.00, '2025-07-27 17:00:00'),
+(95, 9, 'Restaurant ML', NULL, 'Kleine Houtstraat 70, 2011 DR Haarlem, Nederland', 60, 120, 45.00, '2025-07-26 19:00:00'),
+(96, 9, 'Restaurant ML', NULL, 'Kleine Houtstraat 70, 2011 DR Haarlem, Nederland', 60, 120, 45.00, '2025-07-26 17:00:00'),
+(97, 9, 'Restaurant ML', NULL, 'Kleine Houtstraat 70, 2011 DR Haarlem, Nederland', 60, 120, 45.00, '2025-07-25 19:00:00'),
+(98, 9, 'Restaurant ML', NULL, 'Kleine Houtstraat 70, 2011 DR Haarlem, Nederland', 60, 120, 45.00, '2025-07-25 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -430,13 +520,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT voor een tabel `detail_event`
 --
 ALTER TABLE `detail_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT voor een tabel `detail_event_card_tag`
 --
 ALTER TABLE `detail_event_card_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT voor een tabel `payment`
@@ -448,7 +538,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT voor een tabel `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT voor een tabel `session_artists`
