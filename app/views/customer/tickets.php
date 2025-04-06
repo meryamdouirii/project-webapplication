@@ -1,13 +1,13 @@
 <head>
-    <title>Dance Event</title>
+    <title>Tickets</title>
     <link href="/../stylesheets/styleTickets.css" rel="stylesheet">
 </head>
 <?php include __DIR__ . '/../header.php'; ?>
 <main class="bg-light-blue container-fluid p-0">
 <!-- <pre> <?php print_r($sessionsByDate) ?></pre> -->
     <div class="bg-blue ticket-title-section" style="padding: 50px 0;">
-        <h2 class="ticket-title" style="color: #FF1493;">Dance festival Tickets</h2>
-        <p>Join us for three days of amazing electronic music</p>
+        <h2 class="ticket-title" style="color: #FF1493;">Festival Tickets</h2>
+        <p>Join us during The Festival in Haarlem!</p>
     </div>
 
     <section class="tickets-section">
@@ -43,9 +43,10 @@
                                     <?= $session->getDurationMinutes() ?> minutes
                                 </div>
                             </div>
-
+                            <?= $eventId?>
                             <!-- Add item(session) to card form -->
                             <form method="POST" action="/addToCart">
+                                <input type="hidden" name="event_id" value="<?= $eventId ?>">
                                 <input type="hidden" name="session_id" value="<?= $session->getId() ?>">
                                 <input type="hidden" name="event_name"
                                     value="<?= htmlspecialchars($session->getDetailEventName()) ?>">

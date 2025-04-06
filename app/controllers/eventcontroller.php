@@ -60,16 +60,15 @@ class EventController
             require("../views/event/yummy!/yummy-detail.php");
     }
     public function danceTickets(){
+        $eventId = 1;
+        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId($eventId);
         
-        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId(1);
-    
         
         require("../views/customer/tickets.php");
     }
     public function yummyTickets(){
-        $soldTickets = $this->ticketService->getAll();
-        
-        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId(2);
+        $eventId = 2;
+        $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId($eventId);
 
 
         
