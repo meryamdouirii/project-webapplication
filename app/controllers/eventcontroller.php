@@ -6,13 +6,14 @@ class EventController
 {
     private $detailEventService;
     private $EventService;
-
+    private $ticketService;
     private $sessionService;
     function __construct()
     {
         $this->detailEventService = new \App\Services\DetailEventService();
         $this->EventService = new \App\Services\EventService();
         $this->sessionService = new \App\Services\SessionService();
+        $this->ticketService = new \App\Services\TicketService();
     }
     public function danceMain(){
         $detailEvents = $this->detailEventService->getByMainEvent(1);
@@ -36,11 +37,9 @@ class EventController
         require("../views/event/dance/dance-detail.php");
     }
     public function yummyMain(){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
-            $this->handleEditDetailEventForm();
-        }
+        $mainEvent = $this->EventService->getById(2);
         $detailEvents = $this->detailEventService->getByMainEvent(2);
+
         require("../views/event/yummy!/yummy-main.php");
     }
     public function yummyDetail() {
@@ -50,9 +49,7 @@ class EventController
             exit;
         }
         $eventId = intval($_GET['id']);
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->handleEditDetailEventForm();
-        }
+
             $detailYummyEvent = $this->detailEventService->getById($eventId);
             $yummySessions = $this->sessionService->getSessionsByDetailEventId($eventId);
         
@@ -63,38 +60,21 @@ class EventController
             require("../views/event/yummy!/yummy-detail.php");
     }
     public function danceTickets(){
+        
         $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId(1);
+    
+        
         require("../views/customer/tickets.php");
     }
     public function yummyTickets(){
+        $soldTickets = $this->ticketService->getAll();
+        
         $sessionsByDate = $this->sessionService->getSessionsGroupedByDateAndEventId(2);
+
+
+        
         require("../views/customer/tickets.php");
     }
-    private function handleEditDetailEventForm(){
-            $eventId = $_POST['id'];
-            $content = $_POST['content'];
-            $type = $_POST['updateType'];
-    
-            preg_match('/<img[^>]+src="([^"]+)"/', $content, $match);
-    
-            if (isset($match[1])) {
-                $srcValue = $match[1];
-    
-                $cleanedSrcValue = preg_replace('/^http:\/\/localhost/', '', $srcValue);
-
-                $content = $cleanedSrcValue;
-            }
-            else {
-                $content = strip_tags($content);
-                $content = str_replace('"', '&quot;', $content);
-                $content = str_replace("'", '&apos;', $content);
-            }
-            if($type == 'amount_of_stars'){
-                $amountOfStars = substr_count($content, '★');
-                $content = $amountOfStars;
-            }
-            $this->detailEventService->updateContent($content, $type, $eventId);
-    
-    }
+  
     
 }

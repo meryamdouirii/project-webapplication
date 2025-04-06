@@ -9,13 +9,8 @@
                 <div class="row">
                     <div class="col-md-3 mt-4 text-start bg-blue-transparent p-3 position-relative event-artist-list">
                         <h1 class="event-title">YUMMY!</h1>
-                        <ul class="list-unstyled">
-                            <li>Café de Roemer</li>
-                            <li>Ratatouille</li>
-                            <li>Urban Frenchy Bistro Toujours</li>
-                            <li>Restaurant Fris</li>
-                        </ul>
-                        <a href="#" class="btn btn-lg mt-3 event-ticket-btn button">GET TICKETS</a>
+                        <?php echo $mainEvent->banner_description?>
+                        <a href="/yummy/tickets" class="btn btn-lg mt-3 event-ticket-btn button">GET TICKETS</a>
                     </div>
                 </div>
             </div>

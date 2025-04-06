@@ -16,7 +16,6 @@ use \App\Controllers\CartController;
 use \App\Controllers\PaymentController;
 use \App\Controllers\OrderController;
 
-
 require_once("../vendor/autoload.php");
 
 $homeController = new HomeController();

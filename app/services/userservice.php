@@ -1,5 +1,6 @@
 <?php
 namespace App\Services;
+use App\Models\User;
 
 class UserService {
     public function getAll() {
@@ -13,6 +14,10 @@ class UserService {
     public function getByEmail($email){
         $repository = new \App\Repositories\UserRepository();
         return $repository->getByEmail($email);
+    }
+    public function getByOrderId($orderId) : ?User{
+        $repository = new \App\Repositories\UserRepository();
+        return $repository->getByOrderId($orderId);
     }
     public function insert($user) {
         $repository = new \App\Repositories\UserRepository();

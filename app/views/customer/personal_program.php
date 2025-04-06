@@ -97,14 +97,14 @@
                         <?php foreach ($order->getTickets() as $ticket): ?>
                             <div class="col-md-12 ticket-item d-flex">
                                 <div>
-                                    <strong>Event:</strong> <?= htmlspecialchars($ticket->getSession()['event_name']) ?><br>
+                                    <strong>Event:</strong> <?= htmlspecialchars($ticket->getSession()->getDetailEventName()) ?><br>
                                     <strong>Artist/Restaurant:</strong>
-                                    <?= htmlspecialchars($ticket->getSession()['artist_or_restaurant_name']) ?><br>
-                                    <strong>Session:</strong> <?= htmlspecialchars($ticket->getSession()['session_name']) ?><br>
-                                    <strong>Location:</strong> <?= htmlspecialchars($ticket->getSession()['location']) ?><br>
+                                    <?= htmlspecialchars($ticket->getSession()->getDetailEventName()) ?><br>
+                                    <strong>Session:</strong> <?= htmlspecialchars($ticket->getSession()->getName()) ?><br>
+                                    <strong>Location:</strong> <?= htmlspecialchars($ticket->getSession()->getLocation()) ?><br>
                                     <strong>Date & Time:</strong>
-                                    <?= htmlspecialchars($ticket->getSession()['datetime_start']) ?><br>
-                                    <strong>Price:</strong> €<?= number_format($ticket->getSession()['ticket_price'], 2) ?><br>
+                                    <?= htmlspecialchars($ticket->getSession()->getDateTimeStart()) ?><br>
+                                    <strong>Price:</strong> €<?= number_format($ticket->getSession()->getPrice(), 2) ?><br>
                                     <!-- <strong>Barcode:</strong> <?= htmlspecialchars($ticket->getbarCode()) ?><br> -->
                                     <a href="#" class="button view-barcode" data-barcode="<?= htmlspecialchars($ticket->getBarCode()) ?>">View Barcode</a>
                                 </div>

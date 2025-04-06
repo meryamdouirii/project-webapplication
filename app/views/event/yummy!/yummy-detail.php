@@ -4,12 +4,12 @@ use App\Models\DetailEvent;
 use App\Models\Session;
 ?>
 <head>
-    <title>Yummy! - <?= htmlspecialchars($detailYummyEvent->getName())?></title>
+    <title>Yummy! - <?= $detailYummyEvent->getName()?></title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
 <main class="bg-light-blue container-fluid p-0">
-    <section class="hero-section-event text-white text-center event-hero" style="background-image: url('<?= htmlspecialchars($detailYummyEvent->getBannerImage() ?: '/images-logos/default.jpg') ?>');">
+    <section class="hero-section-event text-white text-center event-hero" style="background-image: url('<?= $detailYummyEvent->getBannerImage() ?: '/images-logos/default.jpg' ?>');">
         <div class="overlay event-overlay">
             <div class="container">
                 <div class="row justify-content-end">
@@ -31,7 +31,7 @@ use App\Models\Session;
                 <div class="row align-items-center text-center position-relative">
                     <div class="col-12">
                         <h1 class="event-about-title d-inline-block">
-                            About <?= htmlspecialchars($detailYummyEvent->getName()) ?>
+                            About <?= $detailYummyEvent->getName() ?>
                         </h1>
                     </div>
                 </div>
@@ -50,20 +50,20 @@ use App\Models\Session;
                     <div class="row mt-2">
                         <div class="col-md-6 d-flex align-items-center">
                             <p>
-                                <?=html_entity_decode(htmlspecialchars($detailYummyEvent->getDescription()), ENT_QUOTES | ENT_HTML5, 'UTF-8')?>
+                                <?=html_entity_decode($detailYummyEvent->getDescription(), ENT_QUOTES | ENT_HTML5, 'UTF-8')?>
                             </p>      
                         </div>
                         <div class="col-md-6 d-flex align-items-center">
                             <img class="h-auto w-100 event-info-image" 
-                                src="<?= !empty($detailYummyEvent->getImageDescription1()) ? htmlspecialchars($detailYummyEvent->getImageDescription1()) : "/images-logos/default.jpg" ?>" 
-                                alt="<?= htmlspecialchars($detailYummyEvent->getName()) ?> Image" />
+                                src="<?= !empty($detailYummyEvent->getImageDescription1()) ? $detailYummyEvent->getImageDescription1() : "/images-logos/default.jpg" ?>" 
+                                alt="<?= $detailYummyEvent->getName() ?> Image" />
                         </div>
                     </div>
                     <div class="row mt-4">
                     <div class="col-4 d-flex align-items-center">
                         <img class="h-auto w-100 event-info-image" 
-                            src="<?= !empty($detailYummyEvent->getImageDescription2()) ? htmlspecialchars($detailYummyEvent->getImageDescription2()) : "/images-logos/default.jpg" ?>" 
-                            alt="<?= htmlspecialchars($detailYummyEvent->getName()) ?> Image" />
+                            src="<?= !empty($detailYummyEvent->getImageDescription2()) ? $detailYummyEvent->getImageDescription2() : "/images-logos/default.jpg" ?>" 
+                            alt="<?= $detailYummyEvent->getName() ?> Image" />
                     </div>
                         <div class="col-2 d-flex align-items-center ">
                             <button class="button" href="#">BUY TICKETS</button>
@@ -72,42 +72,22 @@ use App\Models\Session;
                         <div class="col-6 d-flex align-items-center ">
                                 <table>
                                     <tr>
-                                        <th>Dates</th>
-                                        <th>Session 1</th>
-                                        <th>Session 2</th>
-                                        <th>Session 3</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
                                         <th>Seats</th>
                                         <th>Price 12+</th>
                                         <th>Price 12-</th>
                                     </tr>
-                                    <?php
-                                      $dates = [
-                                        new DateTime("2025-07-24"),
-                                        new DateTime("2025-07-25"),
-                                        new DateTime("2025-07-26"),
-                                        new DateTime("2025-07-27")
-                                    ];
-
-                            
-                                       foreach ($dates as $date) {
-                                        echo "<tr>
-                                        <td>" . $date->format('d F') . "</td>"; 
-                                        foreach ($yummySessions as $session) {
-                                            $sessionDate = (new DateTime($session->getDateTimeStart()))->format('Y-m-d');
-                                            if ($sessionDate == $date->format('Y-m-d')) {
-
-                                                echo "<td>" . (new DateTime($session->getDateTimeStart()))->format('H:i') . "</td>"; 
-                                               
-                                            }
-                                            
-                                        }
+                                    <?php foreach ($yummySessions as $session): ?><?php
+                                     {
+                                        echo "<td>" . $session->getDate() . "</td>";
+                                        echo "<td>" . $session->getStartTime() . "</td>";
                                         echo "<td>" . $session->getTicketsAvailable() . "</td>";    
                                         echo "<td>" . $session->getPrice() . "</td>";
                                         echo "<td>" . ($session->getPrice() / 2) . "</td>";
                                         echo "</tr>";
                                     }
-                                    
-                                        ?>
+                                     ?><?php endforeach; ?>
 
                             </table>
                         </div>

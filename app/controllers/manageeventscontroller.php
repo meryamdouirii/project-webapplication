@@ -127,7 +127,7 @@ class ManageEventsController
                 $songs
             );
             if ($this->detailEventService->add($detailEvent)) {
-                $_SESSION['success_message'] = "Detail event has been addedsuccessfully!";
+                $_SESSION['success_message'] = "Detail event has been added successfully!";
             } else {
                 $_SESSION['error_message'] = "Failed to add Detail event.";
             }
@@ -238,7 +238,6 @@ class ManageEventsController
                 $duration_minutes,
                 $price,
                 $datetime_start,
-                0
             );
             try {
                 $this->sessionService->update($session);
@@ -289,14 +288,13 @@ class ManageEventsController
                 $duration_minutes,
                 $price,
                 $datetime_start,
-                0
             );
             try {
                 $this->sessionService->insert($session);
                 $_SESSION['success_message'] = "Session has been added!";
                 $this->index();
             } catch (\Exception $e) {
-                $_SESSION['error_message'] = "Something went wrong while adding the session.";
+                $_SESSION['error_message'] = $e . "Something went wrong while adding the session.";
                 $this->index();
             }
             

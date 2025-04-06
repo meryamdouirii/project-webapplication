@@ -12,13 +12,22 @@ use App\Services\EmailService;
 class UserRepository extends Repository {
 
     public function getAll() {
-        $stmt = $this->connection->prepare("SELECT * FROM user");
+        $stmt = $this->connection->prepare("SELECT * FROM `user` WHERE inactive = false");
         $stmt->execute();
 
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $users = array_map(function ($row) {
-            $user = new User();
+            $user = new User(
+                (int)$row['id'],
+                UserType::from($row['type']),
+                $row['first_name'],
+                $row['last_name'],
+                $row['phone_number'],
+                $row['email_address'],
+                $row['password_hash'],
+                $row['salt']
+            );
             $user->id = (int)$row['id'];
             $user->hashed_password = $row['password_hash'];
             $user->email = $row['email_address'];
@@ -32,6 +41,36 @@ class UserRepository extends Repository {
 
         return $users;
     }
+    public function getByOrderId(int $orderId): ?User {
+        $stmt = $this->connection->prepare("
+            SELECT u.* 
+            FROM user u
+            JOIN ticket_order o ON u.id = o.user_id
+            WHERE o.id = :order_id
+            LIMIT 1
+        ");
+        $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if (!$row) {
+            return null;
+        }
+    
+        $user = new User(
+            (int)$row['id'],
+            UserType::from($row['type']),
+            $row['first_name'],
+            $row['last_name'],
+            $row['phone_number'],
+            $row['email_address'],
+            $row['password_hash'],
+            $row['salt']
+        );
+    
+        return $user;
+    }
+    
     public function getByEmail($email){
         $stmt = $this->connection->prepare("SELECT * FROM user WHERE email_address = :email_address");
         $stmt->execute([':email_address' => $email]);
@@ -42,15 +81,18 @@ class UserRepository extends Repository {
             return null; // User not found
         }
 
-        $user = new User();
-        $user->id = (int)$row['id'];
-        $user->hashed_password = $row['password_hash'];
-        $user->email = $row['email_address'];
-        $user->salt = $row['salt'];
-        $user->type_of_user = UserType::from($row['type']); // Convert string to enum
-        $user->first_name = $row['first_name']; 
-        $user->last_name = $row['last_name'];
-        $user->phone_number = $row['phone_number'];
+       
+        $user = new User(
+            (int)$row['id'],
+            UserType::from($row['type']),
+            $row['first_name'],
+            $row['last_name'],
+            $row['phone_number'],
+            $row['email_address'],
+            $row['password_hash'],
+            $row['salt']
+        );
+        
         return $user;
     }
     public function getById($id) {
@@ -63,15 +105,18 @@ class UserRepository extends Repository {
             return null; // User not found
         }
 
-        $user = new User();
-        $user->id = (int)$row['id'];
-        $user->hashed_password = $row['password_hash'];
-        $user->email = $row['email_address'];
-        $user->salt = $row['salt'];
-        $user->type_of_user = UserType::from($row['type']); // Convert string to enum
-        $user->first_name = $row['first_name']; 
-        $user->last_name = $row['last_name'];
-        $user->phone_number = $row['phone_number'];
+
+        $user = new User(
+            (int)$row['id'],
+            UserType::from($row['type']),
+            $row['first_name'],
+            $row['last_name'],
+            $row['phone_number'],
+            $row['email_address'],
+            $row['password_hash'],
+            $row['salt']
+        );
+       
         return $user;
     }
     public function insert($user) {
@@ -107,7 +152,7 @@ class UserRepository extends Repository {
         return $results;
     }
     public function delete($id) {
-        $stmt = $this->connection->prepare("DELETE FROM user WHERE id = :id");
+        $stmt = $this->connection->prepare("UPDATE `user` SET `inactive` = '1' WHERE `user`.`id` = :id");
     
         $results = $stmt->execute([
             ':id' => $id
@@ -139,11 +184,19 @@ class UserRepository extends Repository {
             return null; // No matching user found
         }
     
-        $user = new User();
-        $user->id = (int)$row['id'];
-        $user->email = $row['email_address'];
-        $user->reset_token_hash = $row['reset_token_hash'];
-        $user->reset_token_expires_at = new DateTime($row['reset_token_expires_at']); // Convert string to DateTime
+        $user = new User(
+            (int)$row['id'],
+            UserType::from($row['type']),
+            $row['first_name'],
+            $row['last_name'],
+            $row['phone_number'],
+            $row['email_address'],
+            $row['password_hash'],
+            $row['salt'],
+            $row['reset_token_hash'],
+            new DateTime($row['reset_token_expires_at'])
+        );
+       
     
         return $user;
     }

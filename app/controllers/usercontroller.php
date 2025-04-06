@@ -43,14 +43,16 @@ class UserController
             $last_name = !empty($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : null;
             $phone_number = !empty($_POST['phone_number']) ? htmlspecialchars($_POST['phone_number']) : null;
 
-            $user = new \App\Models\User();
-            $user->email = $email;
-            $user->hashed_password = $password;
-            $user->type_of_user = $userType;
-            $user->first_name = $first_name;
-            $user->last_name = $last_name;
-            $user->phone_number = $phone_number;
-            $user->salt = $salt;
+            $user = new \App\Models\User(
+                0,
+                $userType,
+                $first_name,
+                $last_name,
+                $phone_number,
+                $email,
+                $password,
+                $salt
+            );
             if ($this->userService->insert($user)) {
                 $_SESSION['success_message'] = "User created successfully.";
                 header("Location: /manage-users");
@@ -85,15 +87,17 @@ class UserController
             $last_name = !empty($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : null;
             $phone_number = !empty($_POST['phone_number']) ? htmlspecialchars($_POST['phone_number']) : null;
 
-            $user = new \App\Models\User();
-            $user->email = $email;
-            $user->hashed_password = $password;
-            $user->type_of_user = $userType;
-            $user->first_name = $first_name;
-            $user->last_name = $last_name;
-            $user->phone_number = $phone_number;
-            $user->salt = $salt;
-            $user->id = $firstUser->id;
+            $user = new \App\Models\User(
+                $firstUser->id,
+                $userType,
+                $first_name,
+                $last_name,
+                $phone_number,
+                $email,
+                $password,
+                $salt
+            );
+            
             if ($this->userService->update($user)) {
                 $_SESSION['success_message'] = "User updated successfully.";
                 header("Location: /manage-users");
@@ -113,11 +117,11 @@ class UserController
             }
     
             $id = $_GET['id'];
-            if (!isset($_SESSION['user']) || empty($_SESSION['user']->id)) {
+            if (!isset($_SESSION['user']) || empty($_SESSION['user']['id'])) {
                 
                 $this->showDeleteError("Unauthorized access.");
             }
-            if ($id == $_SESSION['user']->id) {
+            if ($id == $_SESSION['user']['id']) {
                
                 $this->showDeleteError("You cannot delete your own account.");
             

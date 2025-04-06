@@ -27,7 +27,7 @@
                                 alt="<?= htmlspecialchars($event->name); ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><?= htmlspecialchars($event->name); ?></h5>
-                                <p><?= htmlspecialchars($event->description_homepage); ?></p>
+                                <p><?= $event->description_homepage; ?></p>
                             </div>
                         </a>
                     </div>

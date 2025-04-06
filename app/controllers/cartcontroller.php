@@ -8,11 +8,13 @@ class CartController
     private $sessionService;
     private $orderService;
     private $paymentService;
+    private $ticketService;
     function __construct()
     {
         $this->sessionService = new \App\Services\SessionService();
         $this->orderService = new \App\Services\OrderService();
         $this->paymentService = new \App\Services\Paymentservice();
+        $this->ticketService = new \App\Services\TicketService();
     }
 
     public function viewCart()
@@ -148,8 +150,17 @@ class CartController
         
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $tickets = $_SESSION['cart'];
+
             if ($_SESSION['user']['type_of_user'] === 'customer') {
                 // Plaats de order in de database en verkrijg het order-ID
+
+                foreach ($tickets as $ticket) {
+                   if ($this->sessionService->getById($ticket['session_id'])->getTicketLimit() <= $this->ticketService->countTicketsBySessionId($ticket['session_id'])) {
+                        $_SESSION['error_message'] = "For the session " . $ticket['event_name']." at " . $ticket['event_time']." there are no tickets available anymore. Remove the ticket from your cart to continue.";
+                        header("Location: /cart");
+                        exit;
+                    }
+                }
                 $orderId = $this->orderService->placeOrder($tickets);
                 
                 // Bereken totaalbedrag in centen (aantal * prijs in centen)
@@ -158,6 +169,8 @@ class CartController
                     $totalAmount += intval($ticket['quantity']) * intval(floatval($ticket['event_price']) * 100);
                 }
                 
+                
+
                 // Maak de pending betaling aan en redirect naar Stripe
                 $this->paymentService->makePayment($tickets, $orderId, $totalAmount);
                 

@@ -3,27 +3,17 @@ namespace App\Models;
 
 class Songs
 {
-    private int $id;
+    private ?int $id;
 
-    private int $detail_event_id;
+    private ?int $detail_event_id;
 
-    private string $detailEventName;
+    private ?string $detailEventName;
 
-    private string $photo;
+    private ?string $photo;
 
-    private string $title;
+    private ?string $title;
 
-    private string $description;
-
-    public function __construct(int $id, int $detail_event_id, string $detailEventName, string $photo, string $title, string $description)
-    {
-        $this->id = $id;
-        $this->detail_event_id = $detail_event_id;
-        $this->detailEventName = $detailEventName;
-        $this->photo = $photo;
-        $this->title = $title;
-        $this->description = $description;
-    }
+    private ?string $description;
 
     public function getId(): int
     {

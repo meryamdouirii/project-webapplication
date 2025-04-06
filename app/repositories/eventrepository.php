@@ -28,7 +28,7 @@ class EventRepository extends Repository {
     
         // Check of er resultaten zijn
         if ($stmt->rowCount() == 0) {
-            die("⚠️ Geen event gevonden met ID: " . $id);
+            die("Geen event gevonden met ID: " . $id);
         }
     
         $stmt->setFetchMode(PDO::FETCH_CLASS, '\\App\\Models\\Event');
