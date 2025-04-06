@@ -72,42 +72,22 @@ use App\Models\Session;
                         <div class="col-6 d-flex align-items-center ">
                                 <table>
                                     <tr>
-                                        <th>Dates</th>
-                                        <th>Session 1</th>
-                                        <th>Session 2</th>
-                                        <th>Session 3</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
                                         <th>Seats</th>
                                         <th>Price 12+</th>
                                         <th>Price 12-</th>
                                     </tr>
-                                    <?php
-                                      $dates = [
-                                        new DateTime("2025-07-24"),
-                                        new DateTime("2025-07-25"),
-                                        new DateTime("2025-07-26"),
-                                        new DateTime("2025-07-27")
-                                    ];
-
-                            
-                                       foreach ($dates as $date) {
-                                        echo "<tr>
-                                        <td>" . $date->format('d F') . "</td>"; 
-                                        foreach ($yummySessions as $session) {
-                                            $sessionDate = (new DateTime($session->getDateTimeStart()))->format('Y-m-d');
-                                            if ($sessionDate == $date->format('Y-m-d')) {
-
-                                                echo "<td>" . (new DateTime($session->getDateTimeStart()))->format('H:i') . "</td>"; 
-                                               
-                                            }
-                                            
-                                        }
+                                    <?php foreach ($yummySessions as $session): ?><?php
+                                     {
+                                        echo "<td>" . $session->getDate() . "</td>";
+                                        echo "<td>" . $session->getStartTime() . "</td>";
                                         echo "<td>" . $session->getTicketsAvailable() . "</td>";    
                                         echo "<td>" . $session->getPrice() . "</td>";
                                         echo "<td>" . ($session->getPrice() / 2) . "</td>";
                                         echo "</tr>";
                                     }
-                                    
-                                        ?>
+                                     ?><?php endforeach; ?>
 
                             </table>
                         </div>
