@@ -18,7 +18,7 @@ use App\Models\Session;
                         <h2 class="mb-5 text-center">
                         <?=$detailYummyEvent->getBannerDescription()?>
                         </h2>
-                        <a href="#" class="btn btn-lg mt-3 event-ticket-btn button">GET TICKETS</a>
+                        <a href="/yummy/tickets" class="btn btn-lg mt-3 event-ticket-btn button">GET TICKETS</a>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@ use App\Models\Session;
                             alt="<?= $detailYummyEvent->getName() ?> Image" />
                     </div>
                         <div class="col-2 d-flex align-items-center ">
-                            <button class="button" href="#">BUY TICKETS</button>
+                            <button class="button" href="/yummy/tickets">BUY TICKETS</button>
                         </div>
                         <?php if ($yummySessions != null): ?>
                         <div class="col-6 d-flex align-items-center ">
